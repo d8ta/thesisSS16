@@ -1,0 +1,70 @@
+\NeedsTeXFormat{LaTeX2e}
+\documentclass[10pt,a4paper]{article}
+\usepackage{a4wide}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{floatflt}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{subfig}
+\usepackage[ngerman,english]{babel}
+\usepackage{listings}
+\usepackage{url}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+
+\usepackage[authordate,bibencoding=auto,strict]{biblatex-chicago} 
+\usepackage[babel,german=guillemets]{csquotes}
+\bibliography{Bibliography} 
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 2pt minus 1pt}
+
+\lstset{
+	language=C++,
+	basicstyle=\ttfamily,
+	keywordstyle=\color{blue},
+	tabsize=4,
+	numbers=left,
+	numberstyle=\footnotesize
+%	morekeywords={*,auto}
+}
+\selectlanguage{english}
+
+\begin{document}
+
+\input{Title}
+
+\pagestyle{headings}
+\pagenumbering{roman}
+
+\input{Affirmation}
+
+\newpage
+\input{Summary}
+
+\newpage
+\input{Abstract}
+
+\newpage
+\tableofcontents
+
+\newpage
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+\include{Body}
+
+\listoffigures
+
+
+\newpage
+\printbibliography
+%\begin{thebibliography}{2}
+%\bibitem{bla1} danielbuchusw.1
+%\bibitem{Keerthi2014} Buch2 s
+%\end{thebibliography}
+
+\setlength{\parskip}{10pt}
+\end{document}
