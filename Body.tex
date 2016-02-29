@@ -122,7 +122,6 @@ agile developement.
   \caption{the agile manifesto}
 \end{figure}
 
-% eingehen auf einzelne principles und herleitung zu continuous integration mit sprung zum zweiten kapitel
 Based on the manifesto principles it is more realistic to build software. If you stay with the therapist dashboard example the agile approach makes more
 sense, compared to a solid plan that starts at the beginning and did not change during the process, because most sofware change in the course of
 development. Since many of the principles contain non technical ideas, like a cicle of team reflection, motivating team members or the art of simpicity,
@@ -134,14 +133,23 @@ If an application or software changes fast in the development process it is a go
 even if the development team or single members change code or adding new features. It is possible to guarantee this in the beginning of a software project,
 but when the software grows more complicated and complex it may be impossible to do.
 
-\subsection{Continous integration and delivery}
-Continous integration and delivery describes the method of shipping and developing software in short cyles. CI covers an important part of the agile software
-development movement. The main idea is to ensure that the application or software stays functional at any level. In Continous Integration the development
-process runs in short cylcles that produce a certain feature or element of the project. If this small piece of functionality proves to be error free and
-tested the developer integrates it into the existing project. One of the advantages of this technique is that every time a feature or piece
-of code is added, advanced or altered the developer stays in controll. If everything was working before, the problem is in that feature or code that was
-integrated right now. On the other hand, if a team uses long development cycles it may be impossible to know what parts of the program cerates an error.
 
+\subsection{Continous integration}
+Continouls integration is the process of continously create and ship code. CI can be described as merging new code with a set up project in short
+development cyles constantly. To do this CI relies heavily on automated processes and tests. Automated testing in CI will help to catch issues before they
+can to into the up and running service where they can cause errors and other troubles. The main technical idea behind CI is
+one order philosphy. After developing new code the developer only needs to push the code to the repository. Through this action (pushing to a VCS) a chain
+of events is triggered. The standard case is that the newly pushed scource code gets pulled and tested. If all tests pass and there are no problem the
+application gets build and published. After the application gets published the development team gets notified to report that the testing and building was
+successful. (\cite{stolberg2009enabling})
+
+CI also helps to prevent integration problems where different people work on a project and all there code needs to integrate after a longer period of time.
+With integration often (sometimes a few times per day) integrating code form different teams is more easy because the mass of code alone is very small in
+comparison to an integration every few weeks.
+
+
+\subsection{Continous integration and test driven development}
+The main idea behind Test driven development is to ensure that the application or software stays functional at any level.
 CI inherits the idea of using Test Driven Development. This means that you actually write test for the different parts (units) of your software.
 In his book \textbf{\textit{Test-Driven Development by Example}} Kent Beck explains that writing automated tests before the actual code can be a good service
 to an applications. As a developer starts to add features and introduce changes into an application that is already used, automated testing should be a standard.
@@ -150,9 +158,10 @@ developer did not need to go through all parts of the application manually after
 and inefficient, because it is still likley to oversee functionalities in the code that will be effected by different changes that are made afterwards. It also
 leads to thought through programming decisions. Test-driven development focusses on how TDD leads analysis, design, and programming decissions
 (\cite{janzen2005test}) which will be of help if the software application grows larger or more complex. Writing unit tests (a unit tests tests only a small
-part of an application, for example if the email validation is working correctly) combined with continously integrate and deliver software provides a
-good setup for creating software.
+part of an application, for example if the email validation is working correctly) combined with continously integrate and delivery provides a
+good setup for error free applications.
 
+\subsection{Continous delivery and deployment}
 
 \newpage
 
@@ -166,9 +175,12 @@ most services are using databases to store user data and let users authenticate 
 frontend, that can be used today to ship an application. For this thesis i will describe various options to create and deliver an modern web
 applications with methods of continous integration, continuous delivery and continous deployment.
 
-I will start to describe the differences between continous integration, -delivery and -deployment and what is needed to build a stable CI pipline. I also
-will explain what parts are essential for a CI pipline and what options are available to choose from. Furthermore i will show an idea of a usable workflow
-in operations and CI.
+I will start to describe differences solutions to build a stable CI pipline. I also will explain what parts are essential for a CI pipline and what options
+are available to choose from. Furthermore i will show an idea of a usable workflow in operations and CI.
+
+
+
+% later
 
 during development code needs to be shiped and tested. Development operations will provide the needed operations and background to test and ship the code
 from a local setup to any kind of server. For this development operations rely on automatication in the process to make sure that new features are build,
