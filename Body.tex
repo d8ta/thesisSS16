@@ -156,19 +156,23 @@ good setup for creating software.
 
 \newpage
 
-\section{The Foundations of Continuous Integration and Automatization in Development Operations}
+\section{Continuous Integration and Automatization in Development Operations}
 \label{section:The Foundations of Continuous Integration and Automatization in Development Operations}
 
 % start here
-\subsection{The role of development operations}
-Today building a web application contains several parts and ideas that needs to be combined. Besides the layout and look of the frontend applications
+\subsection{The continous integration pipline}
+Today building a web application contains different parts and techniques that needs to be combined. Besides the layout and look of the frontend applications
 most services are using databases to store user data and let users authenticate to a service. There is a wide range of techniques in either, backend and
-frontend, that can be used today to ship an application. For this thesis i will describe using NodeJS and the MEAN stack to create and deliver an
-applications with methods of continous integration. For this task development operations are needed. If a developer needs to ship and test code and than
-publish it, development operations will provide the needed operations and background to test and ship the code from a local setup to any kind of
-server. To do so development operations seek to automatice the process of development and shipping and to make sure that new features or code is
-tested before integrated into a running system. This amount of automatication is using different services and setups to test, integrate and deliver
-modern web applications. For this a continous deployment pipline is needed (figure 4)
+frontend, that can be used today to ship an application. For this thesis i will describe various options to create and deliver an modern web
+applications with methods of continous integration, continuous delivery and continous deployment.
+
+I will start to describe the differences between continous integration, -delivery and -deployment and what is needed to build a stable CI pipline. I also
+will explain what parts are essential for a CI pipline and what options are available to choose from. Furthermore i will show an idea of a usable workflow
+in operations and CI.
+
+during development code needs to be shiped and tested. Development operations will provide the needed operations and background to test and ship the code
+from a local setup to any kind of server. For this development operations rely on automatication in the process to make sure that new features are build,
+tested an integrated into a running system. (figure 4)
 
 \begin{figure}[h!]
   \centering
