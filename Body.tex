@@ -163,7 +163,7 @@ good setup for error free applications.
 
 \subsection{Continous delivery and deployment}
 Continous delivery is needed to deliver code to other services, teams and customers for review. After a successful review and if all tests are showing that the
-application is error free, the application can be build and deployed. Figure 5 shows how a continuous delivery process runs in general.
+application is error free, the application can be build and deployed. Figure 4 shows how a continuous delivery process runs in general.
 
 \begin{figure}[h!]
   \centering
@@ -184,21 +184,18 @@ frontend, that can be used today to ship an application. For this thesis i will 
 applications with methods of continous integration, continuous delivery and continous deployment.
 
 I will start to describe differences solutions to build a stable CI pipline. I also will explain what parts are essential for a CI pipline and what options
-are available to choose from. Furthermore i will show an idea of a usable workflow in operations and CI.
+are available to choose from. Furthermore i will show an idea of a usable workflow in operations and CI. To build and automatize a CD prozess you have to build
+a continouus deployment pipeline which contains all the assets, scripts and tools you need to build, test and deploy your application after you push it the a
+version controll system. In figure 5 you see a very basic and general pipline without any specifics.
 
-
-
-% later
-
-during development code needs to be shiped and tested. Development operations will provide the needed operations and background to test and ship the code
-from a local setup to any kind of server. For this development operations rely on automatication in the process to make sure that new features are build,
-tested an integrated into a running system. (figure 4)
 
 \begin{figure}[h!]
   \centering
   \includegraphics[width=0.8\textwidth]{images/pipeline.png}
-  \caption{development operation with continous operations}
+  \caption{basic CD pipeline from https://blog.risingstack.com/nodejs-production-environment-for-startups/}
 \end{figure}
+
+% write about the pipeline, but first research
 
 
 \newpage
