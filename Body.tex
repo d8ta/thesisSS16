@@ -173,7 +173,7 @@ application is error free, the application can be build and deployed. Figure 4 s
 
 \newpage
 
-\section{Continuous Integration and Automatization in Development Operations}
+\section{Continuous Integration and Automatization}
 \label{section:The Foundations of Continuous Integration and Automatization in Development Operations}
 
 % start here
@@ -195,7 +195,60 @@ version controll system. In figure 5 you see a very basic and general pipline wi
   \caption{basic CD pipeline from https://blog.risingstack.com/nodejs-production-environment-for-startups/}
 \end{figure}
 
-% write about the pipeline, but first research
+To go into more detail about the CD pipeline the following stages are described in general. Theses Stages are the same for every software project using
+continous delivery. They vary in some curcial point that i will later explain, but the basic is the same. To understand the CD pipeline the process needs
+to be understand. The pipeline follows one stage after another and each stage triggers the start of the next one. The trigger prozess only starts if the
+stage before passes tests or metrics. Humble and Jez describe these four stages in the book "continuous delivery: reliable software releases through build,
+test, and deployment automation" (\cite{humble2010continuous})
+
+\subsection{The commit stage}
+The CD pipeline starts with the commit stage. Usually this stage is triggered whan a developer puhes new code to a repository at the version control system.
+In this case a script should pull the new code and build the project. The purpuouse of the commit stage is to to single out builds with errors and therefore
+are unfit to be released as a project to the production server (user/customer) and go give feedback about the build back to the developing team as soon as possible.
+This stage consists of roughly five phases. At the beginning the code from the pulled repository gets compiled. After this the commit stage should hold the unit
+tests for the project. Theses tests should run in the commit stage. It is possible to use more specific tests in this stage according to Jez and Humble
+(\cite{humble2010continuous}) the commit stage already can hold tests for later stages, if it is clear that typical problems occure that can be singled out
+in this first stage. Since a CD environment should be an evolving system the development team can start with unit testing only and later bring in the tests
+that will help prevent known problems with their application right at the beginning of the pipeline.
+
+After the testing code should be stored for use in later stages. The code also should be analysed for structural errors or difficulties and
+artifacts should be stored as well to reuse it later on, for example to use them in the test databases if you use these kind of things. \cite{osherove2015art}
+describes a unit test as "A unit test is a piece of code which calls another code to prove them true or false. The unit test is true if the asumed is true.
+A unit is a method or function". This definition states that unit tests testing the smallest part of an application. They are based on the function level.
+Because of this the development team needs to be careful not to rely on unit tests alone to show if the application is working. Even if unit tests are all
+working and the feedback of them is positiv the overall functionality of an application can be broken. Because of the basic structure of unit tests the
+overall context of what the application does or does not can get lost, and even if all functions are up and running, connected functionality can be damaged.
+A rule for good unit test is that the should be isolated from different code to only controle and test one function (\cite{osherove2015art}).
+In general the commit stage should use 5- 10 minutes to build and test the application, depending on the projects extend. (\cite{humble2010continuous}).
+
+\subsection{Automated acceptance test stage}
+A successful commit stage should trigger the automated acceptance test stage afterwards. In this stage the goal is to secure the applications behaviours and
+deliver the contend and functionality that the team and a customer expects from the software. For example, if the webapplication should provide a booking system
+for something it should be possible to book the content on the side. This is what a costumer would expect from the application and therefore this should be
+tested. In this case the test should assume that someone can place an order and evaluate the different parts of this (input field, input evaluation, auto
+complete, sending the order). In this area of testing not only functions are checked for functionality but the UI hat uses these functions. The accetance test
+stage is more complex than the commit stage. In the CD pipeline after every successfull stage the effort and the amount of time that is used will grow.
+After the functions are working you invest more to test the UI and other interconnected parts. Doing this helps to just invest more into things that are
+already proven to be working on a smaller level.
+
+\subsection{Manual test stage}
+After the acceptance tests there should be a manual testing stage in wich testers or developers use exploratory methods to observe and test different behaviours
+of the application. The reason to not all do the behavioural testing manually is to minimize the amount of error during people. Using acceptance test helps
+to automatice repetetive and error prone processes and leave some specific cases to test by hand. This is useful because there can be some things that are hard
+to test and should be left for human beeings.
+
+\subsection{Release stage}
+If all the tests are proving that the applications is release ready there should be a single action that releases the application to production and therefore
+to the opne world. Usually it is the stage with the highest prority that is deployed the least often. In this case production. Humble describes that the pipeline
+process helps get ready for the final stage. By proving that the code and scripts are working the development team gets more and more assured that the application
+is working and at the end you deploy it to the production environment. With this approach you make sure that your code or your scripts wont be the failure if
+the application causes problems. of course there is a residual risk if it is, but it is much easier than to investigate if the code or the environment is the
+root of failure. Minimizing people error through automatisation is a major part of CD services, but there are some other aspects to taken into account. Humble and Jez writing
+that you should be using a productin like environment for testing. This makes sense because the more a test environment differs from the actual environment
+the less secure the developers can be that it will behave according to what they saw and tested on the testing einvironment.
+
+\subsection{Delivery pipeline practises}
+
 
 
 \newpage
