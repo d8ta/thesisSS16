@@ -245,11 +245,76 @@ is working and at the end you deploy it to the production environment. With this
 the application causes problems. of course there is a residual risk if it is, but it is much easier than to investigate if the code or the environment is the
 root of failure. Minimizing people error through automatisation is a major part of CD services, but there are some other aspects to taken into account. Humble and Jez writing
 that you should be using a productin like environment for testing. This makes sense because the more a test environment differs from the actual environment
-the less secure the developers can be that it will behave according to what they saw and tested on the testing einvironment.
+the less secure the developers can be that it will behave according to what they saw and tested on the testing environment.
 
 \subsection{Delivery pipeline practises}
+There are certain practises that can help to use the continuous delivery pipeline in a proper and useful way.
+Here is a list of proven praticeses on this matter.
 
+\begin{itemize}
+  \item Only build your binaries once.
+  \item Deploy in the same way to every environment you use.
+  \item Deploy into a copy of your production environment.
+  \item Each change should propagate through the pipeline instantly.
+  \item If any part fails, stop the line and start working on a fix.
+\end{itemize} \cite{humble2010continuous}
 
+\subsubsection{Only build your binaries once}
+Having a CD pipeline set up is a useful and timesaving environment. However, by using different environments, compilers, software version or even the same
+compiler in a different version can change a lot of things. Each time you re-compile your commited code to a build there can be changes that are unforseen
+and that results in little or even non visible changes in other software or version differences. Because of this it is the best practise to only compile your
+code once and reuse this build without re-compiling it later on. The code that gets deployed to your production environment should be equal the same than
+your build that is going throught the pipeline. Dont ever re-create your code (binaries are in this context a collection of executable code) after the first
+build. The best way to do this is to store the build in a filesystem and reuse it for every other stage that gets triggered for the pipeline. This matters most
+if you create a continuous delivery server on your own. The most modern CD services are taking care that your builds are stored and reused later on.
+
+\subsubsection{Deploy in the same way to every environment you use}
+For deployment you should use the very same process, wheter it is for production or to a developer machine. By doing so you are be able to run all your builds
+and scripts multiple times in the same way as you did later on the productin server. As this is the most important build it is a good thing to know that if
+you deploy it will be working, because you tested it in the very same way before on developement and test machines. For this you should use a basic script that
+does the same things that are necessary for all your environments. If you have unique settings for some environments it is best practise to store these on the
+environment itself. This prevents you from writing different scripts for all your environments. Jez write about storing these unique settings in the VCS and
+trigger them by hostname. If you deploy to a special environment this specific hostname of that environment triggerst that unique script together or instead
+of the basic script.
+
+\subsubsection{Deploy into a copy of your production environment}
+It is always a good idea to keep the environments you deploy for testing and staging as nearly to the later production environment. If this works on
+your environments the devolopment team can be confident that the build will run on the live environment. You need to be careful, all this is a betting
+system in a kind of way, with every stage you finalize you can get more confident and in the end the possibility that everything runs like intended is
+very high. In software development like in all other parts of the real world everything is dependent to a general possibility, you cannot be 100 percent
+assured but the possibility of failure can be minimized to a nearly non existing state.
+
+\subsubsection{Each change should propagate through the pipeline instantly}
+As shown in the description of the commit stage every push to the version control system should trigger these stage (commit stage). The stage starts
+unit testing and if everything works it triggers the next stage. But what happens when, during the unit tests in the commit stage, other developers push
+to the repository. It may not be vital for small developer teams but even there different developers can push in short time to the repository. This results
+in a build that gets tested and deployed, but is actually behind the real build that gots pushed by the team. A solution is an intelligent scheduling
+system of your CD pipeline. Every time a stage is finalized the CD server search for changes in the repository before going to the next stage. In the
+example i created the CD server starts the commit stage after the repository on the version controll system changes. After successfully ending the unit
+tests the server checks the repository. Since a new commit was been pushed by another developer the CD server did not trigger the acceptance test stage.
+Instead the starts building new and does the unit tests with the now actual build. If other developerst commit code the same rule applies to the end of the
+commit stage. In this case the build and deploy process slows down, because the commit stage took longer because of restarting several times with a new
+commit. But compared to having a deployed build that is behind the real code a longer time can be neglected. There is only so much code that can be shipped
+the same time so eventually the pipeline will come to an end. If the development team is really big you can schedule commit times, but this will theoretically
+stand against the theory of CD. If you look at it there will be an even longer process with commit times, because if every commit goes through the whole
+pipeline but is not the last commit, you ending up with more time until you get an actual deployed build.
+
+\subsection{Starting a continuous delivery pipeline}
+Starting a CD pipeline can be done in several ways. Before this thesis go to the actual tools that can be used to achiev a good workflow and pipeline
+it will describe a basic starting concept. This can be used with any tool a team or developer choose to use for creating a CD service for their software
+or application. This section assumes that there is a new project which starts at the iteration zero (this means there is no or only few code and tests, or
+only prototype material that will be used partly later on). In this case a CD pipeline can be started at the bare minimum and than can grow with the project
+or application. The bare minimum in this case is a commit stage that starts after a commit to the repository, a acceptance stage that starts right after the
+commit stage and a deployment stage which deploys the application in a prodctin like environment. To start with non of the stages should do anything (
+because there is no test or code right now). The only thing that should happen is that a push triggers the pipeline cascade so that all stages a running
+and in the end there is a deployment. In doing so you have a placeholder CD pipeline that runs every time you change the repository. To populate the pipeline
+and to test the system itself use a small part of code that can be brought in with the single purpouse to test the CD pipeline. As an example you can start a
+simple hello world example as a console.log or html tag and a unit test that asserts to true if the console.log or html is there. With this minimalistic code
+you can test your CD system by commiting this to the repository. The unit test should assert to true and after the commit stage the html should be deployed
+to run an acceptance test (an acceptance test can only be running if a website is deployed to a staging server!). The acceptance test stage should than run
+and verifys that the console.log or html is visible on the website. This first steps will provide a practical understanding of how the pipline works and
+if it runs according to what you need to do with more complicated things later. In the next section i will show and describe different tools and CD services
+that can be used to build an effective and stable continuous delivery chain. 
 
 \newpage
 
