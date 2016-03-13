@@ -72,7 +72,7 @@ an overview. The descision was made that the dashboard should hold only the list
 
 \begin{figure}[h!]
   \centering
-      \includegraphics[width=0.8\textwidth]{images/patientsandlists.png}
+  \includegraphics[width=0.8\textwidth]{images/patientsandlists.png}
   \caption{first plan of therapiest dashboard}
 \end{figure}
 
@@ -351,6 +351,7 @@ MongoDB is a non-relational database which is based on JSON like document struct
 similar to JSON. A document consists of field-value pairs. As an example i will show the document structure of a patient inside the mentioned neolexon application.
 
 \begin{verbatim}
+  {
     _id: "56e515ee8ad50f08e1886f13",
     picture: "http://placehold.it/32x32",
     age: 40,
@@ -358,9 +359,10 @@ similar to JSON. A document consists of field-value pairs. As an example i will 
     lastname: "Musterhuber",
     gender: "female",
     about: "Some information"
+  }
 \end{verbatim}
 
-The code example shows a MongoDB document with different field-value pairs. In this case the fields are _id, picture, age, firstname, lastname, gender and
+The code example shows a MongoDB document with different field-value pairs. In this case the fields are id, picture, age, firstname, lastname, gender and
 about. The values the assigned values per field. For example, the value for the field firstname is Vroni.
 
 % more research about what is it and  why should be used for MEAN and what are the specifics someone needs to know
