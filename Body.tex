@@ -336,8 +336,9 @@ will evolve and eventually singe page applications build with the MEAN stacke wi
 development.
 
 \subsection{Describing the MEAN stack}
-Before starting the tools and practises for building the pipeline follows a short description of the MEAN stack to understand how it works together to understand
-the different measures later in this section.
+Before starting the tools and practises for building the pipeline, a short description of the MEAN stack will help to understand how the different parts of the
+stack are working together and how they will be setup. After this short introduction, a practical example of how to use the whole MEAN stack will be described.
+This Example will be a step by step MEAN stack setup which includes code and references to do so.
 
 \begin{itemize}
   \item MongoDB
@@ -347,8 +348,8 @@ the different measures later in this section.
 \end{itemize}
 
 \subsubsection{MongoDB}
-MongoDB is a non-relational database which is based on JSON like document structure. In Detail MongoDB documents are using the BSON structur but it is very
-similar to JSON. A document consists of field-value pairs. As an example i will show the document structure of a patient inside the mentioned neolexon application.
+MongoDB is a non-relational database which is based on a JSON (JavaScript Object Notation) like document structure. In Detail MongoDB documents are using the BSON structur
+which is very similar to JSON. A document consists of field-value pairs. As an example i will show the document structure of a patient inside the mentioned neolexon application.
 
 \begin{verbatim}
   {
@@ -366,47 +367,75 @@ The code example shows a MongoDB document with different field-value pairs. In t
 about. The values the assigned values per field. For example, the value for the field firstname is Vroni. The Mongo database itself is a \textit{Collection}
 of \textit{Documents}. The above code shows a \textit{Documents} and many \textit{Documents} together are a \textit{Collection}.
 
-MongoDB uses dot notation to access fields inside a \textit{Documents}. For example to access the firstname field in the above document you need to concatinate
-the \textit{Documents} and the field. \underline{<document>.<field>}. To query into the database you use concatinated dot notation. Let us assume there are many
-patients inside our collection and we want to query for all patients that older than 30, the query would contain the following code:
+MongoDB uses dot notation to access fields inside a \textit{Documents}. If a developer needs to access the firstname field in the above document, he or she
+needs to concatinate the \textit{Documents} and the field like this <document>.<field>. Let us assume there are many patients inside our collection and we
+want to query for all patients that older than 30. In this case the query would contain the following code:
 
 \begin{verbatim}
 db.patients.find({age: {$gt: 30}}).sort({age: 1})
 \end{verbatim}
 
-In this case \underline{patients} represents the \textit{Collection} (all patients in the database). After find, which decribes what would like to do, in this
-case single out specific patients from our database, we set a criteria that we would like to find all patients with age greater than 30. The last part is
-a modifier which works like a filter. It allows to sort the findings from this querie after the age (in this case from youngest to oldest). There are different
+patients are representing the \textit{Collection} (all patients in the database). Find, decribes what should be done. In this
+case we would like to single out specific patients from our database. The criteria is to find all patients with an age greater than 30. The last part is
+a modifier which works like a filter. It allows to sort the findings from this querie after the age (from youngest to oldest). There are different
 chains for a MongoDB query. They are all explained in detail on the MongoDB website under \url{https://docs.mongodb.org/manual/core/crud-introduction/}.
 
-The advantge of using MongoDB in our app is that you dont need another programmin language like \textit{SQL} for MySql. For Mongo you can use the
-programming language you are working with in you application. In this case JavaScript. Since the MongoDB document structure is similar to JSON it allows to
-easily access and use the data inside your database.
-% more research about what is it and  why should be used for MEAN and what are the specifics someone needs to know
+The advantge of using MongoDB in our app is that you dont need another programming language like \textit{SQL} for relational databases.
+For Mongo you can use the programming language you are working with in you application. In this case JavaScript. Since the MongoDB document structure is
+similar to JSON it allows to easily access and use the data inside your database. \cite{chodorow2013mongodb}
 
 \subsubsection{ExpressJS}
-% more research about what is it and  why should be used for MEAN and what are the specifics someone needs to know
+The next part of the MEAN stack is the ExpressJS framework. The ExpressJS website describes it as a fast, unopinionated and minimalistic web framework
+for NodeJS \url{http://expressjs.com}. In fact you do not need ExpressJS for your sofware stack. You can do all the connections and backend operations with
+NodeJS alone. The advantage of ExpressJS is that it helps to connect all the different parts from your backend. That is why the MEAN stack uses the framwork.
+The MEAN application for this thesis will show the advantages an application gets from using ExpressJS later in the practical part and code examples.
+ExpressJS glues all needed parts of the application together, so the developer dont need to use and configure all backend and connectin parts manually
+\cite{brown2014web}. To do this ExpressJS requires init and configuration files from the application. As long as you put the needed files into the right
+directory in the webapplication, ExpressJS will find them and makes use of them. ExpressJS also handles sessions for the login and doing the error handling
+on the backend side.
 
 \subsubsection{AngularJS}
 % more research about what is it and  why should be used for MEAN and what are the specifics someone needs to know
+If ExpressJS is the framework for the backend, in this case NodeJS, AngularJS is the javascript frontend framework. As said for ExpressJS you do not need
+AngularJS to develop the application. But Angular will make it more comfortable to write frontend functionality. Angular is an MV* framework. This stands
+for \testbf{M}odel - \testbf{V}iew - *. The * acutally is a placeholder and means you can use Angular in different ways. Be it MVC - Model View Controller
+or als MVVM - Model View View Model. This depends on the choices of the development team and what application you will build. The example application i
+use for this thesis is a single page MVC application. It will have a Model which handles the logic and a Controller, which refers to different Views of
+the application. A MEAN stack application will handle differen models, controllers and view so seperate concerns between different functionalities.
 
 \subsubsection{NodeJS}
+In \textit{Node up and running} (\cite{hughes2012node}) NodeJS is described as a non blocking, scalable javascript framework. The major advantage is that
+if the development team uses javascript in the frontend there is no need to transfer functionalities into php or other backend programming languages.
+This makes it easy to use the same language for back- and frontend, javascript. Besides the scalability of a non blocking architecture and the performance
+of the V8 javascript runtime enginge, NodeJS posesses a very large packaging ecosystem (node package manager) which makes it comfortable to work with.
 % more research about what is it and  why should be used for MEAN and what are the specifics someone needs to know
 
+\newpage
 
 \subsection{Continuous delivery pipeline: tools and practices}
-The following software will be used for the example MEAN application to build, test and deploy the example application
+After this brief introduction of the different parts of the MEAN stack, this thesis will describe the tool that can be used for the MEAN stack and a
+continuous delivery pipeline. Each tool will be described for why it is used in the example application. Since there are other tools than the below described
+i will mentioned other configuration or possibilities to use. However this will be not a complete list. Appart from the MEAN software stack the neolexon
+example application will be using the following tools and software:
 
 \begin{itemize}
   \item Yeoman
   \item StriderCD
   \item Karma
+  \item Angular Mocks
+  \item Protractor
   \item Mocha
   \item Chai
-  \item and many more! Plz make a list and work through them
+  \item Sinon
+  \item Browserify
+  \item Partialify
+  \item Lodash
+  \item Istanbul
+  % are there more? Plz make a list and work through them!
 \end{itemize}
+% description of all the tools
 
-\newpage
+% here follows the description of the meanjs generator, structure and setup
 
 \section{Test Driven Development with MEAN}
 \label{section:Test Driven Development with MEAN}
