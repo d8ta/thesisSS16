@@ -363,8 +363,25 @@ similar to JSON. A document consists of field-value pairs. As an example i will 
 \end{verbatim}
 
 The code example shows a MongoDB document with different field-value pairs. In this case the fields are id, picture, age, firstname, lastname, gender and
-about. The values the assigned values per field. For example, the value for the field firstname is Vroni.
+about. The values the assigned values per field. For example, the value for the field firstname is Vroni. The Mongo database itself is a \textit{Collection}
+of \textit{Documents}. The above code shows a \textit{Documents} and many \textit{Documents} together are a \textit{Collection}.
 
+MongoDB uses dot notation to access fields inside a \textit{Documents}. For example to access the firstname field in the above document you need to concatinate
+the \textit{Documents} and the field. \underline{<document>.<field>}. To query into the database you use concatinated dot notation. Let us assume there are many
+patients inside our collection and we want to query for all patients that older than 30, the query would contain the following code:
+
+\begin{verbatim}
+db.patients.find({age: {$gt: 30}}).sort({age: 1})
+\end{verbatim}
+
+In this case \underline{patients} represents the \textit{Collection} (all patients in the database). After find, which decribes what would like to do, in this
+case single out specific patients from our database, we set a criteria that we would like to find all patients with age greater than 30. The last part is
+a modifier which works like a filter. It allows to sort the findings from this querie after the age (in this case from youngest to oldest). There are different
+chains for a MongoDB query. They are all explained in detail on the MongoDB website under \url{https://docs.mongodb.org/manual/core/crud-introduction/}.
+
+The advantge of using MongoDB in our app is that you dont need another programmin language like \textit{SQL} for MySql. For Mongo you can use the
+programming language you are working with in you application. In this case JavaScript. Since the MongoDB document structure is similar to JSON it allows to
+easily access and use the data inside your database.
 % more research about what is it and  why should be used for MEAN and what are the specifics someone needs to know
 
 \subsubsection{ExpressJS}
