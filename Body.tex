@@ -347,7 +347,24 @@ the different measures later in this section.
 \end{itemize}
 
 \subsubsection{MongoDB}
-MongoDB is a non-relational database ....
+MongoDB is a non-relational database which is based on JSON like document structure. In Detail MongoDB documents are using the BSON structur but it is very
+similar to JSON. A document consists of field-value pairs. As an example i will show the document structure of a patient inside the mentioned neolexon application.
+
+\begin{verbatim}
+  {
+    _id: "56e515ee8ad50f08e1886f13",
+    picture: "http://placehold.it/32x32",
+    age: 40,
+    firstname: "Vroni",
+    lastname: "Musterhuber",
+    gender: "female",
+    about: "Some information"
+  }
+\end{verbatim}
+
+The code example shows a MongoDB document with different field-value pairs. In this case the fields are _id, picture, age, firstname, lastname, gender and
+about. The values the assigned values per field. For example, the value for the field firstname is Vroni.
+
 % more research about what is it and  why should be used for MEAN and what are the specifics someone needs to know
 
 \subsubsection{ExpressJS}
