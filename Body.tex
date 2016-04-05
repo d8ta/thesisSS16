@@ -413,9 +413,8 @@ of the V8 javascript runtime enginge, NodeJS posesses a very large packaging eco
 \newpage
 
 \subsection{Continuous delivery pipeline: tools and practices}
-After this brief introduction of the different parts of the MEAN stack, this thesis will describe the tool that can be used for the MEAN stack and a
-continuous delivery pipeline. Each tool will be described for why it is used in the example application. Since there are other tools than the below described
-i will mentioned other configuration or possibilities to use. However this will be not a complete list. Appart from the MEAN software stack the neolexon
+After this brief introduction of the different parts of the MEAN stack, this thesis describe the tool that will be used for the MEAN stack and a
+continuous delivery pipeline. However this is not a complete list. Appart from the MEAN software stack the neolexon
 example application will be using the following tools and software:
 
 \begin{itemize}
@@ -436,6 +435,63 @@ example application will be using the following tools and software:
 % description of all the tools
 
 % here follows the description of the meanjs generator, structure and setup
+\section{Describing CD Pipeline (WIP)}
+\label{section:Describing CD Pipeline (WIP)}
+To begin the setup process the beginning of this chapter shows the versions and requirements the neolexon project uses for the CD pipeline and MEAN stack.
+I will split the configuration into server and client side and following by this there will be a step by step guide on how to setup and what problems and
+difficulties can be occure.
+
+\subsection{Software And Versions}
+The neolexon project is using \textbf{Ubuntu 14.04} as the server operation system. The following versions are installed on the server:
+\begin{itemize}
+  \item node: v4.0
+  \item npm: v2.0
+  \item git: v2.0
+  \item mongoDB: v3.2.3
+  \item node-gyp: v3.3.0
+  \item StriderCD v1.7.7
+\end{itemize}
+
+Strider v1.7.7 has some requirements that are shown in the actual documentations. Our setup takes care of the required versions for SriderCD v1.7.7.
+If you are not familiar with setting up versions and software on an Ubuntu server you can just follow the installation instructions in the different
+software documentation. For using the exact versions listet above it is useful to use the node version manager (nvm) so you can change to node v4.0 if
+you installed the latest version.
+
+This Thesis assumes that we setup up Strider to deploy on DigitalOcean. DigitalOcean offers a viritual private server (VPS) for only 5€ per month. This
+includes 1 Gigabyte of transfer and 20 Gigabyte diskspace. If you need a higher transferrate or more diskspace int he future it is easy to change the
+subscription. You also can choose a datacenter which stores your data. In the neolexon case the data needs to stay in the european union for privacy
+and data security reasons. If this is an option to consider for your application, this can be a useful feature to choose. As most services today do, you
+can use your DigitalOcean VPS together with an SSH key to log in.
+
+In order to use the DigitalOcean service with your Ubuntu server you need to setup an account at \url{http://digitalocean.com/registrations/new}. After
+registration and confirmation via email the next step is to create a droplet for your Ubuntu 14.04 server. A droplet is the DigitalOcean name for a  their VPS.
+In our case we use the Ubuntu 14.04 x64 droplet. The setup in general is a straight forward process. In case of difficulties or problems DigitalOcean has
+created a tutorial for this. It can be found under \url{https://www.digitalocean.com/community/tutorials/how-to-create-your-first-digitalocean-droplet-virtual-server}.
+We will be using the 64-bit structure for the new VPS even the VPS size ustes 512MB of RAM. With RAM of 1 Gigabyte or less the performance benefits of a 64-bit architecture
+will be diluted because the less memory. However, we found this will be the system of choice because of a future upscale of the application itself. If you plan
+to scale your application this can be an option to reconsider.
+
+To use the new created VPS you can log into it by using an SSH key DigitalOcean will send to you after creating the droplet/VPS. The SSH login authentication has a security
+advantage over the common login practise. To install the needed software or version changes and updates use the \textit{ssh root@<droplet/vps ip>} with
+the terminal/console and authenticate the host by setting up a fingerprint for the connection. After you the login process it is vital to change the password for
+security reasons. The best way is to use the \textit{passwd} command and choose a save password.
+
+\subsection{Installing The MEANJS Application}
+To start the Application itself the neolexon project uses the MEANJS yeoman generator. If you are not familiar with the yeoman service this will summarize what what
+it does and how to setup the MEAN application. Yeoman is a scaffolding tool that can be installed and let you chooes, install and setup applications. The
+application setup process is done through generators. Generators installing the necessary software and configure it. They also using package managers like bower
+and npm to install dependencies for the used application. There are many generators provided by different organistions or the yeoman team itself. In case of the
+yeaoman MEANJS generator the MEANJS team has build the generator. The provided generator is the main reason to use MEANJS over MEAN.io. In general the two stacks
+are similar in use and what they do. However setting up a MEAN application through yeoman is a fast an straightforward process that helps to bind all the different
+parts. The MEANJS Website provides a good documentation of how to use the yeoman generator (\url{http://meanjs.org/generator.html}).
+
+\begin{lstlisting}
+$ npm install -g yo
+\end{lstlisting}
+
+\section{Strider Configuration}
+\label{section:Strider Configuration}
+
 
 \section{Test Driven Development with MEAN}
 \label{section:Test Driven Development with MEAN}
