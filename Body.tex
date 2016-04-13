@@ -372,7 +372,7 @@ needs to concatinate the \textit{Documents} and the field like this <document>.<
 want to query for all patients that older than 30. In this case the query would contain the following code:
 
 \begin{verbatim}
-db.patients.find({age: {$gt: 30}}).sort({age: 1})
+db.patients.find({age: {gt: 30}}).sort({age: 1})
 \end{verbatim}
 
 patients are representing the \textit{Collection} (all patients in the database). Find, decribes what should be done. In this
@@ -488,19 +488,19 @@ parts. The MEANJS Website provides a good documentation of how to use the yeoman
 The basic terminal command is to install yeoman with npm by using
 
 \begin{lstlisting}
-$ npm install -g yo
+ npm install -g yo
 \end{lstlisting}
 
 Yeoman is installed and the next step is to install the needed generator. In the neolexon case we use the MEANSJ generator. The proper command for this is
 
 \begin{lstlisting}
-$ npm install -g generator-meanjs
+ npm install -g generator-meanjs
 \end{lstlisting}
 
 The last step is to use this generator to install the MEANJS app. The following command lets yeoman build the above installed generator
 
 \begin{lstlisting}
-  $ yo meanjs
+   yo meanjs
 \end{lstlisting}
 
 Yeoman will taking care of installing the application after some minor questions about the name, origin and description of the application.
@@ -515,7 +515,7 @@ It will setup the structure and with it the package json files and node modules.
 As soon as the application is installed and build you can start it with
 
 \begin{lstlisting}
-  $ grunt
+   grunt
 \end{lstlisting}
 
 Which starts the grunt task runner and provides the application unter \textit{localhost:3000} in any browser of your choice.
@@ -530,40 +530,40 @@ on your server. This is because if the project in use is an internet accesible p
 it is a good idea to have this special strider user that only have access to the strider service and nothing else. For the system at
 hand we use
 \begin{lstlisting}
-  $ addUser strider
+   addUser strider
 \end{lstlisting}
 which creates the new user named strider for your purpose. With the strider user created and used the next step is to clone and install
 strider on your server. StriderCD has all the ressources you need on their github page and ready to clone with git. Us
 \begin{lstlisting}
-  $ git clone https://github.com/Strider-CD/strider
+   git clone https://github.com/Strider-CD/strider
 \end{lstlisting}
 or visit Github and search for StriderCD to clone it.
 
 Since we install with the npm package manager the installation command is
 \begin{lstlisting}
-  $ npm install
+   npm install
 \end{lstlisting}
 In the Neolexon case there where no problems with the above setup and version durin the installation. If so the package manager (npm) will
 show the error messages. In case there are errors it is vital to fix them before going on with the configuration of striderCD. After a
 successful installation make sure that the mongoDB database is running on your server. If so, the starting command for the strider service is
 \begin{lstlisting}
-  $ npm start
+   npm start
 \end{lstlisting}
 or
 \begin{lstlisting}
-  $ bin/strider
+   bin/strider
 \end{lstlisting}
 To use a more secure approache the mongoDB should be used with authentication. The command
 \begin{lstlisting}
-  $ mongo
+   mongo
 \end{lstlisting}
 will provide the mongoDB shell to input queries and requests. The authentication plan is to create a mongoDB user which has access
 rights to the database we will create and use for striderCD. The following code snipped shows how to to this
 \begin{lstlisting}
-  $ use admin
-  $ db.auth( <username>, <password> )
-  $
-  $ db.createUser({user: "strider", pwd: "striderPassword", roles: [{role: "dbOwner", db: "mean-dev"}]})
+   use admin
+   db.auth( <username>, <password> )
+
+   db.createUser({user: "strider", pwd: "striderPassword", roles: [{role: "dbOwner", db: "mean-dev"}]})
 \end{lstlisting}
 The output should show the created user like this
 \begin{figure}[h!]
@@ -573,7 +573,7 @@ The output should show the created user like this
 \end{figure}
 In case you dont use the standard local mongoDB databse you need to specify the port of the mongoDB you are using by
 \begin{lstlisting}
-  $ mongo --port <your-port-number>
+   mongo --port <your-port-number>
 \end{lstlisting}
 For deeper information or more setup information the mongoDB documentation holds more information. The above snippets are
 used from the documentation manual 2.6 to find under \url{https://docs.mongodb.org/manual/reference/method/db.auth/#db.auth}
@@ -581,26 +581,62 @@ used from the documentation manual 2.6 to find under \url{https://docs.mongodb.o
 To use the proper connectin via mongoose to the used database we need to add a connection string to it. According to the mongoDB
 documentation, this can be done with the following command
 \begin{lstlisting}
-  $ mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]
+   mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]
 \end{lstlisting}
 In the case of the created strider user above the connection string reads
 \begin{lstlisting}
-  $ DB_URI="mongodb://strider:striderPassword@localhost:27017/strider" npm start
+   DB_URI="mongodb://strider:striderPassword@localhost:27017/strider" npm start
 \end{lstlisting}
 
 After this the installation and standard configuration will be complete for striderCD and the used mongoDB. Per default
 strider uses the development mode to start in. With the follwing command the start will changed to the production environment
 as the new default
 \begin{lstlisting}
-  $ NODE_ENV=production npm start
+   NODE_ENV=production npm start
 \end{lstlisting}
-\cite{https://github.com/Strider-CD/strider}<
+\cite{https://github.com/Strider-CD/strider}
+
+To get an overview about strider and how it work here are the essential parts that needs to be understand do work and configure
+it in a fashon strider supports the different needs and options for testing and deployment webprojects. An essential part of
+the configuration process is the strider plugin system. Strider uses plugins to integrate services like Github, Slack, Email
+notification, Docker containarization and others. To see the complete plugin ecosystem visit \url{https://github.com/Strider-CD/ecosystem-index/blob/master/plugins.yml}.
+What Plugins can do for the webapplication is to genereate hooks, register routes for requests, using sockets or editin the strider
+UI
+
+Plugins can be configured and used in two different ways. The first one is as via strider UI. Strider UI is the wabapplication.
+There plugins can be installed or cofigured.
+
+\begin{figure}[h!]
+  \centering
+      \includegraphics[width=0.4\textwidth]{images/striderUI.png}
+  \caption{Strider UI Plugins}
+\end{figure}
+
+The second possibility is to install and configure plugins with the terminal. In this case the command is
+\begin{lstlisting}
+  bin/strider install <plugin-name>
+\end{lstlisting}
+
+In general plugins are used by strider in two existing and different environments. In the webapp environment plugins can be manipulated
+in the described strider UI. The worker environment uses jobs that strider runs, every time a new commit gets pulled from the git
+repository. There are different workers available. The neolexon webapplication uses the default worker \textit{strider-simple-runner}
+(\url{https://github.com/Strider-CD/strider-simple-runner}). A strider job can be code testing or loading some specific scripts or
+configuration for plugins. A use case scenario is the deployment to different environments. Workers can load configuarion needed for
+a specific environment, which is usefull in case the application gets deployed to several machines with different setups.
 
 
 \newpage
 
 
 
+\subsection{Connection To Github}
+\label{subsection:Connection To Github}
+Since the goal ouf our pipline is to test and deploy after a successful commit striderCD needs to be connected to the used Version Controll
+System. The example scenary uses Github as VCS. For this purpous the webapplicatoin needs to be pushed to a Github
+
+% start here
+
+\newpage
 \section{Test Driven Development with MEAN}
 \label{section:Test Driven Development with MEAN}
 
