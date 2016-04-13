@@ -545,7 +545,7 @@ Since we install with the npm package manager the installation command is
 \end{lstlisting}
 In the Neolexon case there where no problems with the above setup and version durin the installation. If so the package manager (npm) will
 show the error messages. In case there are errors it is vital to fix them before going on with the configuration of striderCD. After a
-successful installation make sure that the mongoDB database is running on your server. If so, the starting command for the strider service is 
+successful installation make sure that the mongoDB database is running on your server. If so, the starting command for the strider service is
 \begin{lstlisting}
   $ npm start
 \end{lstlisting}
@@ -553,6 +553,24 @@ or
 \begin{lstlisting}
   $ bin/strider
 \end{lstlisting}
+To use a more secure approache the mongoDB should be used with authentication. The command
+\begin{lstlisting}
+  $ mongo
+\end{lstlisting}
+will provide the mongoDB shell to input queries and requests. The authentication plan is to create a mongoDB user which has access
+rights to the database we will create and use for striderCD. The following code snipped shows how to to this
+\begin{lstlisting}
+  $ use admin
+  $ db.auth( <username>, <password> )
+  $
+  $ db.createUser({user: "strider", pwd: "striderPassword", roles: [{role: "dbOwner", db: "mean-dev"}]})
+\end{lstlisting}
+The output should show the created user like this
+\begin{figure}[h!]
+  \centering
+      \includegraphics[width=1\textwidth]{images/creatUser.png}
+  \caption{Creating user Strider with Password Neoleoxon123!}
+\end{figure}
 
 
 
