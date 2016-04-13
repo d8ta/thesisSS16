@@ -444,9 +444,9 @@ difficulties can be occure.
 \subsection{Software And Versions}
 The neolexon project is using \textbf{Ubuntu 14.04} as the server operation system. The following versions are installed on the server:
 \begin{itemize}
-  \item node: v4.0
-  \item npm: v2.0
-  \item git: v2.0
+  \item nodejs: v5.8.0
+  \item npm: v2.15.3
+  \item git: v2.8.1
   \item mongoDB: v3.2.3
   \item node-gyp: v3.3.0
   \item StriderCD v1.7.7
@@ -521,10 +521,41 @@ As soon as the application is installed and build you can start it with
 Which starts the grunt task runner and provides the application unter \textit{localhost:3000} in any browser of your choice.
 
 This is all that is needed to setup the basic MEANJS application. Note that the yeoman generator also created the testing environment
-for the unit testing. In the next step we will deploy this basic app to the DigitalOcean VPN by configure striderCD in the approtiate way
+for the unit testing. In the next step we will deploy this basic app to the DigitalOcean VPN by configure striderCD in the appropiate way
 
 \section{Strider Configuration}
 \label{section:Strider Configuration}
+To begin with striderCD needs to be cloned and installed onto the Ubuntu 14.04 server. It is adviced that you use an own user for this
+on your server. This is because if the project in use is an internet accesible projekt, there can be security issues. In this case
+it is a good idea to have this special strider user that only have access to the strider service and nothing else. For the system at
+hand we use
+\begin{lstlisting}
+  $ addUser strider
+\end{lstlisting}
+which creates the new user named strider for your purpose. With the strider user created and used the next step is to clone and install
+strider on your server. StriderCD has all the ressources you need on their github page and ready to clone with git. Us
+\begin{lstlisting}
+  $ git clone https://github.com/Strider-CD/strider
+\end{lstlisting}
+or visit Github and search for StriderCD to clone it.
+
+Since we install with the npm package manager the installation command is
+\begin{lstlisting}
+  $ npm install
+\end{lstlisting}
+In the Neolexon case there where no problems with the above setup and version durin the installation. If so the package manager (npm) will
+show the error messages. In case there are errors it is vital to fix them before going on with the configuration of striderCD. After a
+successful installation make sure that the mongoDB database is running on your server. If so, the starting command for the strider service is 
+\begin{lstlisting}
+  $ npm start
+\end{lstlisting}
+or
+\begin{lstlisting}
+  $ bin/strider
+\end{lstlisting}
+
+
+
 
 
 \section{Test Driven Development with MEAN}
