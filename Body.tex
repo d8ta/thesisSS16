@@ -571,6 +571,31 @@ The output should show the created user like this
       \includegraphics[width=1\textwidth]{images/createUser.png}
   \caption{Creating user Strider with Password Neoleoxon123!}
 \end{figure}
+In case you dont use the standard local mongoDB databse you need to specify the port of the mongoDB you are using by
+\begin{lstlisting}
+  $ mongo --port <your-port-number>
+\end{lstlisting}
+For deeper information or more setup information the mongoDB documentation holds more information. The above snippets are
+used from the documentation manual 2.6 to find under \url{https://docs.mongodb.org/manual/reference/method/db.auth/#db.auth}
+
+To use the proper connectin via mongoose to the used database we need to add a connection string to it. According to the mongoDB
+documentation, this can be done with the following command
+\begin{lstlisting}
+  $ mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]
+\end{lstlisting}
+In the case of the created strider user above the connection string reads
+\begin{lstlisting}
+  $ DB_URI="mongodb://strider:striderPassword@localhost:27017/strider" npm start
+\end{lstlisting}
+
+After this the installation and standard configuration will be complete for striderCD and the used mongoDB. Per default
+strider uses the development mode to start in. With the follwing command the start will changed to the production environment
+as the new default
+\begin{lstlisting}
+  $ NODE_ENV=production npm start
+\end{lstlisting}
+\cite{https://github.com/Strider-CD/strider}
+
 
 
 
