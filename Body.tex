@@ -675,7 +675,6 @@ an upstart job that handles start, stop and status evaluation for the strider se
 prject and was taken from \url{https://fosterelli.co/creating-a-private-ci-with-strider.html}
 
 \begin{lstlisting}
-  #!upstart
 description "Strider upstart job"
 
 start on startup
@@ -709,6 +708,11 @@ pre-stop script
     echo "[`date -u +%Y-%m-%dT%T.%3NZ`] (sys) Stopping" >> /var/log/strider.log
 end script
 \end{lstlisting}
+
+The upstart job is a deamon for ubuntu systems which allows us to use striderCD as a service and therefore makes start and
+stophandling easier to do. It also provides starting the strider service if you boot the ubuntu server or canceling it if you
+stop ubuntu. This is helpful because it creates automatisation that prevents from starting different services by hand. For more on
+upstart visit \url{http://upstart.ubuntu.com/}.
 
 % start here
 
