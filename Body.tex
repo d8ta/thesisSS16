@@ -718,7 +718,10 @@ upstart visit \url{http://upstart.ubuntu.com/}.
 subsection{Manual And Automatic Testing With Strider}
 \label{Manual And Automatic Testing With Strider}
 The next step is to test if strider is connected properly and that tests can be run. The strider UI let you run a manually test from
-the dashboard. Strider also indicates that it is running the testing and the time the testing is running or was running.
+the dashboard. Strider also indicates that it is running the testing and the time the testing is running or was running. After completion
+it strider shows if the test was running successful (figure 14). As seen on the picture all operations strider do are logged and can be
+analysed. If the test is not running successful it is be advised to evaluate the log files and errors and reconfigure according to theses
+findings in the project settings.
 
 \begin{figure}[h!]
   \centering
@@ -729,8 +732,22 @@ the dashboard. Strider also indicates that it is running the testing and the tim
 \begin{figure}[h!]
   \centering
   \includegraphics[width=0.8\textwidth]{images/successfulManualTest.png}
-  \caption{Manual Successfull}
+  \caption{Manual Successful}
 \end{figure}
+
+In case the manuall testing is running correct the next step is to enable strider to run tests automatically after a new push to the
+linked repository accured. For this an update file for the hooked git repository is needed. To create or open these file the path in
+the example project is
+
+\begin{lstlisting}
+  /home/strider/builds/data/nvpsswaroop-neolexon-core-570f544255aebd0a04199f2d/.git/hooks/update
+\end{lstlisting}
+
+In our case nvpsswaroop-neolexon-core-570f544255aebd0a04199f2d ist the repository from github.
+
+
+
+% where is the hook up process?? was done via UI!!!
 
 
 \newpage
