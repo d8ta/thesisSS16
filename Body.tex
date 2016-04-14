@@ -608,7 +608,7 @@ There plugins can be installed or cofigured.
 
 \begin{figure}[h!]
   \centering
-      \includegraphics[width=0.4\textwidth]{images/striderUI.png}
+      \includegraphics[width=0.8\textwidth]{images/striderUI.png}
   \caption{Strider UI Plugins}
 \end{figure}
 
@@ -624,15 +624,53 @@ repository. There are different workers available. The neolexon webapplication u
 configuration for plugins. A use case scenario is the deployment to different environments. Workers can load configuarion needed for
 a specific environment, which is usefull in case the application gets deployed to several machines with different setups.
 
-
 \newpage
-
-
 
 \subsection{Connection To Github}
 \label{subsection:Connection To Github}
-Since the goal ouf our pipline is to test and deploy after a successful commit striderCD needs to be connected to the used Version Controll
-System. The example scenary uses Github as VCS. For this purpous the webapplicatoin needs to be pushed to a Github
+The goal ouf our pipline is to test and deploy the projekt after a successful commit. Therefore striderCD needs to be connected to the version
+control system in use. The example scenary uses Github as VCS. For this purpouse the webapplication needs to be pushed to a github. In the striderCD
+UI the needed github plugin can be installed.
+
+\begin{figure}[h!]
+  \centering
+      \includegraphics[width=0.8\textwidth]{images/plugin_page.png}
+  \caption{Github Plugins}
+\end{figure}
+
+In the plugin view the needed plugin can be installed, updated or removed. We need to link the github account and the project repo to striderCD.
+The linking between the account takes place in the account settings. From there linking to services is possible. If you choose add account strider
+will guide you through the authorisation prozess. The linked account should be showing up after the successful process.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{images/linkedGithub.png}
+  \caption{Linked Github Account}
+\end{figure}
+
+After the accounts are linked the projects tab shows all github repositories for the added github account. From there the needed projects can
+be added to strider.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{images/neolexonGit.png}
+  \caption{Neolexon Repository Overview}
+\end{figure}
+
+% later
+Note that if there are errors during the installation of plugins, the reason can be that you are not logged in ans an administrator,
+or that the project you are trying to link is not your own project. StriderCD highlights this in the project tab with a lock.
+If another admin or user trys to install plugins for a project they do not own ther will be a permission error from git (128)
+like the following. This is good to know because in the project at hand there where confusion why some persons can add plugins
+and other are not.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{images/permissionError.png}
+  \caption{Git 128 Permission Error}
+\end{figure}
+
+
 
 % start here
 
