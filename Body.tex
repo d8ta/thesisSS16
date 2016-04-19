@@ -590,11 +590,11 @@ In the case of the created strider user above the connection string reads
 
 % config with config file
 To run and use strider as it was intendet there are configuration steps that are needed to be done. Strider can either be configred
-with system wide environment variables for \textit{PORT}, \textit{SERVER_NAME}, \textit{HOST}, \textit{CONCURRENT_JOBS}, \textit{STRIDER_CLONE_DEST},
-\textit{DB_URI} and \textit{HTTP_PROXY}.
+with system wide environment variables for port, the server name, host, concurrent jobs, the strider clone destination, the database uri,
+and the http proxy.
 
-These environmental variables can than startet with strider like calling them together with the start commnad. For example if the used \texit{PORT}
-is 4000 and the \textit{SERVER_NAME} reads https://neolexon.com than the startup should look like this:
+These environmental variables can than startet with strider like calling them together with the start commnad. For example if the used port
+is 4000 and the server name reads https://neolexon.com than the startup should look like this:
 
 \begin{lstlisting}
   SERVER_NAME="https://neolexon.com" PORT=4000 npm start
