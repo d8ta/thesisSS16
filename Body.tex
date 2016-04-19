@@ -543,7 +543,7 @@ Since we install with the npm package manager the installation command is
 \begin{lstlisting}
    npm install
 \end{lstlisting}
-In the Neolexon case there where no problems with the above setup and version durin the installation. If so the package manager (npm) will
+In the Neolexon case there where no problems with the above setup and version during the installation. If so the package manager (npm) will
 show the error messages. In case there are errors it is vital to fix them before going on with the configuration of striderCD. After a
 successful installation make sure that the mongoDB database is running on your server. If so, the starting command for the strider service is
 \begin{lstlisting}
@@ -571,7 +571,7 @@ The output should show the created user like this
       \includegraphics[width=1\textwidth]{images/createUser.png}
   \caption{Creating user Strider with Password Neoleoxon123!}
 \end{figure}
-In case you dont use the standard local mongoDB databse you need to specify the port of the mongoDB you are using by
+In case you dont use the standard local mongoDB database you need to specify the port of the mongoDB you are using by
 \begin{lstlisting}
    mongo --port <your-port-number>
 \end{lstlisting}
@@ -588,13 +588,48 @@ In the case of the created strider user above the connection string reads
    DB_URI="mongodb://strider:striderPassword@localhost:27017/strider" npm start
 \end{lstlisting}
 
+% config with config file
+To run and use strider as it was intendet there are configuration steps that are needed to be done. Strider can either be configred
+with system wide environment variables for
+
+\begin{itemize}
+  \item PORT
+  \item SERVER_NAME
+  \item HOST
+  \item CONCURRENT_JOBS
+  \item STRIDER_CLONE_DEST
+  \item DB_URI
+  \item HTTP_PROXY
+\end{itemize}
+
+These environmental variables can than startet with strider like calling them together with the start commnad. For example if the used \texit{PORT}
+is 4000 and the \textig{SERVER_NAME} reads https://neolexon.com than the startup should look like this:
+
+\begin{lstlisting}
+  SERVER_NAME="https://neolexon.com" PORT=4000 npm start
+\end{lstlisting}
+
+We recommend implementing an upstart job instead using environmental variables for handling start, stop and status evaluation for the strider service.
+The configuration file needs to be created in order to work for strider. To do so locate the file for the following code into
+
+\begin{lstlisting}
+  /etc/init/strider.conf
+\end{lstlisting}
+
+\lstinputlisting{files/strider_config.js}
+
+The upstart job is a deamon for ubuntu systems which allows us to use striderCD as a service and therefore makes start and
+stophandling easier to do. It also provides starting the strider service if you boot the ubuntu server or canceling it if you
+stop ubuntu. This is helpful because it creates automatisation that prevents from starting different services by hand. For more on
+upstart visit \url{http://upstart.ubuntu.com/}.
+% end
+
 After this the installation and standard configuration will be complete for striderCD and the used mongoDB. Per default
 strider uses the development mode to start in. With the follwing command the start will changed to the production environment
 as the new default
 \begin{lstlisting}
    NODE_ENV=production npm start
 \end{lstlisting}
-\cite{https://github.com/Strider-CD/strider}
 
 To get an overview about strider and how it work here are the essential parts that needs to be understand do work and configure
 it in a fashon strider supports the different needs and options for testing and deployment webprojects. An essential part of
@@ -658,7 +693,7 @@ be added to strider.
 \end{figure}
 
 % later
-Note that if there are errors during the installation of plugins, the reason can be that you are not logged in ans an administrator,
+Note that if there are errors during the installation of plugins, the reason can be that you are not logged in as an administrator,
 or that the project you are trying to link is not your own project. StriderCD highlights this in the project tab with a lock.
 If another admin or user trys to install plugins for a project they do not own ther will be a permission error from git (128)
 like the following. This is good to know because in the project at hand there where confusion why some persons can add plugins
@@ -669,18 +704,6 @@ and other are not.
   \includegraphics[width=0.8\textwidth]{images/permissionError.png}
   \caption{Git 128 Permission Error}
 \end{figure}
-
-To run and use strider as it was intendet there are several configuration steps that are needed to be done. We recommend implementing
-an upstart job that handles start, stop and status evaluation for the strider service. The following code is used in the neolexon
-prject and was taken from \url{https://fosterelli.co/creating-a-private-ci-with-strider.html}
-
-\lstinputlisting{files/strider_config.js}
-
-The upstart job is a deamon for ubuntu systems which allows us to use striderCD as a service and therefore makes start and
-stophandling easier to do. It also provides starting the strider service if you boot the ubuntu server or canceling it if you
-stop ubuntu. This is helpful because it creates automatisation that prevents from starting different services by hand. For more on
-upstart visit \url{http://upstart.ubuntu.com/}.
-
 
 \subsection{Manual And Automatic Testing With Strider}
 \label{Manual And Automatic Testing With Strider}
@@ -712,9 +735,6 @@ the example project is
 
 In our case nvpsswaroop-neolexon-core-570f544255aebd0a04199f2d ist the repository from github.
 
-
-
-% where is the hook up process?? was done via UI!!!
 
 
 \newpage
