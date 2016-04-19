@@ -589,35 +589,51 @@ In the case of the created strider user above the connection string reads
 \end{lstlisting}
 
 % config with config file
-To run and use strider as it was intendet there are configuration steps that are needed to be done. Strider can either be configred
- with system wide environment variables for port, the server name, host, concurrent jobs, the strider clone destination, the database uri,
-and the http proxy.
-
-These environmental variables can than startet with strider like calling them together with the start commnad. For example if the used port
-is 4000 and the server name reads https://neolexon.com than the startup should look like this:
+To run and use strider as it was intended there are several configuration steps that are needed to be done. Strider can either be configured
+with system wide environment variables or in a config file. It can configured with variables that are only valid for the current login and
+startup that is done too. To use process variabes for the example projet with a port of 4000 and a server name https://neolexon.com the following
+command start the process
 
 \begin{lstlisting}
   SERVER_NAME="https://neolexon.com" PORT=4000 npm start
 \end{lstlisting}
 
-We recommend implementing an upstart job instead using environmental variables for handling start, stop and status evaluation for the strider service.
-The configuration file needs to be created in order to work for strider. To do so locate the file for the following code into
+If strider needs a restart the process variables are lost and needs to be used again in the startup process. By using a configuration file
+the used variables are present for each start of strider and there is no need to retype them in the startup process. It is recommended within
+the strider documentation that the configuration file should go inside the strider main directory named
+
+\begin{lstlisting}
+  .striderrc
+\end{lstlisting}
+
+We recommend implementing an upstart job that makes use of environmental variables to handle start, stop and status evaluation.
+The reason for this is that, first, strider uses always the environmental variables if they are available. Even if there is a configuration
+file which makes use of other variables, strider choose to use the environmental variables. The second reason is that in the process of
+registering github as a plugin you need to use the githup id and a github secret to bind github to strider. plugins needs to be implemented
+as environmental variables via export. If the plugin variables for the github plugin are inside a strider configuration file they cannot
+be used and therefore the automatic buildprocess after new code is pushed to the repository will not start. This facts results into problems
+four our continuous integration pipline because we implemented the gitpub variables into the configuration file ouf strider. After we realized
+the problem the step to avoid it was to create environmental variables for this which made it work. As mentioned above strider always choose
+the environmental variables over any configuration file. Since this resulted into other errors and since it is not adviced to split the
+main configuration the solution was to only use environmental variables for the whole service. The variables are using the following path
 
 \begin{lstlisting}
   /etc/init/strider.conf
 \end{lstlisting}
 
+As seen in the following code example we only use environmental variables with strider and for any plugins.
+
 \lstinputlisting{files/strider_config.js}
 
-The upstart job is a deamon for ubuntu systems which allows us to use striderCD as a service and therefore makes start and
+The mentioned and integrated upstart job is a deamon for ubuntu systems, which allows to use striderCD as a service and therefore makes start and
 stophandling easier to do. It also provides starting the strider service if you boot the ubuntu server or canceling it if you
 stop ubuntu. This is helpful because it creates automatisation that prevents from starting different services by hand. For more on
 upstart visit \url{http://upstart.ubuntu.com/}.
 % end
 
-After this the installation and standard configuration will be complete for striderCD and the used mongoDB. Per default
-strider uses the development mode to start in. With the follwing command the start will changed to the production environment
-as the new default
+After these steps the installation and standard configuration will of strider will be complete. Per default strider uses the development mode to start in.
+With the follwing command the start will changed to the production environment as the new default
+
 \begin{lstlisting}
    NODE_ENV=production npm start
 \end{lstlisting}
@@ -728,11 +744,11 @@ the example project is
 
 In our case nvpsswaroop-neolexon-core-570f544255aebd0a04199f2d ist the repository from github.
 
-
-
 \newpage
-\section{Test Driven Development with MEAN}
-\label{section:Test Driven Development with MEAN}
+\section{Automatic Testing With Strider}
+\label{section:Automatic Testing With Strider}
+% \section{Test Driven Development with MEAN}
+% \label{section:Test Driven Development with MEAN}
 
 % start here
 
