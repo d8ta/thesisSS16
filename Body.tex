@@ -760,10 +760,10 @@ the example project is
 In that case nvpsswaroop-neolexon-core-570f544255aebd0a04199f2d is the project repository from github which is hooked to strider.
 This depends on your project name and location on the server.
 
-Since this thesis treats the subject of CI/CD and not testing in general it will not describe testing in detail. Note that for the
+Since this thesis treats the subject of CI and not testing in general it will not describe testing in detail. Note that for the
 most basic functionaltities and modules in the MEAN application we use in the example, karma and mocha tests are already in place.
 In our opinion this is a good starting point if you do not know about how to write and use testing. also there are many ressources
-either on the main pages of mocha (\url{http://mochajs.org}) and karma \url{https://karma-runner.github.io/0.8/index.html}. There
+either on the main pages of mocha (\url{http://mochajs.org}) and karma (\url{https://karma-runner.github.io/0.8/index.html}). There
 is also a variety of questins and solutins on stackoverflow treating unit testing in general and mocha/karma in spezific.
 
 \newpage
@@ -773,7 +773,7 @@ is also a variety of questins and solutins on stackoverflow treating unit testin
 Now that the build process after pushing to the repository is running (right now there are no tests that are implemented), it is a
 good idea to use the full potential of a CI service. Automatation is a useful tool, but the development team needs to be aware of
 what is going on. Is the build passing, or are there errors that are interesting for the development team? Should other people
-now about the status of the deployment and the build? One of the good things about the different CI/CD services is that there is the
+now about the status of the deployment and the build? One of the good things about the different CI services is that there is the
 possibility of nofication about what is going on. In the following test scenario we would like to push some changes to the repository.
 We would like to know if everything works as intended, which means if strider got the change, pulling the repository and building the
 project and store it on the server in the strider build directory. For this we will implement a notification system that either use
