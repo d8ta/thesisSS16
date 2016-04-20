@@ -631,7 +631,7 @@ stop ubuntu. This is helpful because it creates automatisation that prevents fro
 upstart visit \url{http://upstart.ubuntu.com/}.
 % end
 
-After these steps the installation and standard configuration will of strider will be complete. Per default strider uses the development mode to start in.
+After these steps the installation and standard configuration of strider will be complete. Per default strider uses the development mode to start in.
 With the follwing command the start will changed to the production environment as the new default
 
 \begin{lstlisting}
@@ -681,8 +681,23 @@ UI the needed github plugin can be installed.
 \end{figure}
 
 In the plugin view the needed plugin can be installed, updated or removed. We need to link the github account and the project repo to striderCD.
-The linking between the account takes place in the account settings. From there linking to services is possible. If you choose add account strider
-will guide you through the authorisation prozess. The linked account should be showing up after the successful process.
+The linking between the account takes place in the account settings. From there linking to services is possible. If you choose add account, strider
+will guide you through the authorisation prozess.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{images/auth_app.png}
+  \caption{Authorise Application}
+\end{figure}
+
+After authorise your github account you will get the \textit{Github App Id} and the \textit{Github Secret}. Both of them are needed and put
+into
+
+\begin{lstlisting}
+  /etc/init/strider.conf
+\end{lstlisting}
+
+to link the account. The linked account should be showing inside the  after the successful process.
 
 \begin{figure}[h!]
   \centering
@@ -744,43 +759,24 @@ the example project is
 
 In our case nvpsswaroop-neolexon-core-570f544255aebd0a04199f2d ist the repository from github.
 
-\newpage
-\section{Automatic Testing With Strider}
-\label{section:Automatic Testing With Strider}
-% \section{Test Driven Development with MEAN}
-% \label{section:Test Driven Development with MEAN}
-
-% start here
 
 \newpage
+\section{Build Notifications}
+\label{section:Build Notifications}
+% describe slack and email
+\newpage
+\section{Server Stability And Problems}
+\label{section:Server Stability And Problems}
+% chapter about the random shutdown of server and strider
 
-\section{Containerization and Deployment with Docker}
-\label{section:Containerization and Deployment with Docker}
-
-% start here
 
 \newpage
+\section{Single Point Of Failure}
+\label{section:Single Point Of Failure}
+% about strider and digital ocean
 
-\section{Building Continuous Integrations and Deployment with NodeJS}
-\label{section:Building Continuous Integrations and Deployment with NodeJS}
 
-% start here
 
-\newpage
-
-\section{Containerization and Deployment with Docker}
-\label{section:Containerization and Deployment with Docker}
-
-% start here
-
-\newpage
-
-\section{Practical Example Code}
-\label{section:Practical Example Code}
-
-% start here
-
-\newpage
 
 
 
