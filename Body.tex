@@ -781,6 +781,56 @@ slack or email notification. The outcome should be an email or slack message of 
 needs to be done after this.
 
 \subsection{Slack Notifications}
+Slack is a team communication tool. With slack you can write messages, share files, integrate calendar or github repositories
+or use software bots for timemanagment an other useful things. Slack uses multiple channels for communication. For our example we would
+like to get a notification in our build channel we designed for strider. For more about slack please visit the website at \url{https://slack.com}.
+
+To start the integration strider needs to interact with the slack application. Like with the github hook strider needs the slack
+plugin installed in the Admin/Plugins tab. In our case the slack plugin was already pre installed with strider. After the installation
+of the plugin is complete the slack plugin needs to be activated and configured to create a webhook that regulates the notifications.
+Make sure that the slack plugin is enabled. The plugin can be found under available plugins.
+
+\begin{figure}[h!]
+  \centering
+      \includegraphics[width=0.8\textwidth]{images/slack.png}
+  \caption{Slack Plugin}
+\end{figure}
+
+From there you can configure slack by using the link (figure 11)
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{images/slack_link.png}
+  \caption{Slack Link}
+\end{figure}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{images/slack_config.png}
+  \caption{Slack Configuration}
+\end{figure}
+
+In the configuration window we used the standard input generated with the button \textbf{Fill Empty Fields}. The only part that is not
+filled automatically is the webhook URL in the first line. Setting up the webhook is a straight forward process. By clickin on
+\textbf{Create an incoming Webhook} you get linked to the slack integration side of your project (note: you need to have a team setup
+with slack for which you can add integrations). Create the webhook there and copy the webhook URL for the strider slack configuration.
+After using the webhook URL you are able save and test the slack notification with the \textbf{Test} button. The outcome in your slack
+application should look similar to the following figure
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{images/slack_test.png}
+  \caption{Slack Notification Test}
+\end{figure}
+
+With the next push to your github repository, strider will send a message about the buildstatus directly to the choosen slack channel.
+In our case the build channel shows the message after the next successful push and build.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{images/slack_buildtest.png}
+  \caption{Slack Build Notification Test}
+\end{figure}
 
 
 
