@@ -832,7 +832,66 @@ In our case the build channel shows the message after the next successful push a
   \caption{Slack Build Notification Test}
 \end{figure}
 
+\subsection{Email Notifications}
+If there are teammembers outside the slack team or if you do not using slack notifications for the build process can also be configured
+for email. The email notificaton system can be setup in the same way as we did it with slack. First there the \textbf{Email Notifier}
+plugin needs to be installed.
 
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{images/email_notifier.png}
+  \caption{Email Notifier Plugin}
+\end{figure}
+
+Part two is to activate the installed plugin on the \textbf{Plugin Settings Page}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=0.8\textwidth]{images/email_activ.png}
+  \caption{Email Plugin Enabled}
+\end{figure}
+
+The email notification only sends an email if the build status is changing. This means if the build is passing several times and the next
+build is failing, an email is send. If you would like to use it like the slack notification you can change the default behaviour by using the
+\textbf{Email Notifier} link in the project settings on the left side.
+
+As you can see there are no fields for using a specific mailadresse for the notifications. To set up a mail adress strider needs an environmental
+variable found in our
+
+\begin{lstlisting}
+  /etc/int/strider.conf
+\end{lstlisting}
+
+In the strider documentation \url{https://github.com/Strider-CD/strider#configuring} mentioned we use mailgun for sending the mailnotifications.
+Mailgun offers 300 free emails per day which is sufficient for our project. If needed there is a subscription later one. After creating an account
+at \url{https://mailgun.com/signup} and after activating the account with mail and sms authorization the follwing informations are needed for the
+strider.conf file.
+
+\begin{itemize}
+  \item SMTP_HOST
+  \item SMTP_USER
+  \item SMTP_PASS
+  \item SMTP_PORT
+  \item SMTP_FROM
+\end{itemize}
+
+
+\textbf{HOST}, \textbf{USER} and \textbf{PASS} are the main information. In this case the host is mailgun. The user and pass are your userdate
+from the mailgun account. \textbf{PORT} and \textbf{FROM} are set to a default value which can be kept. Use the following start command
+
+\begin{lstlisting}
+  SMTP_HOST="smtp.mailgun.org SMTP_PORT=587 SMTP_USER="your-username" \
+  SMTP_PASS="your-password" SMTP_FROM="your-email" \
+  ./bin/strider
+\end{lstlisting}
+
+To export the variables into the strider.conf file use
+
+\begin{lstlisting}
+  export SMTP_HOST="your-smtp-server"
+\end{lstlisting}
+
+source: \url{https://futurestud.io/blog/strider-configure-and-activate-email-notifications}
 
 \newpage
 \section{Server Stability And Problems}
