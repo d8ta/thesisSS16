@@ -457,7 +457,7 @@ If you are not familiar with setting up versions and software on an Ubuntu serve
 software documentation. For using the exact versions listet above it is useful to use the node version manager (nvm) so you can change to node v4.0 if
 you installed the latest version.
 
-This Thesis assumes that we setup up Strider to deploy on DigitalOcean. DigitalOcean offers a viritual private server (VPS) for only 5 euro per month. This
+This Thesis assumes that we setup up Strider to deploy on DigitalOcean. DigitalOcean offers a viritual private server (VPS) for 5 euro per month. This
 includes 1 Gigabyte of transfer and 20 Gigabyte diskspace. If you need a higher transferrate or more diskspace int he future it is easy to change the
 subscription. You also can choose a datacenter which stores your data. In the neolexon case the data needs to stay in the european union for privacy
 and data security reasons. If this is an option to consider for your application, this can be a useful feature to choose. As most services today do, you
@@ -883,51 +883,39 @@ To export the variables into the strider.conf file use
 source: \url{https://futurestud.io/blog/strider-configure-and-activate-email-notifications}
 
 \newpage
-\section{Server Stability And Problems}
-\label{section:Server Stability And Problems}
-% chapter about the random shutdown of server and strider
-
-
-\newpage
 \section{Single Point Of Failure}
 \label{section:Single Point Of Failure}
 % about strider and digital ocean
+Building an automated service like the continuous integration for the neolexon project is often bind to the use of third party software and services.
+In the above case we use digital ocean for deployment, slack and email notification for information about the build status, github for code sharing
+via repositories and strider itself as the CI tool. Every application depending on third party services is in danger of the single point of failure
+issue. \textbf{SPOF} means that the application or, in our case, the build and deployment process depends on other software that is integrated in the
+project and that is having the abiltiy to fail. If digital ocean is experiencing downtime during the push of new developed code, the deployement
+process will stop in that case and the development team do not have the ability to fix the problem. In this case digital ocean is the only party
+who can work on the problem and eventually fix it. Because of this creating dependencies throughout your project should be as minimal as possible.
+Concentrate on the necessary software and third partys and try to avoid dependencies that can cause problems without a certain value for the project
+or the customer. A working continuous delivery cylce is only as good as the uptime of the different and single components that represent the CI service.
 
+Choose the software that is useful and reliable and that fits the needs of the project. In case of the neolexon CI the descision for striderCD came from
+multiple sources of information. Since there is no reserach literatur about strider the neolexon development and dev ops team uses stackoverflow and the
+github issue report system to evaluate what CI software was fitting and considered stable for the project. That said it is helpful to check the requirements
+for every project. Some of the questions regarding the choice of your software are:
 
+\begin{itemize}
+  \item What programming language does the system use?
+  \item Are there limitations for the deployment the project needs?
+  \item What are the alternatives to that software?
+  \item Do i need this service or software?
+  \item Is the cost value of the service of third party software sufficient?
+\end{itemize} \cite{ulbrich2012eliminating}
 
+SPOF cannot be fully avoided in todays webdevelopment and application managment. In \cite{ulbrich2012eliminating} another solution to avoid SPOF is
+the use of redundant systems or similar systems and software. Reduncancy means that in case of failure another system took over. A useful example
+can be another CI service besides strider that took over if strider suffers from downtime. An automatisation like this can be useful for bigger
+projects that will suffer heavy consequences in case of a failure. For reasons of symplicity and complexity the neolexon project uses no redundant
+CI system. Considered the project size and the construction of the neolexon project, managing and creating redundancies would be exaggerated.
 
-
-
-
-
-% \begin{figure}[h!]
-%   \centering
-%       \includegraphics[width=0.4\textwidth]{images/Perlin-Coherent.png}
-%   \caption{Just some example figure}
-% \end{figure}
-
-
-
-% \subparagraph{subparagraph}
-% \footcite{meyer2014continuous}
-%
-% \begin{itemize}
-%   \item Itemlist 1
-%   \item Itemlist 2
-% \end{itemize} \cite{cranorplatform}
-%
-% \section{Next Section}
-% \label{section:Label}
-%
-% \textit{Texit Option}
-%
-% \begin{figure}[h!]
-%   \centering
-%       \includegraphics[width=0.2\textwidth]{images/Julia-Fractal.png}
-%   \caption{Exampelimage}
-% \end{figure}
-%
-% \subparagraph{Unforgeability}
-% \label{subp:subparagraph_name}
-%
-% Graphic by \url{http://en.wikipedia.org/wiki/Pretty_Good_Privacy#/media/File:PGP_diagram.svg
+\newpage
+\section{Server Stability And Problems}
+\label{section:Server Stability And Problems}
+% chapter about the random shutdown of server and strider
