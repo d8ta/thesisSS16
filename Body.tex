@@ -621,7 +621,16 @@ main configuration the solution was to only use environmental variables for the 
   /etc/init/strider.conf
 \end{lstlisting}
 
-As seen in the following code example we only use environmental variables with strider and for any plugins.
+As seen in the following code example we only use environmental variables with strider and for any plugins. The recommend using for starting is
+to use the following inital command in the configuration file:
+\begin{lstlisting}
+  start on startup
+\end{lstlisting}
+ This command, however did not work in the project. Because of the change to
+ \begin{lstlisting}
+   start on filesystem
+ \end{lstlisting}
+  was made. Start on filesystem does the same for the upstart job but it starts if the whole server starts.
 
 \lstinputlisting{files/strider_config.js}
 
@@ -767,9 +776,13 @@ either on the main pages of mocha (\url{http://mochajs.org}) and karma (\url{htt
 is also a variety of questions and solutions on stack overflow treating unit testing in general and mocha/karma in specific.
 
 \newpage
+\section{SSH Deployment}
+\label{section:SSH Deployment}
+% according to tutorial 
+
+\newpage
 \section{Build Notifications}
 \label{section:Build Notifications}
-% describe slack and email
 Now that the build process after pushing to the repository is running (right now there are no tests that are implemented), it is a
 good idea to use the full potential of a CI service. Automatization is a useful tool, but the development team needs to be aware of
 what is going on. Is the build passing, or are there errors that are interesting for the development team? Should other people
@@ -885,7 +898,6 @@ source: \url{https://futurestud.io/blog/strider-configure-and-activate-email-not
 \newpage
 \section{Single Point Of Failure}
 \label{section:Single Point Of Failure}
-% about strider and digital ocean
 Building an automated service like the continuous integration for the neolexon project is often bind to the use of third party software and services.
 In the above case we use digital ocean for deployment, slack and email notification for information about the build status, github for code sharing
 via repositories and strider itself as the CI tool. Every application depending on third party services is in danger of the single point of failure
@@ -918,4 +930,11 @@ CI system. Considered the project size and the construction of the neolexon proj
 \newpage
 \section{Server Stability And Problems}
 \label{section:Server Stability And Problems}
-% chapter about the random shutdown of server and strider
+During the process of setting up the continuous integration system the development team experienced regular server crashes. If this is happening the
+project at hand the solution can be investigation the mongodb swap space. The swap space provides extra memory situations in which the database needs
+is in need of handling to many queries. In the neolexon project the issue could be solved by using the official mongodb documentation. The diagnosis
+section is holding the commands that are needed to find out about the problem with the swap space. In case of the neolexon project the solution was
+to reset the database. In this early state this was not a problem because the only data inside the database was testing and dummy data. \url{https://docs.mongodb.org/manual/faq/diagnostics/}
+\newpage
+\section{Conclusion}
+\label{section:Conclusion}
