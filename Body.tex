@@ -1,31 +1,31 @@
 \section{Introduction}
-Today the need for stable webapplications is vital for companys and startups. Established businesses need to be
+Today the need for stable web applications is vital for companies and startups. Established businesses need to be
 available for their customers and users all the time. For Startups the availability of their services can be the difference
-between failure and success. Webapplications and services needs to change and scale over time. Sometimes a service gets customers or is
-growing fast. Runtastic, a small company from Linz/austria which developed a fitness application wheere having a tremendes growth of
-their userbase, in a short periode of time. Most of the time users demands a 24/7 availability of the service they use a goode example
+between failure and success. Web applications and services needs to change and scale over time. Sometimes a service gets customers or is
+growing fast. Runtastic, a small company from Linz/Austria which developed a fitness application where having a tremendous growth of
+their user base, in a short period of time. Most of the time users demands a 24/7 availability of the service they use a good example
 is the sales platform Amazon or social networks like Facebook. When Facebook experienced an outage on September 28 2015, this incident
-got a huge ammount of interest from local, national and international media (\url{http://www.bbc.com/news/world-us-canada-34383655} and
-from their usersbase.
+got a huge amount of interest from local, national and international media (\url{http://www.bbc.com/news/world-us-canada-34383655} and
+from their user base.
 
 Downtime is costly. In the best case it only costs money, in the worst case
 it can be the failure of your business or startup. All the mentioned services and events have one thing in common. To provide this kind of zero
-downtime and continuous change in your webapplication you need a reliable and stable automatisation for your services. Development operations are
-right now one of the major topics in webdevelopment. If used properly, DevOps can provide this kind of zero downtime and progress in an application
+downtime and continuous change in your web application you need a reliable and stable automatization for your services. Development operations are
+right now one of the major topics in web development. If used properly, DevOps can provide this kind of zero downtime and progress in an application
 (\cite{humble2010continuous} \cite{duvall2007continuous}). To do so DevOps can use a variety of techniques and methods to continuously
 integrate, test and deploy applications (\cite{meyer2014continuous}).
-Continuous Integration and development is based on the method of agile software development and extrem programming
-(\cite{lindstrom2004extreme}). There is alread a reliable base of knowledge and literature for Continous Integration in todays webdeveloper community
+Continuous Integration and development is based on the method of agile software development and extreme programming
+(\cite{lindstrom2004extreme}). There is already a reliable base of knowledge and literature for Continuous Integration in todays web developer community
 (\cite{schaefer2013continuous}), (\cite{fowler2006continuous}) (\cite{fowler2012continuous}).
 
 Some of the newer methods, for example MEAN stack or NodeJS applications are insufficient investigated and described.
-The Question this thesis will research is: What is a best practise apporoach for modern webapplication,
-to provide automatization and continously integration features. It is the goal of this thesis to show how to establish a modern development operation
-cycle for webapplications using Node.JS and the MEAN Stack.
-This thesis will citeing the standard literature and methods for continuous integration and deployment. After this this thesis will
+The Question this thesis will research is: What is a best practice approach for modern web application,
+to provide automatization and continuously integration features. It is the goal of this thesis to show how to establish a modern development operation
+cycle for web applications using Node.JS and the MEAN Stack.
+This thesis will citing the standard literature and methods for continuous integration and deployment. After this this thesis will
 show how to build a MEAN Stack application in a safe and stable way.
-For this the thesis will research the literatur available for continuous integration and autmatization, to build a similar system with the MEAN Stack.
-To do so the thesis will describe how to automatize builds and tests. The description will be based on the implementation cycle of the neolexon webapplication.
+For this the thesis will research the literature available for continuous integration and automatization, to build a similar system with the MEAN Stack.
+To do so the thesis will describe how to automatize builds and tests. The description will be based on the implementation cycle of the neolexon web application.
 
 \newpage
 
@@ -33,24 +33,24 @@ To do so the thesis will describe how to automatize builds and tests. The descri
 \label{section:Introduction to Agile Development and the Role of Development Operations in Modern Web Applications}
 
 \subsection{Engineering Software}
-Webdevelopment has its roots in general software engineering and uses most of the models, tools and methodologies that are
+Web development has its roots in general software engineering and uses most of the models, tools and methodologies that are
 common in the field of software development. At the beginning of software development, this new field starts with methodologies
 and practices that are used, tested and accepted in other engineering subjects, like civil engineering or architecture. In civil engineering
 a project uses a design phase, which usually provides a detailed plan and which culminates into a construction phase. There the project
 will be build exactly after the specified plan that was invented in the design phase (\cite{lindstrom2004extreme}).
-In civil engineering the construction phase uses the majority of the time, money and the ressources given for the project.
-In his essay (\cite{fowler2001new}) Martin Fowler writes that only 10 percent of the available ressources in civil engineering are used for
+In civil engineering the construction phase uses the majority of the time, money and the resources given for the project.
+In his essay (\cite{fowler2001new}) Martin Fowler writes that only 10 percent of the available resources in civil engineering are used for
 designing and planing a project. The other 90 percent goes into construction. Fowler concludes that using these engineering methodologies have
-brought software development into trouble, because seperating design and construction, common in other fields of engineering, like building
+brought software development into trouble, because separating design and construction, common in other fields of engineering, like building
 a bridge does not fit the needs of software engineering.
 
-In civil engineering a very detailed plan is made, and after a careful mathematical analysis it is descided to put this plan into practice. For constructing,
+In civil engineering a very detailed plan is made, and after a careful mathematical analysis it is decided to put this plan into practice. For constructing,
 for example a bridge, the construction department will in detail and exactly after the made plan.
-This seperation makes it possible to use people as ressources in construction, whereafter the design takes place in a more
-intellecutal environment. The construction ressources in general dont need to understand the whole design and therefore can concentrate on
-concentrate about the construction. The trouble for software development with seperation of design and construction is, that the whole process of programming
-, according to fowler, is desiging in the first place. \cite{opac-b1105529} stats that only 15 percent of a software project is code.
-This stands in contrast to the building example from civil engineering in which the most percentage of time and ressources going into construction.
+This separation makes it possible to use people as resources in construction, whereafter the design takes place in a more
+intellectual environment. The construction resources in general don't need to understand the whole design and therefore can concentrate on
+concentrate about the construction. The trouble for software development with separation of design and construction is, that the whole process of programming
+, according to fowler, is designing in the first place. \cite{opac-b1105529} stats that only 15 percent of a software project is code.
+This stands in contrast to the building example from civil engineering in which the most percentage of time and resources going into construction.
 
 Becaues of this reversal \cite{reeves1992software} suggests that the code of a software project should be used as the design document and that the compilation of the
 code should be seen as the main construction phase. For \cite{fowler2001new} the conclusion to Reeves suggestion is the following:
@@ -64,20 +64,20 @@ code should be seen as the main construction phase. For \cite{fowler2001new} the
 \newpage
 
 \subsection{The Agile Software Manifesto}
-Traditional engineering metaphores and separation of design and construction are good for a predictable project where the outcome is clear in
-detail to the customer. In software engineering and webdevelopment there is proven method to mathematically analyse a software design. This means that there is
+Traditional engineering metaphors and separation of design and construction are good for a predictable project where the outcome is clear in
+detail to the customer. In software engineering and web development there is proven method to mathematically analysis a software design. This means that there is
 a limited predictability because of changes that appear in software development (technical or customer based) most of the time. To show this in practical detail
-consider the following neolexon example application. The webapplication should provide information for speach therapists in a simple and understandable dashboard,
-in which the user (therapist) gets an overview about what is going on. The descision was made that the dashboard should hold only the list of patients and wordlists (figure 1).
+consider the following neolexon example application. The web application should provide information for speech therapists in a simple and understandable dashboard,
+in which the user (therapist) gets an overview about what is going on. The decision was made that the dashboard should hold only the list of patients and wordlists (figure 1).
 
 \begin{figure}[h!]
   \centering
   \includegraphics[width=0.8\textwidth]{images/patientsandlists.png}
-  \caption{first plan of therapiest dashboard}
+  \caption{first plan of therapist dashboard}
 \end{figure}
 
-After the dashboard was created and the feedback of several therapists arrived, the descision was made that the dashboard did not need to hold the lists of words, because all lists where individual to the patients.
-after this descision, was left with only the patientlist. In case of the application this was not the main goal for the invented dashboard. To conquer this the development team came up with another
+After the dashboard was created and the feedback of several therapists arrived, the decision was made that the dashboard did not need to hold the lists of words, because all lists where individual to the patients.
+after this decision, was left with only the patient list. In case of the application this was not the main goal for the invented dashboard. To conquer this the development team came up with another
 idea of the dashboard (figure 2)
 
 \begin{figure}[h!]
@@ -89,16 +89,16 @@ idea of the dashboard (figure 2)
 \newpage
 
 As seen in the above figures the two ideas are very different in layout, design and idea. According to the initial plan the wordlists should be there.
-Now you have a sidenavigation with patients and the statistics for each of them. This transformation would have been very
-complicated to achieve with traditional engineering methaphore, because the clients only would have seen it at the end of the process. To rebuild vital
-parts of a webapplication is a complicated process. The changes occured in a timeframe of 2 weeks, from plan to final idea.
-This example shows that traditioonal engineering strategies are not working well in terms of webdevelompent and software.
+Now you have a side navigation with patients and the statistics for each of them. This transformation would have been very
+complicated to achieve with traditional engineering metaphor, because the clients only would have seen it at the end of the process. To rebuild vital
+parts of a web application is a complicated process. The changes occurred in a timeframe of 2 weeks, from plan to final idea.
+This example shows that traditional engineering strategies are not working well in terms of web development and software.
 
 To conquer the problem, 17 developers (Kent Beck, Mike Beedle, Arie van Bennekum, Alistair Cockburn, Ward Cunningham, Martin Fowler, James Grenning,
 Jim Highsmith, Andrew Hunt, Ron Jeffries, Jon Kern, Brian Marick, Robert C. Martin, Steve Mellor, Ken Schwaber, Jeff Sutherland, Dave Thomas)
-invented an idea of how to handle softwareproject. On the 13. of february 2001 they created \textbf{\textit{a Manifesto for Agile Software Development}}.
+invented an idea of how to handle software project. On the 13. of February 2001 they created \textbf{\textit{a Manifesto for Agile Software Development}}.
 The Manifesto itself is not a static rule, it is a guideline which can be followed. To make things practicable the Manifesto contains 12 principles about
-agile developement.
+agile development.
 
 \begin{itemize}
   \item Our highest priority is to satisfy the customer through early and continuous delivery of valuable software.
@@ -121,14 +121,14 @@ agile developement.
   \caption{the agile manifesto}
 \end{figure}
 
-Based on the manifesto principles it is more realistic to build software, because the princilples take the different approach of design and construction into
+Based on the manifesto principles it is more realistic to build software, because the principles take the different approach of design and construction into
 account. The above described therapist dashboard example would be making more sense, with the agile approach. Compared to a solid plan that starts at the beginning
-without hange during the process, agile development takes into account that most sofware is changeing over the course of the
-development. Since many of the principles contain non technical ideas, like a cicle of team reflection, motivating team members or the art of simpicity,
+without change during the process, agile development takes into account that most software is changing over the course of the
+development. Since many of the principles contain non technical ideas, like a cycle of team reflection, motivating team members or the art of simplicity,
 there are solid ideas about how to treat the software and shipping process.
 
 At the start of the manifesto the need for continuous delivery and integration is set as a high priority in development to satisfy the customer needs.
-But satisfing customer needs is only one part about this approach. Another reason to continuosly integrate software is about the change and the mantainability.
+But satisfying customer needs is only one part about this approach. Another reason to continuously integrate software is about the change and the maintainability.
 If an application or software changes fast and often in the development process, it is a good idea to ensure that your software is working at every point.
 It should be possible to assure working code from the beginning of a software project. Software will getting more complicated and complex over the course of the
 project. To have working code throughout the project is a benefit.
@@ -139,11 +139,11 @@ project. To have working code throughout the project is a benefit.
 % BIS HIERHIN KORRIGIERT!!!!
 
 \subsection{Continous integration}
-Continouls integration is the process of continously create and ship code. CI can be described as merging new code with a set up project in short
-development cyles constantly. To do this CI relies heavily on automated processes and tests. Automated testing in CI will help to catch issues before they
+Continuous integration is the process of continuously create and ship code. CI can be described as merging new code with a set up project in short
+development cycles constantly. To do this CI relies heavily on automated processes and tests. Automated testing in CI will help to catch issues before they
 can to into the up and running service where they can cause errors and other troubles. The main technical idea behind CI is
-one order philosphy. After developing new code the developer only needs to push the code to the repository. Through this action (pushing to a VCS) a chain
-of events is triggered. The standard case is that the newly pushed scource code gets pulled and tested. If all tests pass and there are no problem the
+one order philosophy. After developing new code the developer only needs to push the code to the repository. Through this action (pushing to a VCS) a chain
+of events is triggered. The standard case is that the newly pushed source code gets pulled and tested. If all tests pass and there are no problem the
 application gets build and published. After the application gets published the development team gets notified to report that the testing and building was
 successful. (\cite{stolberg2009enabling})
 
@@ -152,21 +152,21 @@ With integration often (sometimes a few times per day) integrating code form dif
 comparison to an integration every few weeks.
 
 
-\subsection{Continous integration and test driven development}
+\subsection{Continuous integration and test driven development}
 The main idea behind Test driven development is to ensure that the application or software stays functional at any level.
 CI inherits the idea of using Test Driven Development. This means that you actually write test for the different parts (units) of your software.
 In his book \textbf{\textit{Test-Driven Development by Example}} Kent Beck explains that writing automated tests before the actual code can be a good service
 to an applications. As a developer starts to add features and introduce changes into an application that is already used, automated testing should be a standard.
 Tests will make sure that problems with existing code or features will be visible after a developer changes existing parts in the software. That means that the
-developer did not need to go through all parts of the application manually after some changes to ensure that everything is still working. To do so is timeconsuming
-and inefficient, because it is still likley to oversee functionalities in the code that will be effected by different changes that are made afterwards. It also
-leads to thought through programming decisions. Test-driven development focusses on how TDD leads analysis, design, and programming decissions
+developer did not need to go through all parts of the application manually after some changes to ensure that everything is still working. To do so is time consuming
+and inefficient, because it is still likely to oversee functionalities in the code that will be effected by different changes that are made afterwards. It also
+leads to thought through programming decisions. Test-driven development focusses on how TDD leads analysis, design, and programming decisions
 (\cite{janzen2005test}) which will be of help if the software application grows larger or more complex. Writing unit tests (a unit tests tests only a small
-part of an application, for example if the email validation is working correctly) combined with continously integrate and delivery provides a
+part of an application, for example if the email validation is working correctly) combined with continuously integrate and delivery provides a
 good setup for error free applications.
 
 \subsection{Continous delivery and deployment}
-Continous delivery is needed to deliver code to other services, teams and customers for review. After a successful review and if all tests are showing that the
+Continuous delivery is needed to deliver code to other services, teams and customers for review. After a successful review and if all tests are showing that the
 application is error free, the application can be build and deployed. Figure 4 shows how a continuous delivery process runs in general.
 
 \begin{figure}[h!]
@@ -181,16 +181,16 @@ application is error free, the application can be build and deployed. Figure 4 s
 \label{section:The Foundations of Continuous Integration and Automatization in Development Operations}
 
 % start here
-\subsection{The continous integration pipline}
-Today building a web application contains different parts and techniques that needs to be combined. Besides the layout and look of the frontend applications
+\subsection{The continuous integration pipeline}
+Today building a web application contains different parts and techniques that needs to be combined. Besides the layout and look of the front end applications
 most services are using databases to store user data and let users authenticate to a service. There is a wide range of techniques in either, backend and
-frontend, that can be used today to ship an application. For this thesis i will describe various options to create and deliver an modern web
-applications with methods of continous integration, continuous delivery and continous deployment.
+front end, that can be used today to ship an application. For this thesis i will describe various options to create and deliver an modern web
+applications with methods of continuous integration, continuous delivery and continuous deployment.
 
-I will start to describe differences solutions to build a stable CI pipline. I also will explain what parts are essential for a CI pipline and what options
-are available to choose from. Furthermore i will show an idea of a usable workflow in operations and CI. To build and automatize a CD prozess you have to build
-a continouus deployment pipeline which contains all the assets, scripts and tools you need to build, test and deploy your application after you push it the a
-version controll system. In figure 5 you see a very basic and general pipline without any specifics.
+I will start to describe differences solutions to build a stable CI pipeline. I also will explain what parts are essential for a CI pipeline and what options
+are available to choose from. Furthermore i will show an idea of a usable workflow in operations and CI. To build and automatize a CD process you have to build
+a continuous deployment pipeline which contains all the assets, scripts and tools you need to build, test and deploy your application after you push it the a
+version controls system. In figure 5 you see a very basic and general pipeline without any specifics.
 
 
 \begin{figure}[h!]
@@ -200,60 +200,60 @@ version controll system. In figure 5 you see a very basic and general pipline wi
 \end{figure}
 
 To go into more detail about the CD pipeline the following stages are described in general. Theses Stages are the same for every software project using
-continous delivery. They vary in some curcial point that i will later explain, but the basic is the same. To understand the CD pipeline the process needs
-to be understand. The pipeline follows one stage after another and each stage triggers the start of the next one. The trigger prozess only starts if the
+continuous delivery. They vary in some crucial point that i will later explain, but the basic is the same. To understand the CD pipeline the process needs
+to be understand. The pipeline follows one stage after another and each stage triggers the start of the next one. The trigger process only starts if the
 stage before passes tests or metrics. Humble and Jez describe these four stages in the book "continuous delivery: reliable software releases through build,
 test, and deployment automation" (\cite{humble2010continuous})
 
 \subsection{The commit stage}
-The CD pipeline starts with the commit stage. Usually this stage is triggered whan a developer puhes new code to a repository at the version control system.
-In this case a script should pull the new code and build the project. The purpuouse of the commit stage is to to single out builds with errors and therefore
+The CD pipeline starts with the commit stage. Usually this stage is triggered when a developer pushes new code to a repository at the version control system.
+In this case a script should pull the new code and build the project. The purpose of the commit stage is to to single out builds with errors and therefore
 are unfit to be released as a project to the production server (user/customer) and go give feedback about the build back to the developing team as soon as possible.
 This stage consists of roughly five phases. At the beginning the code from the pulled repository gets compiled. After this the commit stage should hold the unit
 tests for the project. Theses tests should run in the commit stage. It is possible to use more specific tests in this stage according to Jez and Humble
-(\cite{humble2010continuous}) the commit stage already can hold tests for later stages, if it is clear that typical problems occure that can be singled out
+(\cite{humble2010continuous}) the commit stage already can hold tests for later stages, if it is clear that typical problems occurs that can be singled out
 in this first stage. Since a CD environment should be an evolving system the development team can start with unit testing only and later bring in the tests
 that will help prevent known problems with their application right at the beginning of the pipeline.
 
-After the testing code should be stored for use in later stages. The code also should be analysed for structural errors or difficulties and
+After the testing code should be stored for use in later stages. The code also should be analyses for structural errors or difficulties and
 artifacts should be stored as well to reuse it later on, for example to use them in the test databases if you use these kind of things. \cite{osherove2015art}
-describes a unit test as "A unit test is a piece of code which calls another code to prove them true or false. The unit test is true if the asumed is true.
+describes a unit test as "A unit test is a piece of code which calls another code to prove them true or false. The unit test is true if the assumed is true.
 A unit is a method or function". This definition states that unit tests testing the smallest part of an application. They are based on the function level.
 Because of this the development team needs to be careful not to rely on unit tests alone to show if the application is working. Even if unit tests are all
-working and the feedback of them is positiv the overall functionality of an application can be broken. Because of the basic structure of unit tests the
+working and the feedback of them is positive the overall functionality of an application can be broken. Because of the basic structure of unit tests the
 overall context of what the application does or does not can get lost, and even if all functions are up and running, connected functionality can be damaged.
-A rule for good unit test is that the should be isolated from different code to only controle and test one function (\cite{osherove2015art}).
+A rule for good unit test is that the should be isolated from different code to only controls and test one function (\cite{osherove2015art}).
 In general the commit stage should use 5- 10 minutes to build and test the application, depending on the projects extend. (\cite{humble2010continuous}).
 
 \subsection{Automated acceptance test stage}
-A successful commit stage should trigger the automated acceptance test stage afterwards. In this stage the goal is to secure the applications behaviours and
-deliver the contend and functionality that the team and a customer expects from the software. For example, if the webapplication should provide a booking system
+A successful commit stage should trigger the automated acceptance test stage afterwards. In this stage the goal is to secure the applications behaviors and
+deliver the contend and functionality that the team and a customer expects from the software. For example, if the web application should provide a booking system
 for something it should be possible to book the content on the side. This is what a costumer would expect from the application and therefore this should be
 tested. In this case the test should assume that someone can place an order and evaluate the different parts of this (input field, input evaluation, auto
-complete, sending the order). In this area of testing not only functions are checked for functionality but the UI hat uses these functions. The accetance test
-stage is more complex than the commit stage. In the CD pipeline after every successfull stage the effort and the amount of time that is used will grow.
+complete, sending the order). In this area of testing not only functions are checked for functionality but the UI hat uses these functions. The acceptance test
+stage is more complex than the commit stage. In the CD pipeline after every successful stage the effort and the amount of time that is used will grow.
 After the functions are working you invest more to test the UI and other interconnected parts. Doing this helps to just invest more into things that are
 already proven to be working on a smaller level.
 
 \subsection{Manual test stage}
-After the acceptance tests there should be a manual testing stage in wich testers or developers use exploratory methods to observe and test different behaviours
-of the application. The reason to not all do the behavioural testing manually is to minimize the amount of error during people. Using acceptance test helps
-to automatice repetetive and error prone processes and leave some specific cases to test by hand. This is useful because there can be some things that are hard
-to test and should be left for human beeings.
+After the acceptance tests there should be a manual testing stage in with testers or developers use exploratory methods to observe and test different behaviors
+of the application. The reason to not all do the behavioral testing manually is to minimize the amount of error during people. Using acceptance test helps
+to automatic repetitive and error prone processes and leave some specific cases to test by hand. This is useful because there can be some things that are hard
+to test and should be left for human beings.
 
 \subsection{Release stage}
 If all the tests are proving that the applications is release ready there should be a single action that releases the application to production and therefore
-to the opne world. Usually it is the stage with the highest prority that is deployed the least often. In this case production. Humble describes that the pipeline
+to the open world. Usually it is the stage with the highest priority that is deployed the least often. In this case production. Humble describes that the pipeline
 process helps get ready for the final stage. By proving that the code and scripts are working the development team gets more and more assured that the application
 is working and at the end you deploy it to the production environment. With this approach you make sure that your code or your scripts wont be the failure if
 the application causes problems. of course there is a residual risk if it is, but it is much easier than to investigate if the code or the environment is the
-root of failure. Minimizing people error through automatisation is a major part of CD services, but there are some other aspects to taken into account. Humble and Jez writing
-that you should be using a productin like environment for testing. This makes sense because the more a test environment differs from the actual environment
+root of failure. Minimizing people error through automatization is a major part of CD services, but there are some other aspects to taken into account. Humble and Jez writing
+that you should be using a production like environment for testing. This makes sense because the more a test environment differs from the actual environment
 the less secure the developers can be that it will behave according to what they saw and tested on the testing environment.
 
-\subsection{Delivery pipeline practises}
-There are certain practises that can help to use the continuous delivery pipeline in a proper and useful way.
-Here is a list of proven praticeses on this matter.
+\subsection{Delivery pipeline practices}
+There are certain practices that can help to use the continuous delivery pipeline in a proper and useful way.
+Here is a list of proven particles on this matter.
 
 \begin{itemize}
   \item Only build your binaries once.
@@ -265,25 +265,25 @@ Here is a list of proven praticeses on this matter.
 
 \subsubsection{Only build your binaries once}
 Having a CD pipeline set up is a useful and timesaving environment. However, by using different environments, compilers, software version or even the same
-compiler in a different version can change a lot of things. Each time you re-compile your commited code to a build there can be changes that are unforseen
-and that results in little or even non visible changes in other software or version differences. Because of this it is the best practise to only compile your
+compiler in a different version can change a lot of things. Each time you re-compile your committed code to a build there can be changes that are unforeseen
+and that results in little or even non visible changes in other software or version differences. Because of this it is the best practice to only compile your
 code once and reuse this build without re-compiling it later on. The code that gets deployed to your production environment should be equal the same than
-your build that is going throught the pipeline. Dont ever re-create your code (binaries are in this context a collection of executable code) after the first
+your build that is going thought the pipeline. Don't ever re-create your code (binaries are in this context a collection of executable code) after the first
 build. The best way to do this is to store the build in a filesystem and reuse it for every other stage that gets triggered for the pipeline. This matters most
 if you create a continuous delivery server on your own. The most modern CD services are taking care that your builds are stored and reused later on.
 
 \subsubsection{Deploy in the same way to every environment you use}
-For deployment you should use the very same process, wheter it is for production or to a developer machine. By doing so you are be able to run all your builds
-and scripts multiple times in the same way as you did later on the productin server. As this is the most important build it is a good thing to know that if
-you deploy it will be working, because you tested it in the very same way before on developement and test machines. For this you should use a basic script that
-does the same things that are necessary for all your environments. If you have unique settings for some environments it is best practise to store these on the
+For deployment you should use the very same process, whether it is for production or to a developer machine. By doing so you are be able to run all your builds
+and scripts multiple times in the same way as you did later on the production server. As this is the most important build it is a good thing to know that if
+you deploy it will be working, because you tested it in the very same way before on development and test machines. For this you should use a basic script that
+does the same things that are necessary for all your environments. If you have unique settings for some environments it is best practice to store these on the
 environment itself. This prevents you from writing different scripts for all your environments. Jez write about storing these unique settings in the VCS and
-trigger them by hostname. If you deploy to a special environment this specific hostname of that environment triggerst that unique script together or instead
+trigger them by hostname. If you deploy to a special environment this specific hostname of that environment triggers that unique script together or instead
 of the basic script.
 
 \subsubsection{Deploy into a copy of your production environment}
 It is always a good idea to keep the environments you deploy for testing and staging as nearly to the later production environment. If this works on
-your environments the devolopment team can be confident that the build will run on the live environment. You need to be careful, all this is a betting
+your environments the development team can be confident that the build will run on the live environment. You need to be careful, all this is a betting
 system in a kind of way, with every stage you finalize you can get more confident and in the end the possibility that everything runs like intended is
 very high. In software development like in all other parts of the real world everything is dependent to a general possibility, you cannot be 100 percent
 assured but the possibility of failure can be minimized to a nearly non existing state.
@@ -294,9 +294,9 @@ unit testing and if everything works it triggers the next stage. But what happen
 to the repository. It may not be vital for small developer teams but even there different developers can push in short time to the repository. This results
 in a build that gets tested and deployed, but is actually behind the real build that gots pushed by the team. A solution is an intelligent scheduling
 system of your CD pipeline. Every time a stage is finalized the CD server search for changes in the repository before going to the next stage. In the
-example i created the CD server starts the commit stage after the repository on the version controll system changes. After successfully ending the unit
+example i created the CD server starts the commit stage after the repository on the version controls system changes. After successfully ending the unit
 tests the server checks the repository. Since a new commit was been pushed by another developer the CD server did not trigger the acceptance test stage.
-Instead the starts building new and does the unit tests with the now actual build. If other developerst commit code the same rule applies to the end of the
+Instead the starts building new and does the unit tests with the now actual build. If other developers commit code the same rule applies to the end of the
 commit stage. In this case the build and deploy process slows down, because the commit stage took longer because of restarting several times with a new
 commit. But compared to having a deployed build that is behind the real code a longer time can be neglected. There is only so much code that can be shipped
 the same time so eventually the pipeline will come to an end. If the development team is really big you can schedule commit times, but this will theoretically
@@ -304,19 +304,19 @@ stand against the theory of CD. If you look at it there will be an even longer p
 pipeline but is not the last commit, you ending up with more time until you get an actual deployed build.
 
 \subsection{Starting a continuous delivery pipeline}
-Starting a CD pipeline can be done in several ways. Before this thesis go to the actual tools that can be used to achiev a good workflow and pipeline
+Starting a CD pipeline can be done in several ways. Before this thesis go to the actual tools that can be used to achieve a good workflow and pipeline
 it will describe a basic starting concept. This can be used with any tool a team or developer choose to use for creating a CD service for their software
 or application. This section assumes that there is a new project which starts at the iteration zero (this means there is no or only few code and tests, or
 only prototype material that will be used partly later on). In this case a CD pipeline can be started at the bare minimum and than can grow with the project
 or application. The bare minimum in this case is a commit stage that starts after a commit to the repository, a acceptance stage that starts right after the
-commit stage and a deployment stage which deploys the application in a prodctin like environment. To start with non of the stages should do anything (
+commit stage and a deployment stage which deploys the application in a production like environment. To start with non of the stages should do anything (
 because there is no test or code right now). The only thing that should happen is that a push triggers the pipeline cascade so that all stages a running
 and in the end there is a deployment. In doing so you have a placeholder CD pipeline that runs every time you change the repository. To populate the pipeline
-and to test the system itself use a small part of code that can be brought in with the single purpouse to test the CD pipeline. As an example you can start a
+and to test the system itself use a small part of code that can be brought in with the single purpose to test the CD pipeline. As an example you can start a
 simple hello world example as a console.log or html tag and a unit test that asserts to true if the console.log or html is there. With this minimalistic code
-you can test your CD system by commiting this to the repository. The unit test should assert to true and after the commit stage the html should be deployed
+you can test your CD system by committing this to the repository. The unit test should assert to true and after the commit stage the html should be deployed
 to run an acceptance test (an acceptance test can only be running if a website is deployed to a staging server!). The acceptance test stage should than run
-and verifys that the console.log or html is visible on the website. This first steps will provide a practical understanding of how the pipline works and
+and verify that the console.log or html is visible on the website. This first steps will provide a practical understanding of how the pipeline works and
 if it runs according to what you need to do with more complicated things later. In the next section i will show and describe different tools and CD services
 that can be used to build an effective and stable continuous delivery chain.
 % 4704 words!
@@ -328,19 +328,19 @@ that can be used to build an effective and stable continuous delivery chain.
 \label{section:Development and Deployment with MEAN}
 
 \subsection{Introduction}
-Like mentioned in the last chapter, after the basic functions and implementations of the CD pipline are covered, this section will name and explain different tools
-to set up a CD Pipeline. This paper has the goal to cover the implementation of a CD pipline for todays web applications. Since there are many tools out there
-this thesis will not cover all of the known tools available. In fact the descriped software tools are suggestions to build a stable pipeline for a CD process.
-To better understand and learn how to build the pipeline with the mentioned sofware, i will provide the building of a webapplication based on the
-MEAN stack. MEAN stands for MongoDB, ExpressJS, AngularJS, and NodeJS. There are different papers and books about CD with different software systemst. So far
+Like mentioned in the last chapter, after the basic functions and implementations of the CD pipeline are covered, this section will name and explain different tools
+to set up a CD Pipeline. This paper has the goal to cover the implementation of a CD pipeline for todays web applications. Since there are many tools out there
+this thesis will not cover all of the known tools available. In fact the described software tools are suggestions to build a stable pipeline for a CD process.
+To better understand and learn how to build the pipeline with the mentioned software, i will provide the building of a web application based on the
+MEAN stack. MEAN stands for MongoDB, ExpressJS, AngularJS, and NodeJS. There are different papers and books about CD with different software systems. So far
 now on covers the the building with the MEAN stack.
 % plz research and prove this claim with literature!!!
-The reason to choose the MEAN stack for the CD example application is that MEAN uses modernt frameworks that are commonly practised by webdevelopers. Technology
-will evolve and eventually singe page applications build with the MEAN stacke will be out of date. But so far this approach holds many standards in modern web
+The reason to choose the MEAN stack for the CD example application is that MEAN uses modern frameworks that are commonly practiced by web developers. Technology
+will evolve and eventually singe page applications build with the MEAN stack will be out of date. But so far this approach holds many standards in modern web
 development.
 
 \subsection{Describing the MEAN stack}
-Before starting the tools and practises for building the pipeline, a short description of the MEAN stack will help to understand how the different parts of the
+Before starting the tools and practices for building the pipeline, a short description of the MEAN stack will help to understand how the different parts of the
 stack are working together and how they will be setup. After this short introduction, a practical example of how to use the whole MEAN stack will be described.
 This Example will be a step by step MEAN stack setup which includes code and references to do so.
 
@@ -367,58 +367,57 @@ which is very similar to JSON. A document consists of field-value pairs. As an e
   }
 \end{verbatim}
 
-The code example shows a MongoDB document with different field-value pairs. In this case the fields are id, picture, age, firstname, lastname, gender and
-about. The values the assigned values per field. For example, the value for the field firstname is Vroni. The Mongo database itself is a \textit{Collection}
+The code example shows a MongoDB document with different field-value pairs. In this case the fields are id, picture, age, first name, last name, gender and
+about. The values the assigned values per field. For example, the value for the field first name is Vroni. The Mongo database itself is a \textit{Collection}
 of \textit{Documents}. The above code shows a \textit{Documents} and many \textit{Documents} together are a \textit{Collection}.
 
-MongoDB uses dot notation to access fields inside a \textit{Documents}. If a developer needs to access the firstname field in the above document, he or she
-needs to concatinate the \textit{Documents} and the field like this <document>.<field>. Let us assume there are many patients inside our collection and we
+MongoDB uses dot notation to access fields inside a \textit{Documents}. If a developer needs to access the first name field in the above document, he or she
+needs to concatenate the \textit{Documents} and the field like this <document>.<field>. Let us assume there are many patients inside our collection and we
 want to query for all patients that older than 30. In this case the query would contain the following code:
 
 \begin{verbatim}
   db.patients.find({age: {gt: 30}}).sort({age: 1})
 \end{verbatim}
 
-patients are representing the \textit{Collection} (all patients in the database). Find, decribes what should be done. In this
+patients are representing the \textit{Collection} (all patients in the database). Find, describes what should be done. In this
 case we would like to single out specific patients from our database. The criteria is to find all patients with an age greater than 30. The last part is
-a modifier which works like a filter. It allows to sort the findings from this querie after the age (from youngest to oldest). There are different
+a modifier which works like a filter. It allows to sort the findings from this query after the age (from youngest to oldest). There are different
 chains for a MongoDB query. They are all explained in detail on the MongoDB website under \url{https://docs.mongodb.org/manual/core/crud-introduction/}.
 
-The advantge of using MongoDB in our app is that you dont need another programming language like \textit{SQL} for relational databases.
+The advantage of using MongoDB in our app is that you don't need another programming language like \textit{SQL} for relational databases.
 For Mongo you can use the programming language you are working with in you application. In this case JavaScript. Since the MongoDB document structure is
 similar to JSON it allows to easily access and use the data inside your database. \cite{chodorow2013mongodb}
 
 \subsubsection{ExpressJS}
-The next part of the MEAN stack is the ExpressJS framework. The ExpressJS website describes it as a fast, unopinionated and minimalistic web framework
-for NodeJS \url{http://expressjs.com}. In fact you do not need ExpressJS for your sofware stack. You can do all the connections and backend operations with
-NodeJS alone. The advantage of ExpressJS is that it helps to connect all the different parts from your backend. That is why the MEAN stack uses the framwork.
+The next part of the MEAN stack is the ExpressJS framework. The ExpressJS website describes it as a fast, un opinionated and minimalistic web framework
+for NodeJS \url{http://expressjs.com}. In fact you do not need ExpressJS for your software stack. You can do all the connections and backend operations with
+NodeJS alone. The advantage of ExpressJS is that it helps to connect all the different parts from your backend. That is why the MEAN stack uses the framework.
 The MEAN application for this thesis will show the advantages an application gets from using ExpressJS later in the practical part and code examples.
-ExpressJS glues all needed parts of the application together, so the developer dont need to use and configure all backend and connectin parts manually
+ExpressJS glues all needed parts of the application together, so the developer don't need to use and configure all backend and connecting parts manually
 \cite{brown2014web}. To do this ExpressJS requires init and configuration files from the application. As long as you put the needed files into the right
-directory in the webapplication, ExpressJS will find them and makes use of them. ExpressJS also handles sessions for the login and doing the error handling
+directory in the web application, ExpressJS will find them and makes use of them. ExpressJS also handles sessions for the login and doing the error handling
 on the backend side.
 
 \subsubsection{AngularJS}
-% more research about what is it and  why should be used for MEAN and what are the specifics someone needs to know
-If ExpressJS is the framework for the backend, in this case NodeJS, AngularJS is the javascript frontend framework. As said for ExpressJS you do not need
-AngularJS to develop the application. But Angular will make it more comfortable to write frontend functionality. Angular is an MV* framework. This stands
-for \textbf{M}odel - \textbf{V}iew - *. The * acutally is a placeholder and means you can use Angular in different ways. Be it MVC - Model View Controller
+If ExpressJS is the framework for the backend, in this case NodeJS, AngularJS is the javascript front end framework. As said for ExpressJS you do not need
+AngularJS to develop the application. But Angular will make it more comfortable to write front end functionality. Angular is an MV* framework. This stands
+for \textbf{M}odel - \textbf{V}iew - *. The * actually is a placeholder and means you can use Angular in different ways. Be it MVC - Model View Controller
 or als MVVM - Model View View Model. This depends on the choices of the development team and what application you will build. The example application i
 use for this thesis is a single page MVC application. It will have a Model which handles the logic and a Controller, which refers to different Views of
-the application. A MEAN stack application will handle differen models, controllers and view so seperate concerns between different functionalities.
+the application. A MEAN stack application will handle different models, controllers and view so separate concerns between different functionalities.
 
 \subsubsection{NodeJS}
 In \textit{Node up and running} (\cite{hughes2012node}) NodeJS is described as a non blocking, scalable javascript framework. The major advantage is that
-if the development team uses javascript in the frontend there is no need to transfer functionalities into php or other backend programming languages.
-This makes it easy to use the same language for back- and frontend, javascript. Besides the scalability of a non blocking architecture and the performance
-of the V8 javascript runtime enginge, NodeJS posesses a very large packaging ecosystem (node package manager) which makes it comfortable to work with.
+if the development team uses javascript in the front end there is no need to transfer functionalities into php or other backend programming languages.
+This makes it easy to use the same language for back- and front end, javascript. Besides the scalability of a non blocking architecture and the performance
+of the V8 javascript runtime engine, NodeJS possess a very large packaging ecosystem (node package manager) which makes it comfortable to work with.
 % more research about what is it and  why should be used for MEAN and what are the specifics someone needs to know
 
 \newpage
 
 \subsection{Continuous delivery pipeline: tools and practices}
 After this brief introduction of the different parts of the MEAN stack, this thesis describe the tool that will be used for the MEAN stack and a
-continuous delivery pipeline. However this is not a complete list. Appart from the MEAN software stack the neolexon
+continuous delivery pipeline. However this is not a complete list. Apart from the MEAN software stack the neolexon
 example application will be using the following tools and software:
 
 \begin{itemize}
@@ -434,16 +433,13 @@ example application will be using the following tools and software:
   \item Partialify
   \item Lodash
   \item Istanbul
-  % are there more? Plz make a list and work through them!
 \end{itemize}
-% description of all the tools
 
-% here follows the description of the meanjs generator, structure and setup
 \section{Describing CD Pipeline (WIP)}
 \label{section:Describing CD Pipeline (WIP)}
 To begin the setup process the beginning of this chapter shows the versions and requirements the neolexon project uses for the CD pipeline and MEAN stack.
 I will split the configuration into server and client side and following by this there will be a step by step guide on how to setup and what problems and
-difficulties can be occure.
+difficulties can be occur.
 
 \subsection{Software And Versions}
 The neolexon project is using \textbf{Ubuntu 14.04} as the server operation system. The following versions are installed on the server:
@@ -458,11 +454,11 @@ The neolexon project is using \textbf{Ubuntu 14.04} as the server operation syst
 
 Strider v1.7.7 has some requirements that are shown in the actual documentations. Our setup takes care of the required versions for SriderCD v1.7.7.
 If you are not familiar with setting up versions and software on an Ubuntu server you can just follow the installation instructions in the different
-software documentation. For using the exact versions listet above it is useful to use the node version manager (nvm) so you can change to node v4.0 if
+software documentation. For using the exact versions listed above it is useful to use the node version manager (nvm) so you can change to node v4.0 if
 you installed the latest version.
 
-This Thesis assumes that we setup up Strider to deploy on DigitalOcean. DigitalOcean offers a viritual private server (VPS) for 5 euro per month. This
-includes 1 Gigabyte of transfer and 20 Gigabyte diskspace. If you need a higher transferrate or more diskspace int he future it is easy to change the
+This Thesis assumes that we setup up Strider to deploy on DigitalOcean. DigitalOcean offers a virtual private server (VPS) for 5 euro per month. This
+includes 1 Gigabyte of transfer and 20 Gigabyte disk space. If you need a higher transfer rate or more disk space int he future it is easy to change the
 subscription. You also can choose a datacenter which stores your data. In the neolexon case the data needs to stay in the european union for privacy
 and data security reasons. If this is an option to consider for your application, this can be a useful feature to choose. As most services today do, you
 can use your DigitalOcean VPS together with an SSH key to log in.
@@ -471,21 +467,21 @@ In order to use the DigitalOcean service with your Ubuntu server you need to set
 registration and confirmation via email the next step is to create a droplet for your Ubuntu 14.04 server. A droplet is the DigitalOcean name for a  their VPS.
 In our case we use the Ubuntu 14.04 x64 droplet. The setup in general is a straight forward process. In case of difficulties or problems DigitalOcean has
 created a tutorial for this. It can be found under \url{https://www.digitalocean.com/community/tutorials/how-to-create-your-first-digitalocean-droplet-virtual-server}.
-We will be using the 64-bit structure for the new VPS even the VPS size ustes 512MB of RAM. With RAM of 1 Gigabyte or less the performance benefits of a 64-bit architecture
+We will be using the 64-bit structure for the new VPS even the VPS size uses 512MB of RAM. With RAM of 1 Gigabyte or less the performance benefits of a 64-bit architecture
 will be diluted because the less memory. However, we found this will be the system of choice because of a future upscale of the application itself. If you plan
 to scale your application this can be an option to reconsider.
 
 To use the new created VPS you can log into it by using an SSH key DigitalOcean will send to you after creating the droplet/VPS. The SSH login authentication has a security
-advantage over the common login practise. To install the needed software or version changes and updates use the \textit{ssh root@<droplet/vps ip>} with
+advantage over the common login practice. To install the needed software or version changes and updates use the \textit{ssh root@<droplet/vps ip>} with
 the terminal/console and authenticate the host by setting up a fingerprint for the connection. After you the login process it is vital to change the password for
 security reasons. The best way is to use the \textit{passwd} command and choose a save password.
 
 \subsection{Installing The MEANJS Application}
 To start the Application itself the neolexon project uses the MEANJS yeoman generator. If you are not familiar with the yeoman service this will summarize what what
-it does and how to setup the MEAN application. Yeoman is a scaffolding tool that can be installed and let you chooes, install and setup applications. The
+it does and how to setup the MEAN application. Yeoman is a scaffolding tool that can be installed and let you choose, install and setup applications. The
 application setup process is done through generators. Generators installing the necessary software and configure it. They also using package managers like bower
-and npm to install dependencies for the used application. There are many generators provided by different organistions or the yeoman team itself. In case of the
-yeaoman MEANJS generator the MEANJS team has build the generator. The provided generator is the main reason to use MEANJS over MEAN.io. In general the two stacks
+and npm to install dependencies for the used application. There are many generators provided by different organizations or the yeoman team itself. In case of the
+yeoman MEANJS generator the MEANJS team has build the generator. The provided generator is the main reason to use MEANJS over MEAN.io. In general the two stacks
 are similar in use and what they do. However setting up a MEAN application through yeoman is a fast an straightforward process that helps to bind all the different
 parts. The MEANJS Website provides a good documentation of how to use the yeoman generator (\url{http://meanjs.org/generator.html}).
 
@@ -522,22 +518,22 @@ As soon as the application is installed and build you can start it with
   grunt
 \end{lstlisting}
 
-Which starts the grunt task runner and provides the application unter \textit{localhost:3000} in any browser of your choice.
+Which starts the grunt task runner and provides the application under \textit{localhost:3000} in any browser of your choice.
 
 This is all that is needed to setup the basic MEANJS application. Note that the yeoman generator also created the testing environment
-for the unit testing. In the next step we will deploy this basic app to the DigitalOcean VPN by configure striderCD in the appropiate way
+for the unit testing. In the next step we will deploy this basic app to the DigitalOcean VPN by configure striderCD in the appropriate way
 
 \section{Strider Configuration}
 \label{section:Strider Configuration}
-To begin with striderCD needs to be cloned and installed onto the Ubuntu 14.04 server. It is adviced that you use an own user for this
-on your server. This is because if the project in use is an internet accesible projekt, there can be security issues. In this case
+To begin with striderCD needs to be cloned and installed onto the Ubuntu 14.04 server. It is advised that you use an own user for this
+on your server. This is because if the project in use is an internet accessible project, there can be security issues. In this case
 it is a good idea to have this special strider user that only have access to the strider service and nothing else. For the system at
 hand we use
 \begin{lstlisting}
   addUser strider
 \end{lstlisting}
 which creates the new user named strider for your purpose. With the strider user created and used the next step is to clone and install
-strider on your server. StriderCD has all the ressources you need on their github page and ready to clone with git. Us
+strider on your server. StriderCD has all the resources you need on their github page and ready to clone with git. Us
 \begin{lstlisting}
   git clone https://github.com/Strider-CD/strider
 \end{lstlisting}
@@ -557,7 +553,7 @@ or
 \begin{lstlisting}
   bin/strider
 \end{lstlisting}
-To use a more secure approache the mongoDB should be used with authentication. The command
+To use a more secure approach the mongoDB should be used with authentication. The command
 \begin{lstlisting}
   mongo
 \end{lstlisting}
@@ -573,7 +569,7 @@ The output should show the created user like this
 \begin{figure}[h!]
   \centering
   \includegraphics[width=1\textwidth]{images/createUser.png}
-  \caption{Creating user Strider with Password Neoleoxon123!}
+  \caption{Creating user Strider}
 \end{figure}
 In case you dont use the standard local mongoDB database you need to specify the port of the mongoDB you are using by
 \begin{lstlisting}
@@ -582,7 +578,7 @@ In case you dont use the standard local mongoDB database you need to specify the
 For deeper information or more setup information the mongoDB documentation holds more information. The above snippets are
 used from the documentation manual 2.6 to find under \url{https://docs.mongodb.org/manual/reference/method/db.auth/#db.auth}
 
-To use the proper connectin via mongoose to the used database we need to add a connection string to it. According to the mongoDB
+To use the proper connecting via mongoose to the used database we need to add a connection string to it. According to the mongoDB
 documentation, this can be done with the following command
 \begin{lstlisting}
   mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]
@@ -595,7 +591,7 @@ In the case of the created strider user above the connection string reads
 % config with config file
 To run and use strider as it was intended there are several configuration steps that are needed to be done. Strider can either be configured
 with system wide environment variables or in a config file. It can configured with variables that are only valid for the current login and
-startup that is done too. To use process variabes for the example projet with a port of 4000 and a server name https://neolexon.com the following
+startup that is done too. To use process variables for the example project with a port of 4000 and a server name https://neolexon.com the following
 command start the process
 
 \begin{lstlisting}
@@ -613,12 +609,12 @@ the strider documentation that the configuration file should go inside the strid
 We recommend implementing an upstart job that makes use of environmental variables to handle start, stop and status evaluation.
 The reason for this is that, first, strider uses always the environmental variables if they are available. Even if there is a configuration
 file which makes use of other variables, strider choose to use the environmental variables. The second reason is that in the process of
-registering github as a plugin you need to use the githup id and a github secret to bind github to strider. plugins needs to be implemented
+registering github as a plugin you need to use the github id and a github secret to bind github to strider. plugins needs to be implemented
 as environmental variables via export. If the plugin variables for the github plugin are inside a strider configuration file they cannot
-be used and therefore the automatic buildprocess after new code is pushed to the repository will not start. This facts results into problems
-four our continuous integration pipline because we implemented the gitpub variables into the configuration file ouf strider. After we realized
+be used and therefore the automatic build process after new code is pushed to the repository will not start. This facts results into problems
+four our continuous integration pipeline because we implemented the github variables into the configuration file of our strider. After we realized
 the problem the step to avoid it was to create environmental variables for this which made it work. As mentioned above strider always choose
-the environmental variables over any configuration file. Since this resulted into other errors and since it is not adviced to split the
+the environmental variables over any configuration file. Since this resulted into other errors and since it is not advised to split the
 main configuration the solution was to only use environmental variables for the whole service. The variables are using the following path
 
 \begin{lstlisting}
@@ -629,9 +625,9 @@ As seen in the following code example we only use environmental variables with s
 
 \lstinputlisting{files/strider_config.js}
 
-The mentioned and integrated upstart job is a deamon for ubuntu systems, which allows to use striderCD as a service and therefore makes start and
-stophandling easier to do. It also provides starting the strider service if you boot the ubuntu server or canceling it if you
-stop ubuntu. This is helpful because it creates automatisation that prevents from starting different services by hand. For more on
+The mentioned and integrated upstart job is a daemon for ubuntu systems, which allows to use striderCD as a service and therefore makes start and
+stop handling easier to do. It also provides starting the strider service if you boot the ubuntu server or canceling it if you
+stop ubuntu. This is helpful because it creates automatization that prevents from starting different services by hand. For more on
 upstart visit \url{http://upstart.ubuntu.com/}.
 % end
 
@@ -643,14 +639,14 @@ With the follwing command the start will changed to the production environment a
 \end{lstlisting}
 
 To get an overview about strider and how it work here are the essential parts that needs to be understand do work and configure
-it in a fashon strider supports the different needs and options for testing and deployment webprojects. An essential part of
+it in a fashion strider supports the different needs and options for testing and deployment web projects. An essential part of
 the configuration process is the strider plugin system. Strider uses plugins to integrate services like Github, Slack, Email
-notification, Docker containarization and others. To see the complete plugin ecosystem visit \url{https://github.com/Strider-CD/ecosystem-index/blob/master/plugins.yml}.
-What Plugins can do for the webapplication is to genereate hooks, register routes for requests, using sockets or editin the strider
+notification, Docker containerization and others. To see the complete plugin ecosystem visit \url{https://github.com/Strider-CD/ecosystem-index/blob/master/plugins.yml}.
+What Plugins can do for the web application is to generate hooks, register routes for requests, using sockets or editing the strider
 UI
 
-Plugins can be configured and used in two different ways. The first one is as via strider UI. Strider UI is the wabapplication.
-There plugins can be installed or cofigured.
+Plugins can be configured and used in two different ways. The first one is as via strider UI. Strider UI is the web application.
+There plugins can be installed or configured.
 
 \begin{figure}[h!]
   \centering
@@ -663,19 +659,19 @@ The second possibility is to install and configure plugins with the terminal. In
   bin/strider install <plugin-name>
 \end{lstlisting}
 
-In general plugins are used by strider in two existing and different environments. In the webapp environment plugins can be manipulated
+In general plugins are used by strider in two existing and different environments. In the web app environment plugins can be manipulated
 in the described strider UI. The worker environment uses jobs that strider runs, every time a new commit gets pulled from the git
-repository. There are different workers available. The neolexon webapplication uses the default worker \textit{strider-simple-runner}
+repository. There are different workers available. The neolexon web application uses the default worker \textit{strider-simple-runner}
 (\url{https://github.com/Strider-CD/strider-simple-runner}). A strider job can be code testing or loading some specific scripts or
-configuration for plugins. A use case scenario is the deployment to different environments. Workers can load configuarion needed for
-a specific environment, which is usefull in case the application gets deployed to several machines with different setups.
+configuration for plugins. A use case scenario is the deployment to different environments. Workers can load configuration needed for
+a specific environment, which is useful in case the application gets deployed to several machines with different setups.
 
 \newpage
 
 \subsection{Connection To Github}
 \label{subsection:Connection To Github}
-The goal ouf our pipline is to test and deploy the projekt after a successful commit. Therefore striderCD needs to be connected to the version
-control system in use. The example scenary uses Github as VCS. For this purpouse the webapplication needs to be pushed to a github. In the striderCD
+The goal of our pipeline is to test and deploy the project after a successful commit. Therefore striderCD needs to be connected to the version
+control system in use. The example scenery uses Github as VCS. For this purpose the web application needs to be pushed to a github. In the striderCD
 UI the needed github plugin can be installed.
 
 \begin{figure}[h!]
@@ -686,7 +682,7 @@ UI the needed github plugin can be installed.
 
 In the plugin view the needed plugin can be installed, updated or removed. We need to link the github account and the project repo to striderCD.
 The linking between the account takes place in the account settings. From there linking to services is possible. If you choose add account, strider
-will guide you through the authorisation prozess.
+will guide you through the authorization process.
 
 \begin{figure}[h!]
   \centering
@@ -721,7 +717,7 @@ be added to strider.
 % later
 Note that if there are errors during the installation of plugins, the reason can be that you are not logged in as an administrator,
 or that the project you are trying to link is not your own project. StriderCD highlights this in the project tab with a lock.
-If another admin or user trys to install plugins for a project they do not own ther will be a permission error from git (128)
+If another admin or user try to install plugins for a project they do not own there will be a permission error from git (128)
 like the following. This is good to know because in the project at hand there where confusion why some persons can add plugins
 and other are not.
 
@@ -754,7 +750,7 @@ findings in the project settings.
 \newpage
 
 If the manual testing is running correct the next step is to enable strider to run tests automatically after a new push to the
-linked repository accured. For this an update file for the hooked git repository is needed. To create or open these file the path in
+linked repository. For this an update file for the hooked git repository is needed. To create or open these file the path in
 the example project is
 
 \begin{lstlisting}
@@ -765,20 +761,20 @@ In that case nvpsswaroop-neolexon-core-570f544255aebd0a04199f2d is the project r
 This depends on your project name and location on the server.
 
 Since this thesis treats the subject of CI and not testing in general it will not describe testing in detail. Note that for the
-most basic functionaltities and modules in the MEAN application we use in the example, karma and mocha tests are already in place.
-In our opinion this is a good starting point if you do not know about how to write and use testing. also there are many ressources
+most basic functionalities and modules in the MEAN application we use in the example, karma and mocha tests are already in place.
+In our opinion this is a good starting point if you do not know about how to write and use testing. also there are many resources
 either on the main pages of mocha (\url{http://mochajs.org}) and karma (\url{https://karma-runner.github.io/0.8/index.html}). There
-is also a variety of questins and solutins on stackoverflow treating unit testing in general and mocha/karma in spezific.
+is also a variety of questions and solutions on stack overflow treating unit testing in general and mocha/karma in specific.
 
 \newpage
 \section{Build Notifications}
 \label{section:Build Notifications}
 % describe slack and email
 Now that the build process after pushing to the repository is running (right now there are no tests that are implemented), it is a
-good idea to use the full potential of a CI service. Automatation is a useful tool, but the development team needs to be aware of
+good idea to use the full potential of a CI service. Automatization is a useful tool, but the development team needs to be aware of
 what is going on. Is the build passing, or are there errors that are interesting for the development team? Should other people
 now about the status of the deployment and the build? One of the good things about the different CI services is that there is the
-possibility of nofication about what is going on. In the following test scenario we would like to push some changes to the repository.
+possibility of notification about what is going on. In the following test scenario we would like to push some changes to the repository.
 We would like to know if everything works as intended, which means if strider got the change, pulling the repository and building the
 project and store it on the server in the strider build directory. For this we will implement a notification system that either use
 slack or email notification. The outcome should be an email or slack message of the status of our build and if there is anything that
@@ -786,12 +782,12 @@ needs to be done after this.
 
 \subsection{Slack Notifications}
 Slack is a team communication tool. With slack you can write messages, share files, integrate calendar or github repositories
-or use software bots for timemanagment an other useful things. Slack uses multiple channels for communication. For our example we would
+or use software bots for time management an other useful things. Slack uses multiple channels for communication. For our example we would
 like to get a notification in our build channel we designed for strider. For more about slack please visit the website at \url{https://slack.com}.
 
 To start the integration strider needs to interact with the slack application. Like with the github hook strider needs the slack
 plugin installed in the Admin/Plugins tab. In our case the slack plugin was already pre installed with strider. After the installation
-of the plugin is complete the slack plugin needs to be activated and configured to create a webhook that regulates the notifications.
+of the plugin is complete the slack plugin needs to be activated and configured to create a web hook that regulates the notifications.
 Make sure that the slack plugin is enabled. The plugin can be found under available plugins.
 
 \begin{figure}[h!]
@@ -815,10 +811,10 @@ From there you can configure slack by using the link (figure 11)
 \end{figure}
 
 In the configuration window we used the standard input generated with the button \textbf{Fill Empty Fields}. The only part that is not
-filled automatically is the webhook URL in the first line. Setting up the webhook is a straight forward process. By clickin on
-\textbf{Create an incoming Webhook} you get linked to the slack integration side of your project (note: you need to have a team setup
-with slack for which you can add integrations). Create the webhook there and copy the webhook URL for the strider slack configuration.
-After using the webhook URL you are able save and test the slack notification with the \textbf{Test} button. The outcome in your slack
+filled automatically is the web hook URL in the first line. Setting up the web hook is a straight forward process. By clicking on
+\textbf{Create an incoming web hook} you get linked to the slack integration side of your project (note: you need to have a team setup
+with slack for which you can add integrations). Create the web hook there and copy the web hook URL for the strider slack configuration.
+After using the web hook URL you are able save and test the slack notification with the \textbf{Test} button. The outcome in your slack
 application should look similar to the following figure
 
 \begin{figure}[h!]
@@ -827,7 +823,7 @@ application should look similar to the following figure
   \caption{Slack Notification Test}
 \end{figure}
 
-With the next push to your github repository, strider will send a message about the buildstatus directly to the choosen slack channel.
+With the next push to your github repository, strider will send a message about the build status directly to the chosen slack channel.
 In our case the build channel shows the message after the next successful push and build.
 
 \begin{figure}[h!]
@@ -837,8 +833,8 @@ In our case the build channel shows the message after the next successful push a
 \end{figure}
 
 \subsection{Email Notifications}
-If there are teammembers outside the slack team or if you do not using slack notifications for the build process can also be configured
-for email. The email notificaton system can be setup in the same way as we did it with slack. First there the \textbf{Email Notifier}
+If there are team members outside the slack team or if you do not using slack notifications for the build process can also be configured
+for email. The email notification system can be setup in the same way as we did it with slack. First there the \textbf{Email Notifier}
 plugin needs to be installed.
 
 \begin{figure}[h!]
@@ -856,20 +852,20 @@ Part two is to activate the installed plugin on the \textbf{Plugin Settings Page
 \end{figure}
 
 The email notification only sends an email if the build status is changing. This means if the build is passing several times and the next
-build is failing, an email is send. If you would like to use it like the slack notification you can change the default behaviour by using the
+build is failing, an email is send. If you would like to use it like the slack notification you can change the default behavior by using the
 \textbf{Email Notifier} link in the project settings on the left side.
 
-As you can see there are no fields for using a specific mailadresse for the notifications. To set up a mail adress strider needs an environmental
+As you can see there are no fields for using a specific mail address for the notifications. To set up a mail address strider needs an environmental
 variable found in our
 
 \begin{lstlisting}
   /etc/int/strider.conf
 \end{lstlisting}
 
-In the strider documentation \url{https://github.com/Strider-CD/strider#configuring} mentioned we use mailgun for sending the mailnotifications.
+In the strider documentation \url{https://github.com/Strider-CD/strider#configuring} mentioned we use mailgun for sending the mail notifications.
 Mailgun offers 300 free emails per day which is sufficient for our project. If needed there is a subscription later one. After creating an account
-at \url{https://mailgun.com/signup} and after activating the account with mail and sms authorization the follwing informations are needed for the
-strider.conf file. \textbf{HOST}, \textbf{USER} and \textbf{PASS} are the main information. In this case the host is mailgun. The user and pass are your userdate
+at \url{https://mailgun.com/signup} and after activating the account with mail and sms authorization the following informations are needed for the
+strider.conf file. \textbf{HOST}, \textbf{USER} and \textbf{PASS} are the main information. In this case the host is mailgun. The user and pass are your user data
 from the mailgun account. \textbf{PORT} and \textbf{FROM} are set to a default value which can be kept. Use the following start command
 
 \begin{lstlisting}
@@ -894,14 +890,14 @@ Building an automated service like the continuous integration for the neolexon p
 In the above case we use digital ocean for deployment, slack and email notification for information about the build status, github for code sharing
 via repositories and strider itself as the CI tool. Every application depending on third party services is in danger of the single point of failure
 issue. \textbf{SPOF} means that the application or, in our case, the build and deployment process depends on other software that is integrated in the
-project and that is having the abiltiy to fail. If digital ocean is experiencing downtime during the push of new developed code, the deployement
+project and that is having the ability to fail. If digital ocean is experiencing downtime during the push of new developed code, the deployment
 process will stop in that case and the development team do not have the ability to fix the problem. In this case digital ocean is the only party
 who can work on the problem and eventually fix it. Because of this creating dependencies throughout your project should be as minimal as possible.
-Concentrate on the necessary software and third partys and try to avoid dependencies that can cause problems without a certain value for the project
-or the customer. A working continuous delivery cylce is only as good as the uptime of the different and single components that represent the CI service.
+Concentrate on the necessary software and third parties and try to avoid dependencies that can cause problems without a certain value for the project
+or the customer. A working continuous delivery cycle is only as good as the uptime of the different and single components that represent the CI service.
 
-Choose the software that is useful and reliable and that fits the needs of the project. In case of the neolexon CI the descision for striderCD came from
-multiple sources of information. Since there is no reserach literatur about strider the neolexon development and dev ops team uses stackoverflow and the
+Choose the software that is useful and reliable and that fits the needs of the project. In case of the neolexon CI the decision for striderCD came from
+multiple sources of information. Since there is no research literature about strider the neolexon development and dev ops team uses stack overflow and the
 github issue report system to evaluate what CI software was fitting and considered stable for the project. That said it is helpful to check the requirements
 for every project. Some of the questions regarding the choice of your software are:
 
@@ -913,10 +909,10 @@ for every project. Some of the questions regarding the choice of your software a
   \item Is the cost value of the service of third party software sufficient?
 \end{itemize} \cite{ulbrich2012eliminating}
 
-SPOF cannot be fully avoided in todays webdevelopment and application managment. In \cite{ulbrich2012eliminating} another solution to avoid SPOF is
-the use of redundant systems or similar systems and software. Reduncancy means that in case of failure another system took over. A useful example
-can be another CI service besides strider that took over if strider suffers from downtime. An automatisation like this can be useful for bigger
-projects that will suffer heavy consequences in case of a failure. For reasons of symplicity and complexity the neolexon project uses no redundant
+SPOF cannot be fully avoided in todays web development and application management. In \cite{ulbrich2012eliminating} another solution to avoid SPOF is
+the use of redundant systems or similar systems and software. Redundancy means that in case of failure another system took over. A useful example
+can be another CI service besides strider that took over if strider suffers from downtime. An automatization like this can be useful for bigger
+projects that will suffer heavy consequences in case of a failure. For reasons of simplicity and complexity the neolexon project uses no redundant
 CI system. Considered the project size and the construction of the neolexon project, managing and creating redundancies would be exaggerated.
 
 \newpage
