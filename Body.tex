@@ -1,58 +1,58 @@
 \section{Introduction}
 Today the need for stable webapplications is vital for companys and startups. Established businesses need to be
 available for their customers and users all the time. For Startups the availability of their services can be the difference
-between failure and success. Webapplications and services needs to change and scale over time. Sometimes it is the need
-to open up your service for more customers, like Runtastic, a small company from Linz/austria. They developed
-a fitness application whose userbase was growing in a short periode of time. Somtimes the customerbase demands a 24/7
-availability, for example the sales platform Amazon or the social network Facebook. When Facebook took an outage on September 28 2015,
-this incident got a huge ammount of interest from local, national and international media (\url{http://www.bbc.com/news/world-us-canada-34383655}.
+between failure and success. Webapplications and services needs to change and scale over time. Sometimes a service gets customers or is
+growing fast. Runtastic, a small company from Linz/austria which developed a fitness application wheere having a tremendes growth of
+their userbase, in a short periode of time. Most of the time users demands a 24/7 availability of the service they use a goode example
+is the sales platform Amazon or social networks like Facebook. When Facebook experienced an outage on September 28 2015, this incident
+got a huge ammount of interest from local, national and international media (\url{http://www.bbc.com/news/world-us-canada-34383655} and
+from their usersbase.
 
 Downtime is costly. In the best case it only costs money, in the worst case
 it can be the failure of your business or startup. All the mentioned services and events have one thing in common. To provide this kind of zero
 downtime and continuous change in your webapplication you need a reliable and stable automatisation for your services. Development operations are
 right now one of the major topics in webdevelopment. If used properly, DevOps can provide this kind of zero downtime and progress in an application
-(\cite{humble2010continuous} \cite{duvall2007continuous}). To do so DevOps can use a variaty of techniques and methods to continuously
-integrate, automatic test and deploy an applications (\cite{meyer2014continuous}).
+(\cite{humble2010continuous} \cite{duvall2007continuous}). To do so DevOps can use a variety of techniques and methods to continuously
+integrate, test and deploy applications (\cite{meyer2014continuous}).
 Continuous Integration and development is based on the method of agile software development and extrem programming
-(\cite{lindstrom2004extreme}). There is a reliable base of knowledge and literature for Continous Integration today
+(\cite{lindstrom2004extreme}). There is alread a reliable base of knowledge and literature for Continous Integration in todays webdeveloper community
 (\cite{schaefer2013continuous}), (\cite{fowler2006continuous}) (\cite{fowler2012continuous}).
 
-However, some of the newer methods, for example MEAN stack or NodeJS are not yet fully covered.
-The Question i will research in this thesis is, how can a modern webapplication automatized and deployed to continously integrate features and
-changes. It is my goal to show how to establish a modern development operation cycle for webapplications using Node.js and the MEAN stack.
-I will citeing the standard literature and methods for continuous integration and deployment and show how to build them in a safe and stable
-way with Node.js and other Parts of the MEAN stack.
-For this i will study the literatur that is available for continuous integration and autmatization to build a similar system with NodeJs.
-To do so i will describe how to automatize builds and tests and how to use containerization to simplify the process. Based on the
-implementation cycle of the neolexon webapplication, i will provide data to prove that this setup is capable of continous integration and deployment
-ant that it runs in a stable and reliable.
+Some of the newer methods, for example MEAN stack or NodeJS applications are insufficient investigated and described.
+The Question this thesis will research is: What is a best practise apporoach for modern webapplication,
+to provide automatization and continously integration features. It is the goal of this thesis to show how to establish a modern development operation
+cycle for webapplications using Node.JS and the MEAN Stack.
+This thesis will citeing the standard literature and methods for continuous integration and deployment. After this this thesis will
+show how to build a MEAN Stack application in a safe and stable way.
+For this the thesis will research the literatur available for continuous integration and autmatization, to build a similar system with the MEAN Stack.
+To do so the thesis will describe how to automatize builds and tests. The description will be based on the implementation cycle of the neolexon webapplication.
 
 \newpage
 
 \section{Introduction to Agile Development and the Role of Development Operations in Modern Web Applications}
 \label{section:Introduction to Agile Development and the Role of Development Operations in Modern Web Applications}
 
-% start here
 \subsection{Engineering Software}
 Webdevelopment has its roots in general software engineering and uses most of the models, tools and methodologies that are
-common in the field of software development. At the beginning of software development this new field starts with methodologies
-and practices that a used, tested and accepted in other engineering subjects like civil engineering or architecture. In civil engineering
-a project uses a design phase, which usually provides a detailed plan and, and a construction phase to build exactly after the specified
-plan that where invented in the design phase (\cite{lindstrom2004extreme}). Usually, in civil engineering, the construction phase
-needs the majority of time and money from the ressources for a given project. In his essay (\cite{fowler2001new}) Martin Fowler writes
-that only 10 percent of the available ressources in civil engineering are used for designing and planing a project.
-He concludes that using these engineering methodologys have brought software development into trouble, because they seperate design and
-construction. To to so means to handle a project like a bridge or building.
+common in the field of software development. At the beginning of software development, this new field starts with methodologies
+and practices that are used, tested and accepted in other engineering subjects, like civil engineering or architecture. In civil engineering
+a project uses a design phase, which usually provides a detailed plan and which culminates into a construction phase. There the project
+will be build exactly after the specified plan that was invented in the design phase (\cite{lindstrom2004extreme}).
+In civil engineering the construction phase uses the majority of the time, money and the ressources given for the project.
+In his essay (\cite{fowler2001new}) Martin Fowler writes that only 10 percent of the available ressources in civil engineering are used for
+designing and planing a project. The other 90 percent goes into construction. Fowler concludes that using these engineering methodologies have
+brought software development into trouble, because seperating design and construction, common in other fields of engineering, like building
+a bridge does not fit the needs of software engineering.
 
-A very detailed plan is made, and after a careful mathematical analysis it is descided to put this plan into practice. To construct,
-another department or team will provide the actuall construction the bridge.
+In civil engineering a very detailed plan is made, and after a careful mathematical analysis it is descided to put this plan into practice. For constructing,
+for example a bridge, the construction department will in detail and exactly after the made plan.
 This seperation makes it possible to use people as ressources in construction, whereafter the design takes place in a more
-intellecutal environment. The construction ressources in general dont need to understand the whole design and can concentrate on their
-knowledge about constructing. In all this lies a predictability. The trouble for software development with seperation of design and
-construction is that the whole process of programming is desiging in the first place. \cite{opac-b1105529} stats that only 15 percent of
-a software project is code. This stands in contrast to the building example from civil engineering.
+intellecutal environment. The construction ressources in general dont need to understand the whole design and therefore can concentrate on
+concentrate about the construction. The trouble for software development with seperation of design and construction is, that the whole process of programming
+, according to fowler, is desiging in the first place. \cite{opac-b1105529} stats that only 15 percent of a software project is code.
+This stands in contrast to the building example from civil engineering in which the most percentage of time and ressources going into construction.
 
-\cite{reeves1992software} therefore suggests that the code of a software project should be used as the design document and that the compilation of the
+Becaues of this reversal \cite{reeves1992software} suggests that the code of a software project should be used as the design document and that the compilation of the
 code should be seen as the main construction phase. For \cite{fowler2001new} the conclusion to Reeves suggestion is the following:
 \begin{itemize}
   \item In software: construction is so cheap as to be free
@@ -65,10 +65,10 @@ code should be seen as the main construction phase. For \cite{fowler2001new} the
 
 \subsection{The Agile Software Manifesto}
 Traditional engineering metaphores and separation of design and construction are good for a predictable project where the outcome is clear in
-detail to the customer. There is no such thing as mathematical analysis for software design plans and this means that there will be a very
-limited predictability because of all the changes in software development (technical or customer based). To show this in practical detail consider the following
-application. This application should provide information for speach therapists in a simple and understandable dashboard in which the user (therapist) gets
-an overview. The descision was made that the dashboard should hold only the list of patients and wordlists (figure 1).
+detail to the customer. In software engineering and webdevelopment there is proven method to mathematically analyse a software design. This means that there is
+a limited predictability because of changes that appear in software development (technical or customer based) most of the time. To show this in practical detail
+consider the following neolexon example application. The webapplication should provide information for speach therapists in a simple and understandable dashboard,
+in which the user (therapist) gets an overview about what is going on. The descision was made that the dashboard should hold only the list of patients and wordlists (figure 1).
 
 \begin{figure}[h!]
   \centering
@@ -76,9 +76,8 @@ an overview. The descision was made that the dashboard should hold only the list
   \caption{first plan of therapiest dashboard}
 \end{figure}
 
-After the dashboard was created and the feedback of several therapists arrived the descision was made that the dashboard dont need to hold the lists
-of words, because all lists where individual for the curent patient. This was a total different idea for the wordlists and not in the plan at the beginning.
-after this descision the dashboard was not a dashboard anymore, but was left with only the patientlist alone. So the development team came up with another
+After the dashboard was created and the feedback of several therapists arrived, the descision was made that the dashboard did not need to hold the lists of words, because all lists where individual to the patients.
+after this descision, was left with only the patientlist. In case of the application this was not the main goal for the invented dashboard. To conquer this the development team came up with another
 idea of the dashboard (figure 2)
 
 \begin{figure}[h!]
@@ -89,15 +88,15 @@ idea of the dashboard (figure 2)
 
 \newpage
 
-As you can see the two ideas differs in layout and idea. According to the initial plan the wordlists should be there. Now you have a sidenavigation
-with patients and the statistics for each of them are not bound to the wordlist but are shown in the dashboard. This transformation would have been very
-complicated to achieve with traditional engineering methaphore, because the klients only have had seen it at the end of the process. To rebuild a heavily
-connected part of a webapplication after the application is finished is very hard to do. This changes toke place in only 2 weeks, from plan to final idea.
-So another approache for software development is needed to take difficulties like the described into account.
+As seen in the above figures the two ideas are very different in layout, design and idea. According to the initial plan the wordlists should be there.
+Now you have a sidenavigation with patients and the statistics for each of them. This transformation would have been very
+complicated to achieve with traditional engineering methaphore, because the clients only would have seen it at the end of the process. To rebuild vital
+parts of a webapplication is a complicated process. The changes occured in a timeframe of 2 weeks, from plan to final idea.
+This example shows that traditioonal engineering strategies are not working well in terms of webdevelompent and software.
 
-To conquer this problem, 17 developers (Kent Beck, Mike Beedle, Arie van Bennekum, Alistair Cockburn, Ward Cunningham, Martin Fowler, James Grenning,
+To conquer the problem, 17 developers (Kent Beck, Mike Beedle, Arie van Bennekum, Alistair Cockburn, Ward Cunningham, Martin Fowler, James Grenning,
 Jim Highsmith, Andrew Hunt, Ron Jeffries, Jon Kern, Brian Marick, Robert C. Martin, Steve Mellor, Ken Schwaber, Jeff Sutherland, Dave Thomas)
-invented an idea of how to handle a softwareproject. On the 13. of february 2001 they created \textbf{\textit{a Manifesto for Agile Software Development}}.
+invented an idea of how to handle softwareproject. On the 13. of february 2001 they created \textbf{\textit{a Manifesto for Agile Software Development}}.
 The Manifesto itself is not a static rule, it is a guideline which can be followed. To make things practicable the Manifesto contains 12 principles about
 agile developement.
 
@@ -122,17 +121,22 @@ agile developement.
   \caption{the agile manifesto}
 \end{figure}
 
-Based on the manifesto principles it is more realistic to build software. If you stay with the therapist dashboard example the agile approach makes more
-sense, compared to a solid plan that starts at the beginning and did not change during the process, because most sofware change in the course of
+Based on the manifesto principles it is more realistic to build software, because the princilples take the different approach of design and construction into
+account. The above described therapist dashboard example would be making more sense, with the agile approach. Compared to a solid plan that starts at the beginning
+without hange during the process, agile development takes into account that most sofware is changeing over the course of the
 development. Since many of the principles contain non technical ideas, like a cicle of team reflection, motivating team members or the art of simpicity,
 there are solid ideas about how to treat the software and shipping process.
 
-Right at the start of the manifesto the need for continuous delivery and integration is set as a high priority in development to satisfy the customer.
-Satisfing customer needs is one good thing about this approach. Another reason to continuosly integrate software is about the change and the mantainability.
-If an application or software changes fast in the development process it is a good idea to ensure that your software is working at every point,
-even if the development team or single members change code or adding new features. It is possible to guarantee this in the beginning of a software project,
-but when the software grows more complicated and complex it may be impossible to do.
+At the start of the manifesto the need for continuous delivery and integration is set as a high priority in development to satisfy the customer needs.
+But satisfing customer needs is only one part about this approach. Another reason to continuosly integrate software is about the change and the mantainability.
+If an application or software changes fast and often in the development process, it is a good idea to ensure that your software is working at every point.
+It should be possible to assure working code from the beginning of a software project. Software will getting more complicated and complex over the course of the
+project. To have working code throughout the project is a benefit.
 
+% BIS HIERHIN KORRIGIERT!!!!
+% BIS HIERHIN KORRIGIERT!!!!
+% BIS HIERHIN KORRIGIERT!!!!
+% BIS HIERHIN KORRIGIERT!!!!
 
 \subsection{Continous integration}
 Continouls integration is the process of continously create and ship code. CI can be described as merging new code with a set up project in short
@@ -353,13 +357,13 @@ which is very similar to JSON. A document consists of field-value pairs. As an e
 
 \begin{verbatim}
   {
-    _id: "56e515ee8ad50f08e1886f13",
-    picture: "http://placehold.it/32x32",
-    age: 40,
-    firstname: "Vroni",
-    lastname: "Musterhuber",
-    gender: "female",
-    about: "Some information"
+  _id: "56e515ee8ad50f08e1886f13",
+  picture: "http://placehold.it/32x32",
+  age: 40,
+  firstname: "Vroni",
+  lastname: "Musterhuber",
+  gender: "female",
+  about: "Some information"
   }
 \end{verbatim}
 
@@ -372,7 +376,7 @@ needs to concatinate the \textit{Documents} and the field like this <document>.<
 want to query for all patients that older than 30. In this case the query would contain the following code:
 
 \begin{verbatim}
-db.patients.find({age: {gt: 30}}).sort({age: 1})
+  db.patients.find({age: {gt: 30}}).sort({age: 1})
 \end{verbatim}
 
 patients are representing the \textit{Collection} (all patients in the database). Find, decribes what should be done. In this
@@ -488,19 +492,19 @@ parts. The MEANJS Website provides a good documentation of how to use the yeoman
 The basic terminal command is to install yeoman with npm by using
 
 \begin{lstlisting}
- npm install -g yo
+  npm install -g yo
 \end{lstlisting}
 
 Yeoman is installed and the next step is to install the needed generator. In the neolexon case we use the MEANSJ generator. The proper command for this is
 
 \begin{lstlisting}
- npm install -g generator-meanjs
+  npm install -g generator-meanjs
 \end{lstlisting}
 
 The last step is to use this generator to install the MEANJS app. The following command lets yeoman build the above installed generator
 
 \begin{lstlisting}
-   yo meanjs
+  yo meanjs
 \end{lstlisting}
 
 Yeoman will taking care of installing the application after some minor questions about the name, origin and description of the application.
@@ -508,14 +512,14 @@ It will setup the structure and with it the package json files and node modules.
 
 \begin{figure}[h!]
   \centering
-      \includegraphics[width=0.8\textwidth]{images/yomean.png}
+  \includegraphics[width=0.8\textwidth]{images/yomean.png}
   \caption{Yeoman MEANJS Generator}
 \end{figure}
 
 As soon as the application is installed and build you can start it with
 
 \begin{lstlisting}
-   grunt
+  grunt
 \end{lstlisting}
 
 Which starts the grunt task runner and provides the application unter \textit{localhost:3000} in any browser of your choice.
@@ -530,50 +534,50 @@ on your server. This is because if the project in use is an internet accesible p
 it is a good idea to have this special strider user that only have access to the strider service and nothing else. For the system at
 hand we use
 \begin{lstlisting}
-   addUser strider
+  addUser strider
 \end{lstlisting}
 which creates the new user named strider for your purpose. With the strider user created and used the next step is to clone and install
 strider on your server. StriderCD has all the ressources you need on their github page and ready to clone with git. Us
 \begin{lstlisting}
-   git clone https://github.com/Strider-CD/strider
+  git clone https://github.com/Strider-CD/strider
 \end{lstlisting}
 or visit Github and search for StriderCD to clone it.
 
 Since we install with the npm package manager the installation command is
 \begin{lstlisting}
-   npm install
+  npm install
 \end{lstlisting}
 In the Neolexon case there where no problems with the above setup and version during the installation. If so the package manager (npm) will
 show the error messages. In case there are errors it is vital to fix them before going on with the configuration of striderCD. After a
 successful installation make sure that the mongoDB database is running on your server. If so, the starting command for the strider service is
 \begin{lstlisting}
-   npm start
+  npm start
 \end{lstlisting}
 or
 \begin{lstlisting}
-   bin/strider
+  bin/strider
 \end{lstlisting}
 To use a more secure approache the mongoDB should be used with authentication. The command
 \begin{lstlisting}
-   mongo
+  mongo
 \end{lstlisting}
 will provide the mongoDB shell to input queries and requests. The authentication plan is to create a mongoDB user which has access
 rights to the database we will create and use for striderCD. The following code snipped shows how to to this
 \begin{lstlisting}
-   use admin
-   db.auth( <username>, <password> )
+  use admin
+  db.auth( <username>, <password> )
 
-   db.createUser({user: "strider", pwd: "striderPassword", roles: [{role: "dbOwner", db: "mean-dev"}]})
+  db.createUser({user: "strider", pwd: "striderPassword", roles: [{role: "dbOwner", db: "mean-dev"}]})
 \end{lstlisting}
 The output should show the created user like this
 \begin{figure}[h!]
   \centering
-      \includegraphics[width=1\textwidth]{images/createUser.png}
+  \includegraphics[width=1\textwidth]{images/createUser.png}
   \caption{Creating user Strider with Password Neoleoxon123!}
 \end{figure}
 In case you dont use the standard local mongoDB database you need to specify the port of the mongoDB you are using by
 \begin{lstlisting}
-   mongo --port <your-port-number>
+  mongo --port <your-port-number>
 \end{lstlisting}
 For deeper information or more setup information the mongoDB documentation holds more information. The above snippets are
 used from the documentation manual 2.6 to find under \url{https://docs.mongodb.org/manual/reference/method/db.auth/#db.auth}
@@ -581,11 +585,11 @@ used from the documentation manual 2.6 to find under \url{https://docs.mongodb.o
 To use the proper connectin via mongoose to the used database we need to add a connection string to it. According to the mongoDB
 documentation, this can be done with the following command
 \begin{lstlisting}
-   mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]
+  mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]
 \end{lstlisting}
 In the case of the created strider user above the connection string reads
 \begin{lstlisting}
-   DB_URI="mongodb://strider:striderPassword@localhost:27017/strider" npm start
+  DB_URI="mongodb://strider:striderPassword@localhost:27017/strider" npm start
 \end{lstlisting}
 
 % config with config file
@@ -635,7 +639,7 @@ After these steps the installation and standard configuration of strider will be
 With the follwing command the start will changed to the production environment as the new default
 
 \begin{lstlisting}
-   NODE_ENV=production npm start
+  NODE_ENV=production npm start
 \end{lstlisting}
 
 To get an overview about strider and how it work here are the essential parts that needs to be understand do work and configure
@@ -650,7 +654,7 @@ There plugins can be installed or cofigured.
 
 \begin{figure}[h!]
   \centering
-      \includegraphics[width=0.8\textwidth]{images/striderUI.png}
+  \includegraphics[width=0.8\textwidth]{images/striderUI.png}
   \caption{Strider UI Plugins}
 \end{figure}
 
@@ -676,7 +680,7 @@ UI the needed github plugin can be installed.
 
 \begin{figure}[h!]
   \centering
-      \includegraphics[width=0.8\textwidth]{images/plugin_page.png}
+  \includegraphics[width=0.8\textwidth]{images/plugin_page.png}
   \caption{Github Plugins}
 \end{figure}
 
@@ -792,7 +796,7 @@ Make sure that the slack plugin is enabled. The plugin can be found under availa
 
 \begin{figure}[h!]
   \centering
-      \includegraphics[width=0.8\textwidth]{images/slack.png}
+  \includegraphics[width=0.8\textwidth]{images/slack.png}
   \caption{Slack Plugin}
 \end{figure}
 
