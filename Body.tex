@@ -284,65 +284,61 @@ with the basic script.
 It is a good idea to keep the environments for deployment, testing and staging as similar to the later production environment as possible. If the deployed build
 is working on these environments, the development team can be confident that the build will run on the live environment later on. This Method is similar to
 a betting system. With every stage that is finalize the confidence for a working web application is growing. In the end the possibility that everything runs like
-% CORRECTOR
-intended is significantly higher. In software development like in all other parts of the real world everything is dependent to a general possibility, you cannot be 100 percent
-assured but the possibility of failure can be minimized to a nearly non existing state.
+intended is significantly higher. There is still be the general possibility of failure involved because there is no 100 percent assurance, but the
+failure can be minimized to a minimal part.
 
 \subsubsection{Each change should propagate through the pipeline instantly}
-As shown in the description of the commit stage every push to the version control system should trigger these stage (commit stage). The stage starts
-unit testing and if everything works it triggers the next stage. But what happens when, during the unit tests in the commit stage, other developers push
-to the repository. It may not be vital for small developer teams but even there different developers can push in short time to the repository. This results
+As shown in the description of the different stages, every push to the version control system triggers the commit stage and is following the pipeline, as long as
+build and tests are passing. But what happens when other developers push to the repository, while unit testing occurred in the commit stage. It may not be a vital
+part for small development teams, but even there different developers can push in short time to the repository. This results
 in a build that gets tested and deployed, but is actually behind the real build that gots pushed by the team. A solution is an intelligent scheduling
-system of your CD pipeline. Every time a stage is finalized the CD server search for changes in the repository before going to the next stage. In the
-example i created the CD server starts the commit stage after the repository on the version controls system changes. After successfully ending the unit
-tests the server checks the repository. Since a new commit was been pushed by another developer the CD server did not trigger the acceptance test stage.
-Instead the starts building new and does the unit tests with the now actual build. If other developers commit code the same rule applies to the end of the
-commit stage. In this case the build and deploy process slows down, because the commit stage took longer because of restarting several times with a new
-commit. But compared to having a deployed build that is behind the real code a longer time can be neglected. There is only so much code that can be shipped
-the same time so eventually the pipeline will come to an end. If the development team is really big you can schedule commit times, but this will theoretically
-stand against the theory of CD. If you look at it there will be an even longer process with commit times, because if every commit goes through the whole
-pipeline but is not the last commit, you ending up with more time until you get an actual deployed build.
+system of your CD pipeline. Every time a stage is finalized the CD server search for changes in the repository, before going to the next stage. In the
+example he CD server starts the commit stage after the repository, that is inside the version controls system, changed. After successful unit
+testing, the server checks the repository for other changes that where made during the test. If a new commit has been pushed by another developer,
+the CD server will not trigger the next testing stage. Instead the system will start building a new build and starts the unit tests, with the now actual build, again.
+If other developers commit code the same rule applies to the end of the new commit stage. In this case the build and deploy process slows down, because the commit stage
+took longer because of restarting several times in a row. But compared to having a deployed build that is behind the real code, this longer testing time is worth taking.
+There is only so much code that can be shipped simultaneously, so eventually the pipeline will reach the end of all testing stages. If the development team is bigger
+different commit times can be scheduled. By theory this will stand against the principles of CD. But there will be longer commit times, because if every commit goes through
+the whole pipeline, but is not the last commit, the process is ending up with more time until the next deployed build, than with scheduled commit times .
 
 \subsection{Starting a continuous delivery pipeline}
-Starting a CD pipeline can be done in several ways. Before this thesis go to the actual tools that can be used to achieve a good workflow and pipeline
-it will describe a basic starting concept. This can be used with any tool a team or developer choose to use for creating a CD service for their software
-or application. This section assumes that there is a new project which starts at the iteration zero (this means there is no or only few code and tests, or
+Starting a CD pipeline can be done in several ways. Before describing the actual tools, that can be used to build a suitable workflow, this thesis will describe
+the basic starting concept for a CD pipeline.
+This section assumes that there is a new project which starts at the iteration zero (this means there is no or only few code and tests, or
 only prototype material that will be used partly later on). In this case a CD pipeline can be started at the bare minimum and than can grow with the project
 or application. The bare minimum in this case is a commit stage that starts after a commit to the repository, a acceptance stage that starts right after the
-commit stage and a deployment stage which deploys the application in a production like environment. To start with non of the stages should do anything (
-because there is no test or code right now). The only thing that should happen is that a push triggers the pipeline cascade so that all stages a running
-and in the end there is a deployment. In doing so you have a placeholder CD pipeline that runs every time you change the repository. To populate the pipeline
-and to test the system itself use a small part of code that can be brought in with the single purpose to test the CD pipeline. As an example you can start a
-simple hello world example as a console.log or html tag and a unit test that asserts to true if the console.log or html is there. With this minimalistic code
-you can test your CD system by committing this to the repository. The unit test should assert to true and after the commit stage the html should be deployed
-to run an acceptance test (an acceptance test can only be running if a website is deployed to a staging server!). The acceptance test stage should than run
-and verify that the console.log or html is visible on the website. This first steps will provide a practical understanding of how the pipeline works and
-if it runs according to what you need to do with more complicated things later. In the next section i will show and describe different tools and CD services
-that can be used to build an effective and stable continuous delivery chain.
-% 4704 words!
+commit stage and a deployment stage which deploys the application in a production like environment. To start with, non of the stages should do anything (
+because there is no test or code right now). The only thing that should happen is that a push triggers the pipeline cascade so that all stages are running
+and culminating in an deployment. In doing so there needs to be a placeholder CD pipeline that runs every time you change the repository. To populate the pipeline
+and to test the system itself, a small part of code should be used that can be brought in with the single purpose to test the CD pipeline. As an example there
+can be a simple hello world example as a console.log or html tag with a unit test that asserts to true if the console.log or html is represented on the DOM.
+This minimalistic code can test the CD system, by committing to the repository. The unit test should assert to true. After running the test on the commit stage the html
+will be deployed to run an acceptance test (an acceptance test can only be running if a website is deployed to a staging server!). The acceptance test stage should
+verify that the console.log or html is visible on the website. This first steps will provide a practical understanding of how the pipeline works and
+if it runs according to what is needed to do, with more complicated things later. In the next section the thesis will show and describe different tools
+and CD services that can be used to build an effective and stable continuous delivery chain.
+
 
 \newpage
-
-
 \section{Development and Deployment with MEAN}
 \label{section:Development and Deployment with MEAN}
 
 \subsection{Introduction}
-Like mentioned in the last chapter, after the basic functions and implementations of the CD pipeline are covered, this section will name and explain different tools
-to set up a CD Pipeline. This paper has the goal to cover the implementation of a CD pipeline for todays web applications. Since there are many tools out there
-this thesis will not cover all of the known tools available. In fact the described software tools are suggestions to build a stable pipeline for a CD process.
-To better understand and learn how to build the pipeline with the mentioned software, i will provide the building of a web application based on the
-MEAN stack. MEAN stands for MongoDB, ExpressJS, AngularJS, and NodeJS. There are different papers and books about CD with different software systems. So far
-now on covers the the building with the MEAN stack.
-% plz research and prove this claim with literature!!!
-The reason to choose the MEAN stack for the CD example application is that MEAN uses modern frameworks that are commonly practiced by web developers. Technology
-will evolve and eventually singe page applications build with the MEAN stack will be out of date. But so far this approach holds many standards in modern web
-development.
+After the basic functions and implementations of the CD pipeline are covered, this section will name and explain different tools
+to set up the CD Pipeline. This paper has the goal to cover the implementation of a CD pipeline for todays web applications. There is a wide variety
+of tools that can be used. This thesis will not cover all of the known tools available. In fact the described software tools are suggestions to build a
+stable pipeline for a CD process. To better understand and learn how to build the pipeline with the mentioned software, this paper will provide the building
+of a web application based on the MEAN stack as a practical example. MEAN stands for MongoDB, ExpressJS, AngularJS, and NodeJS. There are different papers and
+books about CD with different software systems. So far building a CI pipeline with the MEAN stack is not covered in specific.
+The reason for choosing the MEAN stack in the CD example application, is that MEAN uses modern frameworks that are commonly practiced by web developers.
+Technology, as always will evolve and eventually single page applications build with the MEAN stack will be out of date. But so far this approach holds many
+standards in modern web development.
 
 \subsection{Describing the MEAN stack}
-Before starting the tools and practices for building the pipeline, a short description of the MEAN stack will help to understand how the different parts of the
-stack are working together and how they will be setup. After this short introduction, a practical example of how to use the whole MEAN stack will be described.
-This Example will be a step by step MEAN stack setup which includes code and references to do so.
+Before starting the tools and practices for building the pipeline, a short description of the MEAN stack will be helpful to understand how the different parts of the
+stack are working together and, how they will be set up. After this short introduction, a practical example of how to use the whole MEAN stack will be described.
+This Example will be a step by step MEAN stack setup which includes code and references to do so. The following lists provide the different parts of the MEAN stack:
 
 \begin{itemize}
   \item MongoDB
@@ -352,8 +348,8 @@ This Example will be a step by step MEAN stack setup which includes code and ref
 \end{itemize}
 
 \subsubsection{MongoDB}
-MongoDB is a non-relational database which is based on a JSON (JavaScript Object Notation) like document structure. In Detail MongoDB documents are using the BSON structur
-which is very similar to JSON. A document consists of field-value pairs. As an example i will show the document structure of a patient inside the mentioned neolexon application.
+MongoDB is a non-relational database which is based on a JSON (JavaScript Object Notation) like document structure. In Detail MongoDB documents are using the BSON structure
+which is similar to JSON. A document consists of field-value pairs. As an example the following code shows the document structure of a patient inside the mentioned neolexon application.
 
 \begin{verbatim}
   {
@@ -368,7 +364,7 @@ which is very similar to JSON. A document consists of field-value pairs. As an e
 \end{verbatim}
 
 The code example shows a MongoDB document with different field-value pairs. In this case the fields are id, picture, age, first name, last name, gender and
-about. The values the assigned values per field. For example, the value for the field first name is Vroni. The Mongo database itself is a \textit{Collection}
+about. The values are the assigned values per field. For example, the value for the field first name is Vroni. The Mongo database itself is a \textit{Collection}
 of \textit{Documents}. The above code shows a \textit{Documents} and many \textit{Documents} together are a \textit{Collection}.
 
 MongoDB uses dot notation to access fields inside a \textit{Documents}. If a developer needs to access the first name field in the above document, he or she
@@ -380,45 +376,44 @@ want to query for all patients that older than 30. In this case the query would 
 \end{verbatim}
 
 patients are representing the \textit{Collection} (all patients in the database). Find, describes what should be done. In this
-case we would like to single out specific patients from our database. The criteria is to find all patients with an age greater than 30. The last part is
+case there should be  single out specific patients from our database. The criteria is to find all patients with an age greater than 30. The last part is
 a modifier which works like a filter. It allows to sort the findings from this query after the age (from youngest to oldest). There are different
 chains for a MongoDB query. They are all explained in detail on the MongoDB website under \url{https://docs.mongodb.org/manual/core/crud-introduction/}.
 
-The advantage of using MongoDB in our app is that you don't need another programming language like \textit{SQL} for relational databases.
-For Mongo you can use the programming language you are working with in you application. In this case JavaScript. Since the MongoDB document structure is
-similar to JSON it allows to easily access and use the data inside your database. \cite{chodorow2013mongodb}
+The advantage of using MongoDB in the example application is that there is no need  for another programming language like \textit{SQL} for relational databases.
+For Mongo you can use the programming language you are working with in the application. In this case it is JavaScript. Since the MongoDB document structure is
+similar to JSON it allows easily access and use to the data inside the database. \cite{chodorow2013mongodb}
 
 \subsubsection{ExpressJS}
 The next part of the MEAN stack is the ExpressJS framework. The ExpressJS website describes it as a fast, un opinionated and minimalistic web framework
-for NodeJS \url{http://expressjs.com}. In fact you do not need ExpressJS for your software stack. You can do all the connections and backend operations with
-NodeJS alone. The advantage of ExpressJS is that it helps to connect all the different parts from your backend. That is why the MEAN stack uses the framework.
-The MEAN application for this thesis will show the advantages an application gets from using ExpressJS later in the practical part and code examples.
-ExpressJS glues all needed parts of the application together, so the developer don't need to use and configure all backend and connecting parts manually
-\cite{brown2014web}. To do this ExpressJS requires init and configuration files from the application. As long as you put the needed files into the right
-directory in the web application, ExpressJS will find them and makes use of them. ExpressJS also handles sessions for the login and doing the error handling
-on the backend side.
+for NodeJS \url{http://expressjs.com}. In fact there is no need for ExpressJS in the software stack. All the connections and backend operations can be done
+with NodeJS alone. The advantage of using ExpressJS is that it helps to connect all the different parts from the backend. That is why the MEAN stack uses the
+framework in the first place. The MEAN application for this thesis will show the advantages an application gets from using ExpressJS later in the practical part
+and in code examples. ExpressJS holds the necessary parts of the web application together, so the development team do not need to use and configure all backend
+and connecting parts manually \cite{brown2014web}. To do this, ExpressJS requires init and configuration files from the web application. As long as
+the needed files are put into the right directory in the web application. ExpressJS will find them and makes use of them. ExpressJS also handles sessions managment
+for the login and providing error handling on the backend side.
 
 \subsubsection{AngularJS}
 If ExpressJS is the framework for the backend, in this case NodeJS, AngularJS is the javascript front end framework. As said for ExpressJS you do not need
-AngularJS to develop the application. But Angular will make it more comfortable to write front end functionality. Angular is an MV* framework. This stands
-for \textbf{M}odel - \textbf{V}iew - *. The * actually is a placeholder and means you can use Angular in different ways. Be it MVC - Model View Controller
-or als MVVM - Model View View Model. This depends on the choices of the development team and what application you will build. The example application i
-use for this thesis is a single page MVC application. It will have a Model which handles the logic and a Controller, which refers to different Views of
+AngularJS to develop the application. But Angular will make it more comfortable to write front end functionality. Angular is an MV* framework, which stands
+for \textbf{M}odel - \textbf{V}iew - *. The * actually is a placeholder and means that Angular can used in different ways. Either as MVC - Model View Controller
+or as MVVM - Model View View Model. This depends on the choices of the development team and what application will be build. The example application that is
+explained for this thesis, is a single page MVC application. It will have a Model which handles the logic and a Controller, which refers to different Views of
 the application. A MEAN stack application will handle different models, controllers and view so separate concerns between different functionalities.
+To read more about AngularJs follow the link to the main documentation site \url{https://angularjs.org}
 
 \subsubsection{NodeJS}
 In \textit{Node up and running} (\cite{hughes2012node}) NodeJS is described as a non blocking, scalable javascript framework. The major advantage is that
-if the development team uses javascript in the front end there is no need to transfer functionalities into php or other backend programming languages.
-This makes it easy to use the same language for back- and front end, javascript. Besides the scalability of a non blocking architecture and the performance
-of the V8 javascript runtime engine, NodeJS possess a very large packaging ecosystem (node package manager) which makes it comfortable to work with.
-% more research about what is it and  why should be used for MEAN and what are the specifics someone needs to know
+if the development team is using javascript in the front end, there is no need to transfer functionalities into php or other backend programming languages.
+This makes it easy to use the same language for back- and front end. Besides the scalability of a non blocking architecture and the performance
+of the V8 javascript runtime engine, NodeJS possess a large packaging ecosystem (node package manager) which makes it comfortable to work with.
 
 \newpage
 
 \subsection{Continuous delivery pipeline: tools and practices}
-After this brief introduction of the different parts of the MEAN stack, this thesis describe the tool that will be used for the MEAN stack and a
-continuous delivery pipeline. However this is not a complete list. Apart from the MEAN software stack the neolexon
-example application will be using the following tools and software:
+After this brief introduction of the different parts of the MEAN stack, the following list shows the tool that will be used for the MEAN stack and a
+continuous delivery pipeline. However this is not a complete list. The following tools will be used in the example project:
 
 \begin{itemize}
   \item Yeoman
@@ -428,9 +423,7 @@ example application will be using the following tools and software:
   \item Protractor
   \item Mocha
   \item Chai
-  \item Sinon
   \item Browserify
-  \item Partialify
   \item Lodash
   \item Istanbul
 \end{itemize}
@@ -438,8 +431,8 @@ example application will be using the following tools and software:
 \section{Describing CD Pipeline (WIP)}
 \label{section:Describing CD Pipeline (WIP)}
 To begin the setup process the beginning of this chapter shows the versions and requirements the neolexon project uses for the CD pipeline and MEAN stack.
-I will split the configuration into server and client side and following by this there will be a step by step guide on how to setup and what problems and
-difficulties can be occur.
+The configuration is split into server and client side functionalities and will be followed a step by step guide on how to setup the web application
+and what problems and difficulties can be occur.
 
 \subsection{Software And Versions}
 The neolexon project is using \textbf{Ubuntu 14.04} as the server operation system. The following versions are installed on the server:
@@ -452,25 +445,26 @@ The neolexon project is using \textbf{Ubuntu 14.04} as the server operation syst
   \item StriderCD v1.7.7
 \end{itemize}
 
-Strider v1.7.7 has some requirements that are shown in the actual documentations. Our setup takes care of the required versions for SriderCD v1.7.7.
-If you are not familiar with setting up versions and software on an Ubuntu server you can just follow the installation instructions in the different
-software documentation. For using the exact versions listed above it is useful to use the node version manager (nvm) so you can change to node v4.0 if
-you installed the latest version.
+Strider v1.7.7 has some requirements that are shown in the actual documentations. The setup takes care of the required versions for SriderCD v1.7.7.
+If there needs to be more information about setting up versions and software on an Ubuntu server there is the opportunity to follow the installation instructions
+in the different software documentations. For using the exact versions listed above, it is useful to use the node version manager (nvm) so changes can be
+made to node v4.0 if there are higher or lower version installed on the system.
 
-This Thesis assumes that we setup up Strider to deploy on DigitalOcean. DigitalOcean offers a virtual private server (VPS) for 5 euro per month. This
-includes 1 Gigabyte of transfer and 20 Gigabyte disk space. If you need a higher transfer rate or more disk space int he future it is easy to change the
-subscription. You also can choose a datacenter which stores your data. In the neolexon case the data needs to stay in the european union for privacy
-and data security reasons. If this is an option to consider for your application, this can be a useful feature to choose. As most services today do, you
-can use your DigitalOcean VPS together with an SSH key to log in.
+This Thesis assumes that Strider is set up to deploy on DigitalOcean. DigitalOcean offers a virtual private server (VPS) with moderate pricing and scaling
+possibilities. The model which is used for deployment includes 1 Gigabyte of transfer space and 20 Gigabyte disk space. If a higher transfer rate or more disk space
+is needed into he future, subscriptions can be changed. There is also the opportunity to choose which datacenter stores the application data. In the neolexon example
+the data of patients should stay in the european union for privacy and data security reasons. If this is an option to consider for your application, this can be a useful
+feature to choose. As most services today do, you can use your DigitalOcean VPS together with an SSH key to log in.
 
-In order to use the DigitalOcean service with your Ubuntu server you need to setup an account at \url{http://digitalocean.com/registrations/new}. After
-registration and confirmation via email the next step is to create a droplet for your Ubuntu 14.04 server. A droplet is the DigitalOcean name for a  their VPS.
-In our case we use the Ubuntu 14.04 x64 droplet. The setup in general is a straight forward process. In case of difficulties or problems DigitalOcean has
+In order to use the DigitalOcean service with your Ubuntu server an account setup is needed. This can be found under \url{http://digitalocean.com/registrations/new}. After
+registration and confirmation via email, the next step is to create a droplet for the Ubuntu 14.04 server. A droplet is the DigitalOcean name for a their VPS.
+In the example the project makes use of the Ubuntu 14.04 x64 droplet. The setup in general is a straight forward process. In case of difficulties or problems DigitalOcean has
 created a tutorial for this. It can be found under \url{https://www.digitalocean.com/community/tutorials/how-to-create-your-first-digitalocean-droplet-virtual-server}.
-We will be using the 64-bit structure for the new VPS even the VPS size uses 512MB of RAM. With RAM of 1 Gigabyte or less the performance benefits of a 64-bit architecture
-will be diluted because the less memory. However, we found this will be the system of choice because of a future upscale of the application itself. If you plan
-to scale your application this can be an option to reconsider.
+The project in use will be using the 64-bit structure for the new VPS. The choosen VPS size uses 512MB of RAM. With RAM of 1 Gigabyte or less the performance benefits of a 64-bit
+architecture will be diluted because of the less memory. However, this will be the system of choice because of a future upscale of the application itself. If the plan
+to scale the application this can be an option to reconsider.
 
+% CORRECTOR
 To use the new created VPS you can log into it by using an SSH key DigitalOcean will send to you after creating the droplet/VPS. The SSH login authentication has a security
 advantage over the common login practice. To install the needed software or version changes and updates use the \textit{ssh root@<droplet/vps ip>} with
 the terminal/console and authenticate the host by setting up a fingerprint for the connection. After you the login process it is vital to change the password for
