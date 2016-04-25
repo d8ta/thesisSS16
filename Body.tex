@@ -270,21 +270,22 @@ build is considered a bad practice. The best way to do this is to store the buil
 pipeline process. This matters most if the continuous delivery server is custom build. Most of the modern CD services are taking care of that processes
 themselves.
 
-% CORRECTOR
 \subsubsection{Deploy in the same way to every environment you use}
-For deployment THERE should use the very same process, whether it is for production or to a developer machine. By doing so you are be able to run all your builds
-and scripts multiple times in the same way as you did later on the production server. As this is the most important build it is a good thing to know that if
-you deploy it will be working, because you tested it in the very same way before on development and test machines. For this you should use a basic script that
-does the same things that are necessary for all your environments. If you have unique settings for some environments it is best practice to store these on the
-environment itself. This prevents you from writing different scripts for all your environments. Jez write about storing these unique settings in the VCS and
-trigger them by hostname. If you deploy to a special environment this specific hostname of that environment triggers that unique script together or instead
-of the basic script.
+The employment should use the same process, whether it is for production or to a developer machine. By doing so all builds and scripts are able to
+running in multiple environments, in the same way as later on the production server. The production environment this is the most important environment.
+It is a good thing to be sure that the deployed web application will be up and running. If it is tested in the same way on development and test environments
+the confidence to have a working web applications grows. For this a basic script that does the same is necessary for all the environments. If there are
+unique settings for some of the environments it is a best practice advice to store the specific settings inside the environment itself. This prevents
+writing different scripts for all the environments. Jez writes about storing these unique settings in the VCS to trigger the usage by hostname.
+If the deployment takes place in one of these special environment, the specific hostname of that environment triggers the unique script together (or parallel)
+with the basic script.
 
 \subsubsection{Deploy into a copy of your production environment}
-It is always a good idea to keep the environments you deploy for testing and staging as nearly to the later production environment. If this works on
-your environments the development team can be confident that the build will run on the live environment. You need to be careful, all this is a betting
-system in a kind of way, with every stage you finalize you can get more confident and in the end the possibility that everything runs like intended is
-very high. In software development like in all other parts of the real world everything is dependent to a general possibility, you cannot be 100 percent
+It is a good idea to keep the environments for deployment, testing and staging as similar to the later production environment as possible. If the deployed build
+is working on these environments, the development team can be confident that the build will run on the live environment later on. This Method is similar to
+a betting system. With every stage that is finalize the confidence for a working web application is growing. In the end the possibility that everything runs like
+% CORRECTOR
+intended is significantly higher. In software development like in all other parts of the real world everything is dependent to a general possibility, you cannot be 100 percent
 assured but the possibility of failure can be minimized to a nearly non existing state.
 
 \subsubsection{Each change should propagate through the pipeline instantly}
