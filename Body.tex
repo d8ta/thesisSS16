@@ -131,43 +131,40 @@ At the start of the manifesto the need for continuous delivery and integration i
 But satisfying customer needs is only one part about this approach. Another reason to continuously integrate software is about the change and the maintainability.
 If an application or software changes fast and often in the development process, it is a good idea to ensure that your software is working at every point.
 It should be possible to assure working code from the beginning of a software project. Software will getting more complicated and complex over the course of the
-project. To have working code throughout the project is a benefit.
+project. To have working code throughout the project at every stage is beneficial.
 
-% BIS HIERHIN KORRIGIERT!!!!
-% BIS HIERHIN KORRIGIERT!!!!
-% BIS HIERHIN KORRIGIERT!!!!
-% BIS HIERHIN KORRIGIERT!!!!
 
-\subsection{Continous integration}
+\subsection{Continuous integration}
 Continuous integration is the process of continuously create and ship code. CI can be described as merging new code with a set up project in short
-development cycles constantly. To do this CI relies heavily on automated processes and tests. Automated testing in CI will help to catch issues before they
-can to into the up and running service where they can cause errors and other troubles. The main technical idea behind CI is
-one order philosophy. After developing new code the developer only needs to push the code to the repository. Through this action (pushing to a VCS) a chain
-of events is triggered. The standard case is that the newly pushed source code gets pulled and tested. If all tests pass and there are no problem the
-application gets build and published. After the application gets published the development team gets notified to report that the testing and building was
-successful. (\cite{stolberg2009enabling})
+development cycles constantly. To do this, CI relies on automated processes and tests. Automated testing in CI will help to catch issues before they
+are deployed into live web application. The main technical idea behind CI is
+the one order philosophy. After developing new code the developer only needs to push the code to the repository. Through this action (pushing to a VCS) a chain
+of events is triggered. The standard case is that the newly pushed source code will get pulled and build by the CI service. After this the CI runs the implemented
+test scripts. If all tests are passing can be deployed. Usually the development team gets notified about the successful or unsuccessful building process, so
+it can respond by deploying the application or fixing the issues that the test are revealing (\cite{stolberg2009enabling})
 
-CI also helps to prevent integration problems where different people work on a project and all there code needs to integrate after a longer period of time.
-With integration often (sometimes a few times per day) integrating code form different teams is more easy because the mass of code alone is very small in
-comparison to an integration every few weeks.
+CI also helps to prevent integration problems with different people working on one project. All the different code needs to integrate into the main project.
+With integration often (sometimes a few times per day) integrating code from different team members or departments, become more easily,
+because the amount of code alone is smaller, compared to longer integration cycles.
 
 
 \subsection{Continuous integration and test driven development}
 The main idea behind Test driven development is to ensure that the application or software stays functional at any level.
-CI inherits the idea of using Test Driven Development. This means that you actually write test for the different parts (units) of your software.
+CI inherits the idea of using Test Driven Development. The development team writes the tests for different parts (units, for example different functions)
+before the actual part gets developed and integrated.
 In his book \textbf{\textit{Test-Driven Development by Example}} Kent Beck explains that writing automated tests before the actual code can be a good service
-to an applications. As a developer starts to add features and introduce changes into an application that is already used, automated testing should be a standard.
-Tests will make sure that problems with existing code or features will be visible after a developer changes existing parts in the software. That means that the
-developer did not need to go through all parts of the application manually after some changes to ensure that everything is still working. To do so is time consuming
-and inefficient, because it is still likely to oversee functionalities in the code that will be effected by different changes that are made afterwards. It also
-leads to thought through programming decisions. Test-driven development focusses on how TDD leads analysis, design, and programming decisions
-(\cite{janzen2005test}) which will be of help if the software application grows larger or more complex. Writing unit tests (a unit tests tests only a small
+to an applications. As developers are starting to add features and introduce changes into an application that is already in use, automated testing should be a standard.
+Tests will make sure that problems with existing code or features will be visible after existing software parts getting changed. That means that the
+developer team did not need to go through all parts of the application manually, after changes are made to ensure a working web application. Manual testing is
+time consuming and inefficient, because it is still likely to oversee functionalities in the code that will be effected by different changes that are made afterwards.
+It also leads to thinking about the programming decisions that are made. Test-driven development is focused on analysis, design, and programming decisions are made.
+(\cite{janzen2005test}) This will be of help, if the web application grows larger or more complex. Writing unit tests (a unit tests tests only a small
 part of an application, for example if the email validation is working correctly) combined with continuously integrate and delivery provides a
-good setup for error free applications.
+good setup for error free applications and software that is working from start.
 
-\subsection{Continous delivery and deployment}
-Continuous delivery is needed to deliver code to other services, teams and customers for review. After a successful review and if all tests are showing that the
-application is error free, the application can be build and deployed. Figure 4 shows how a continuous delivery process runs in general.
+\subsection{Continuous delivery and deployment}
+Continuous delivery is needed to deliver code to other services, teams and customers for review. After a successful review and if the tests are showing that the
+application is working, the application can be build and deployed. Figure 4 shows how a continuous delivery process runs in general.
 
 \begin{figure}[h!]
   \centering
@@ -180,17 +177,16 @@ application is error free, the application can be build and deployed. Figure 4 s
 \section{Continuous Integration and Automatization}
 \label{section:The Foundations of Continuous Integration and Automatization in Development Operations}
 
-% start here
 \subsection{The continuous integration pipeline}
-Today building a web application contains different parts and techniques that needs to be combined. Besides the layout and look of the front end applications
+Today building a web application contains different parts and techniques that needs to be combined. Besides the layout and look of the front end application,
 most services are using databases to store user data and let users authenticate to a service. There is a wide range of techniques in either, backend and
-front end, that can be used today to ship an application. For this thesis i will describe various options to create and deliver an modern web
+front end, that can be used today to ship an application. For this thesis i will describe how to create and deliver an modern web
 applications with methods of continuous integration, continuous delivery and continuous deployment.
 
-I will start to describe differences solutions to build a stable CI pipeline. I also will explain what parts are essential for a CI pipeline and what options
-are available to choose from. Furthermore i will show an idea of a usable workflow in operations and CI. To build and automatize a CD process you have to build
-a continuous deployment pipeline which contains all the assets, scripts and tools you need to build, test and deploy your application after you push it the a
-version controls system. In figure 5 you see a very basic and general pipeline without any specifics.
+The start is a description of differences solutions to build a stable CI pipeline. I also will explain what parts are essential for a CI pipeline and what options
+are available to choose from. Furthermore this thesis will show a best practice approach for a usable workflow in operations and CI. To build and automatize a CD process,
+a continuous deployment pipeline is needed. This pipeline contains all the assets, scripts and tools to build, test and deploy the application after new code gets
+push version controls system. In figure 5 a basic pipeline can be seen.
 
 
 \begin{figure}[h!]
@@ -199,61 +195,61 @@ version controls system. In figure 5 you see a very basic and general pipeline w
   \caption{basic CD pipeline from https://blog.risingstack.com/nodejs-production-environment-for-startups/}
 \end{figure}
 
-To go into more detail about the CD pipeline the following stages are described in general. Theses Stages are the same for every software project using
-continuous delivery. They vary in some crucial point that i will later explain, but the basic is the same. To understand the CD pipeline the process needs
-to be understand. The pipeline follows one stage after another and each stage triggers the start of the next one. The trigger process only starts if the
-stage before passes tests or metrics. Humble and Jez describe these four stages in the book "continuous delivery: reliable software releases through build,
+To describe the CI pipeline with more detail, the following stages are described. Theses Stages are the same for every software project using
+continuous delivery. They vary in different parts,  that will be explained. The basics however, are the same. The pipeline follows one stage after another.
+Each stage triggers the start of the next one. The trigger process only starts if the stage before, passes all tests or metrics.
+Humble and Jez describe these four stages in there book "continuous delivery: reliable software releases through build,
 test, and deployment automation" (\cite{humble2010continuous})
 
 \subsection{The commit stage}
-The CD pipeline starts with the commit stage. Usually this stage is triggered when a developer pushes new code to a repository at the version control system.
-In this case a script should pull the new code and build the project. The purpose of the commit stage is to to single out builds with errors and therefore
-are unfit to be released as a project to the production server (user/customer) and go give feedback about the build back to the developing team as soon as possible.
-This stage consists of roughly five phases. At the beginning the code from the pulled repository gets compiled. After this the commit stage should hold the unit
-tests for the project. Theses tests should run in the commit stage. It is possible to use more specific tests in this stage according to Jez and Humble
-(\cite{humble2010continuous}) the commit stage already can hold tests for later stages, if it is clear that typical problems occurs that can be singled out
-in this first stage. Since a CD environment should be an evolving system the development team can start with unit testing only and later bring in the tests
+The CD pipeline starts with the commit stage. This stage is triggered when a developer pushes new code to a repository.
+In this case a script pulls the new code and builds the project. The purpose of the commit stage is to single out builds with errors that
+are unfit to be released to the production server.  Another purpose is to give feedback about the build to the development team as quickly as possible.
+The commit stage consists of five phases. At the beginning the code from the pulled repository will be compiled. The commit stage holds the unit
+tests for the project. The units tests are running inside the commit stage. It is possible to use more specific tests in this stage according to Jez and Humble
+(\cite{humble2010continuous}). The commit stage already can hold tests for later stages, if it is clear that typical problems occurs that can be singled out
+in this first stage. Since a CD environment is an evolving system the development team can start with unit testing only and bring in tests
 that will help prevent known problems with their application right at the beginning of the pipeline.
 
-After the testing code should be stored for use in later stages. The code also should be analyses for structural errors or difficulties and
-artifacts should be stored as well to reuse it later on, for example to use them in the test databases if you use these kind of things. \cite{osherove2015art}
+The build should be stored for use in later stages, so you do not have to build it again and again for different purposes.
+The code also should be analyses for structural errors or difficulties. Artifacts should be stored as well to reuse it later on, for example to use them in
+the test databases if used. \cite{osherove2015art}
 describes a unit test as "A unit test is a piece of code which calls another code to prove them true or false. The unit test is true if the assumed is true.
 A unit is a method or function". This definition states that unit tests testing the smallest part of an application. They are based on the function level.
 Because of this the development team needs to be careful not to rely on unit tests alone to show if the application is working. Even if unit tests are all
-working and the feedback of them is positive the overall functionality of an application can be broken. Because of the basic structure of unit tests the
+working and the feedback is positive, the overall functionality of an application can be broken. Because of the basic structure of unit tests the
 overall context of what the application does or does not can get lost, and even if all functions are up and running, connected functionality can be damaged.
-A rule for good unit test is that the should be isolated from different code to only controls and test one function (\cite{osherove2015art}).
-In general the commit stage should use 5- 10 minutes to build and test the application, depending on the projects extend. (\cite{humble2010continuous}).
+A rule for good unit test is that they should be isolated from different code to only controls and test one function (\cite{osherove2015art}).
+The commit stage should run 5- 10 minutes to build and test the application, depending on the projects extend. (\cite{humble2010continuous}).
 
 \subsection{Automated acceptance test stage}
-A successful commit stage should trigger the automated acceptance test stage afterwards. In this stage the goal is to secure the applications behaviors and
-deliver the contend and functionality that the team and a customer expects from the software. For example, if the web application should provide a booking system
-for something it should be possible to book the content on the side. This is what a costumer would expect from the application and therefore this should be
+A successful commit stage will trigger the automated acceptance test stage afterwards. The goal of this stage is to secure the applications behaviors and
+deliver the contend and functionality, that the team or a customer would be expect from the application. For example, if the web application should provide a
+booking system, it should be possible to book the content on the side. This is what a costumer would expect from the application and therefore this should be
 tested. In this case the test should assume that someone can place an order and evaluate the different parts of this (input field, input evaluation, auto
-complete, sending the order). In this area of testing not only functions are checked for functionality but the UI hat uses these functions. The acceptance test
-stage is more complex than the commit stage. In the CD pipeline after every successful stage the effort and the amount of time that is used will grow.
-After the functions are working you invest more to test the UI and other interconnected parts. Doing this helps to just invest more into things that are
-already proven to be working on a smaller level.
+complete, sending the order). This area of testing does not only test functions about the right behavior, but the whole UI that uses these functions.
+The acceptance test stage is more complex than the commit stage. In a CD pipeline every successful stage adds effort and the amount of time that is used to test.
+If the functions are working the service will invest more time and resources test the UI and other interconnected parts. Doing this helps to just invest more
+into things that are already proven to be working on a smaller level.
 
 \subsection{Manual test stage}
-After the acceptance tests there should be a manual testing stage in with testers or developers use exploratory methods to observe and test different behaviors
-of the application. The reason to not all do the behavioral testing manually is to minimize the amount of error during people. Using acceptance test helps
-to automatic repetitive and error prone processes and leave some specific cases to test by hand. This is useful because there can be some things that are hard
-to test and should be left for human beings.
+The following stage is manual testing. In this stage testers or developers use exploratory methods to observe and test different behaviors
+of the application. The reason to do not test all the behavioral parts in the application manually, is to minimize the amount of error by people.
+Using acceptance test helps to automatic repetitive and error prone processes and leave some specific cases to test by the team manually.
+This is useful because there can be some things that are hard to test. They are best to be left for human beings.
 
 \subsection{Release stage}
-If all the tests are proving that the applications is release ready there should be a single action that releases the application to production and therefore
-to the open world. Usually it is the stage with the highest priority that is deployed the least often. In this case production. Humble describes that the pipeline
+If all the tests are proving that the applications is a release ready candidate, there should be a single action that releases the application to production and
+live servers. Usually it is the stage with the highest priority that is deployed the least often. In this case the production. Humble describes that the pipeline
 process helps get ready for the final stage. By proving that the code and scripts are working the development team gets more and more assured that the application
 is working and at the end you deploy it to the production environment. With this approach you make sure that your code or your scripts wont be the failure if
-the application causes problems. of course there is a residual risk if it is, but it is much easier than to investigate if the code or the environment is the
+the application causes problems. Of course there is a residual risk that it is, but it is much easier to investigate if the code or the environment is the
 root of failure. Minimizing people error through automatization is a major part of CD services, but there are some other aspects to taken into account. Humble and Jez writing
-that you should be using a production like environment for testing. This makes sense because the more a test environment differs from the actual environment
-the less secure the developers can be that it will behave according to what they saw and tested on the testing environment.
+that a production like environment should be used for testing. This makes sense because the more a test environment differs from the actual environment
+the less secure the development team can be, that it will behave according to what they saw and tested on the testing environment.
 
 \subsection{Delivery pipeline practices}
-There are certain practices that can help to use the continuous delivery pipeline in a proper and useful way.
-Here is a list of proven particles on this matter.
+To set up a CI pipeline in the above mentioned way, the following practices are recommended and helpful in the process.
 
 \begin{itemize}
   \item Only build your binaries once.
@@ -265,13 +261,16 @@ Here is a list of proven particles on this matter.
 
 \subsubsection{Only build your binaries once}
 Having a CD pipeline set up is a useful and timesaving environment. However, by using different environments, compilers, software version or even the same
-compiler in a different version can change a lot of things. Each time you re-compile your committed code to a build there can be changes that are unforeseen
-and that results in little or even non visible changes in other software or version differences. Because of this it is the best practice to only compile your
-code once and reuse this build without re-compiling it later on. The code that gets deployed to your production environment should be equal the same than
-your build that is going thought the pipeline. Don't ever re-create your code (binaries are in this context a collection of executable code) after the first
-build. The best way to do this is to store the build in a filesystem and reuse it for every other stage that gets triggered for the pipeline. This matters most
-if you create a continuous delivery server on your own. The most modern CD services are taking care that your builds are stored and reused later on.
+compiler in a different version, can be challenging. Each time the project re-compile the committed code into a new build unforeseen changes can occur.
+The results of different build are little or even non visible changes that can cause problems. Slightly different software version or alterations can change
+vital parts of the applications behave. Because of this it is the best practice to only compile your
+code once and reuse this build without re-compiling it in later stages. The code that gets deployed to your production environment should be equal to the same
+code that was going thought the pipeline. Re-create a build again (binaries are in this context a collection of executable code) after the first
+build is considered a bad practice. The best way to do this is to store the build in a filesystem and reuse it for every other stage that gets triggered in the
+pipeline process. This matters most if the continuous delivery server is custom build. Most of the modern CD services are taking care of that processes
+themselves.
 
+% CORRECTOR
 \subsubsection{Deploy in the same way to every environment you use}
 For deployment you should use the very same process, whether it is for production or to a developer machine. By doing so you are be able to run all your builds
 and scripts multiple times in the same way as you did later on the production server. As this is the most important build it is a good thing to know that if
@@ -778,7 +777,7 @@ is also a variety of questions and solutions on stack overflow treating unit tes
 \newpage
 \section{SSH Deployment}
 \label{section:SSH Deployment}
-% according to tutorial 
+% according to tutorial
 
 \newpage
 \section{Build Notifications}
