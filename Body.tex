@@ -464,41 +464,38 @@ The project in use will be using the 64-bit structure for the new VPS. The choos
 architecture will be diluted because of the less memory. However, this will be the system of choice because of a future upscale of the application itself. If the plan
 to scale the application this can be an option to reconsider.
 
-% CORRECTOR
-To use the new created VPS you can log into it by using an SSH key DigitalOcean will send to you after creating the droplet/VPS. The SSH login authentication has a security
-advantage over the common login practice. To install the needed software or version changes and updates use the \textit{ssh root@<droplet/vps ip>} with
-the terminal/console and authenticate the host by setting up a fingerprint for the connection. After you the login process it is vital to change the password for
-security reasons. The best way is to use the \textit{passwd} command and choose a save password.
+To use the newly created VPS there is a login via SSH key. The key is send from DigitalOcean, after droplet/VPS is created. The SSH login authentication has a security
+advantage over the common login practices. To install the needed software, versions and updates, the \textit{ssh root@<droplet/vps ip>} can be used inside the
+terminal/console. Authenticate to the host can be done by setting up a fingerprint for the connection (following the instruction at login). For security reasons
+using SSH is recommended. It is also recommended to set a password with the \textit{passwd} command.
 
 \subsection{Installing The MEANJS Application}
-To start the Application itself the neolexon project uses the MEANJS yeoman generator. If you are not familiar with the yeoman service this will summarize what what
-it does and how to setup the MEAN application. Yeoman is a scaffolding tool that can be installed and let you choose, install and setup applications. The
-application setup process is done through generators. Generators installing the necessary software and configure it. They also using package managers like bower
-and npm to install dependencies for the used application. There are many generators provided by different organizations or the yeoman team itself. In case of the
-yeoman MEANJS generator the MEANJS team has build the generator. The provided generator is the main reason to use MEANJS over MEAN.io. In general the two stacks
-are similar in use and what they do. However setting up a MEAN application through yeoman is a fast an straightforward process that helps to bind all the different
-parts. The MEANJS Website provides a good documentation of how to use the yeoman generator (\url{http://meanjs.org/generator.html}).
-
-The basic terminal command is to install yeoman with npm by using
+The neolexon example project uses the MEANJS yeoman generator to setup the web application. If you are not familiar with the yeoman service the next lines
+will summarize what it does and how to use the generator for the application setup. Yeoman is a scaffolding tool that can be installed with npm. What yeoman offer is
+installation and scaffolding of various applications. For this different generators are available which generate the wanted application. The MEANJS generator
+was made by the MEANJS team and it is documented on their site (\url{http://meanjs.org/generator.html}). Generators install and configure the necessary software.
+They also using package managers like bower and npm to install dependencies that are needed. The provided generator was the main reason to use MEANJS over MEAN.io.
+The two stacks are similar in use and what they do. However, setting up a MEAN application through yeoman is a fast an straightforward process that helps to bind all
+the different parts together. First yeoman needs to be installed. The basic terminal command with npm is
 
 \begin{lstlisting}
   npm install -g yo
 \end{lstlisting}
 
-Yeoman is installed and the next step is to install the needed generator. In the neolexon case we use the MEANSJ generator. The proper command for this is
+Yeoman will be installed globally and can be used to install the generator. The command for installing the MEANJS generator is
 
 \begin{lstlisting}
   npm install -g generator-meanjs
 \end{lstlisting}
 
-The last step is to use this generator to install the MEANJS app. The following command lets yeoman build the above installed generator
+The last step in the setup process is to call the installed generator, so that it will build the MEANJS application. The following command will do this
 
 \begin{lstlisting}
   yo meanjs
 \end{lstlisting}
 
-Yeoman will taking care of installing the application after some minor questions about the name, origin and description of the application.
-It will setup the structure and with it the package json files and node modules.
+Yeoman will take care of installing the application. It will prompt questions about the developers name, company name, origin and description of the application
+for the package json file during the process.
 
 \begin{figure}[h!]
   \centering
@@ -506,40 +503,39 @@ It will setup the structure and with it the package json files and node modules.
   \caption{Yeoman MEANJS Generator}
 \end{figure}
 
-As soon as the application is installed and build you can start it with
+As soon as the application is installed and build it can be started it with
 
 \begin{lstlisting}
   grunt
 \end{lstlisting}
 
-Which starts the grunt task runner and provides the application under \textit{localhost:3000} in any browser of your choice.
-
-This is all that is needed to setup the basic MEANJS application. Note that the yeoman generator also created the testing environment
-for the unit testing. In the next step we will deploy this basic app to the DigitalOcean VPN by configure striderCD in the appropriate way
+The grunt task runner starts the application which will be available in the browser under \textit{localhost:3000}.
+Note that the yeoman generator also created the testing environment for the unit tests. The next step is to deploy this basic MEAN application
+to the DigitalOcean VPN by configure striderCD.
 
 \section{Strider Configuration}
 \label{section:Strider Configuration}
-To begin with striderCD needs to be cloned and installed onto the Ubuntu 14.04 server. It is advised that you use an own user for this
-on your server. This is because if the project in use is an internet accessible project, there can be security issues. In this case
-it is a good idea to have this special strider user that only have access to the strider service and nothing else. For the system at
-hand we use
+Installing striderCD needs to clone it first and than install onto the Ubuntu 14.04 server. Strider should use an own user on the server.
+If the project in use is an internet accessible project than the own strider user prevents the server from unauthorized access, because
+the strider user has only access to the strider service and nothing else. To add the strider user type in the command
 \begin{lstlisting}
   addUser strider
 \end{lstlisting}
-which creates the new user named strider for your purpose. With the strider user created and used the next step is to clone and install
-strider on your server. StriderCD has all the resources you need on their github page and ready to clone with git. Us
+With the strider user created and used, clone and install strider on the server. StriderCD has all the resources that are need on their github page.
+To clone them use
 \begin{lstlisting}
   git clone https://github.com/Strider-CD/strider
 \end{lstlisting}
-or visit Github and search for StriderCD to clone it.
+or visit Github and search for the StriderCD github link.
 
-Since we install with the npm package manager the installation command is
+The installation is done by the npm package manager with
 \begin{lstlisting}
   npm install
 \end{lstlisting}
-In the Neolexon case there where no problems with the above setup and version during the installation. If so the package manager (npm) will
-show the error messages. In case there are errors it is vital to fix them before going on with the configuration of striderCD. After a
-successful installation make sure that the mongoDB database is running on your server. If so, the starting command for the strider service is
+
+During the setup of the neolexon project there where no problems or version conflicts during the setup process. In case of problems and errors
+the package manager (npm) will show the error messages. Errors should be fixed immediately before going on with the CI pipline process. After a
+successful installation. MEANJS needs a mongoDB database running on your server. The starting command for the strider service is
 \begin{lstlisting}
   npm start
 \end{lstlisting}
@@ -552,7 +548,7 @@ To use a more secure approach the mongoDB should be used with authentication. Th
   mongo
 \end{lstlisting}
 will provide the mongoDB shell to input queries and requests. The authentication plan is to create a mongoDB user which has access
-rights to the database we will create and use for striderCD. The following code snipped shows how to to this
+rights to the database that will be create and used for striderCD. The following code snipped shows how to to this
 \begin{lstlisting}
   use admin
   db.auth( <username>, <password> )
@@ -569,10 +565,10 @@ In case you dont use the standard local mongoDB database you need to specify the
 \begin{lstlisting}
   mongo --port <your-port-number>
 \end{lstlisting}
-For deeper information or more setup information the mongoDB documentation holds more information. The above snippets are
-used from the documentation manual 2.6 to find under \url{https://docs.mongodb.org/manual/reference/method/db.auth/#db.auth}
+For more setup information the mongoDB documentation holds is helpful. The above snippets are
+used from the documentation manual 2.6 which can be found under \url{https://docs.mongodb.org/manual/reference/method/db.auth/#db.auth}
 
-To use the proper connecting via mongoose to the used database we need to add a connection string to it. According to the mongoDB
+To use the proper connecting via mongoose, to the used database, an connection string for mongoose is needed. According to the mongoDB
 documentation, this can be done with the following command
 \begin{lstlisting}
   mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]
@@ -582,10 +578,9 @@ In the case of the created strider user above the connection string reads
   DB_URI="mongodb://strider:striderPassword@localhost:27017/strider" npm start
 \end{lstlisting}
 
-% config with config file
-To run and use strider as it was intended there are several configuration steps that are needed to be done. Strider can either be configured
+To run and use strider as intended there are several configuration steps that are needed to be done. Strider can either be configured
 with system wide environment variables or in a config file. It can configured with variables that are only valid for the current login and
-startup that is done too. To use process variables for the example project with a port of 4000 and a server name https://neolexon.com the following
+startup. To use process variables for the example project with a port of 4000 and a server name https://neolexon.com the following
 command start the process
 
 \begin{lstlisting}
@@ -593,7 +588,7 @@ command start the process
 \end{lstlisting}
 
 If strider needs a restart the process variables are lost and needs to be used again in the startup process. By using a configuration file
-the used variables are present for each start of strider and there is no need to retype them in the startup process. It is recommended within
+the used variables are present for each start of strider. There is no need to retype them in the startup process. It is recommended within
 the strider documentation that the configuration file should go inside the strider main directory named
 
 \begin{lstlisting}
@@ -601,55 +596,55 @@ the strider documentation that the configuration file should go inside the strid
 \end{lstlisting}
 
 We recommend implementing an upstart job that makes use of environmental variables to handle start, stop and status evaluation.
-The reason for this is that, first, strider uses always the environmental variables if they are available. Even if there is a configuration
+The reason for this is that, first, strider uses always the environmental variables, if they are available. Even if there is a configuration
 file which makes use of other variables, strider choose to use the environmental variables. The second reason is that in the process of
 registering github as a plugin you need to use the github id and a github secret to bind github to strider. plugins needs to be implemented
 as environmental variables via export. If the plugin variables for the github plugin are inside a strider configuration file they cannot
 be used and therefore the automatic build process after new code is pushed to the repository will not start. This facts results into problems
-four our continuous integration pipeline because we implemented the github variables into the configuration file of our strider. After we realized
-the problem the step to avoid it was to create environmental variables for this which made it work. As mentioned above strider always choose
-the environmental variables over any configuration file. Since this resulted into other errors and since it is not advised to split the
-main configuration the solution was to only use environmental variables for the whole service. The variables are using the following path
+for the continuous integration pipeline of the neolexon project, because of the implementation of the github variables into the configuration
+file of the strider system. After realizing the problem, the step to avoid it was to create environmental variables for this which made it work.
+As mentioned above, strider always choose the environmental variables over any configuration file. Since this can result into other errors
+it is not advised to split the main configuration into different parts. The solution was to only use environmental variables for the whole service.
+The variables are using the following path
 
 \begin{lstlisting}
   /etc/init/strider.conf
 \end{lstlisting}
 
-As seen in the following code example we only use environmental variables with strider and for any plugins. The recommend using for starting is
-to use the following inital command in the configuration file:
+As seen in the following code example the neolexon project only uses environmental variables with strider or for their plugins. The recommend using
+for starting is the following inital command in the configuration file:
 \begin{lstlisting}
   start on startup
 \end{lstlisting}
- This command, however did not work in the project. Because of the change to
+ This command, however did not work in the project. After changing the command to
  \begin{lstlisting}
    start on filesystem
  \end{lstlisting}
-  was made. Start on filesystem does the same for the upstart job but it starts if the whole server starts.
+  the startup was functioning.
+  Start on filesystem does the same for the upstart job but it starts if the whole server starts.
 
 \lstinputlisting{files/strider_config.js}
 
 The mentioned and integrated upstart job is a daemon for ubuntu systems, which allows to use striderCD as a service and therefore makes start and
-stop handling easier to do. It also provides starting the strider service if you boot the ubuntu server or canceling it if you
-stop ubuntu. This is helpful because it creates automatization that prevents from starting different services by hand. For more on
-upstart visit \url{http://upstart.ubuntu.com/}.
-% end
+stop handling easier to do. It also provides starting the strider service automatically if the ubuntu server starts or canceling it if the server
+stops. This is helpful because it creates automatization that prevents manual starting. For more on upstart visit \url{http://upstart.ubuntu.com/}.
 
 After these steps the installation and standard configuration of strider will be complete. Per default strider uses the development mode to start in.
-With the follwing command the start will changed to the production environment as the new default
+With the following command the start will changed to the production environment as the new default
 
 \begin{lstlisting}
   NODE_ENV=production npm start
 \end{lstlisting}
 
-To get an overview about strider and how it work here are the essential parts that needs to be understand do work and configure
-it in a fashion strider supports the different needs and options for testing and deployment web projects. An essential part of
+To get an overview about strider and how it works, there are several essential parts, that needs to be understand, to work and configure
+strider in the right way. Strider supports different needs and options for testing and deploying web applications. An essential part of
 the configuration process is the strider plugin system. Strider uses plugins to integrate services like Github, Slack, Email
 notification, Docker containerization and others. To see the complete plugin ecosystem visit \url{https://github.com/Strider-CD/ecosystem-index/blob/master/plugins.yml}.
-What Plugins can do for the web application is to generate hooks, register routes for requests, using sockets or editing the strider
-UI
+What can Plugins do for the web application. They generate hooks, register routes for requests, using sockets or editing the strider
+UI, depending on what the project needs.
 
-Plugins can be configured and used in two different ways. The first one is as via strider UI. Strider UI is the web application.
-There plugins can be installed or configured.
+Plugins can be configured and used in two different ways. The first one is with strider UI. Strider UI is strider dashboard.
+The strider dashboard hosts several options for configuration. One of them is plugin installation.
 
 \begin{figure}[h!]
   \centering
@@ -657,25 +652,26 @@ There plugins can be installed or configured.
   \caption{Strider UI Plugins}
 \end{figure}
 
-The second possibility is to install and configure plugins with the terminal. In this case the command is
+The second possibility is the installation and configure with the terminal. In this case the command is
+
 \begin{lstlisting}
   bin/strider install <plugin-name>
 \end{lstlisting}
 
-In general plugins are used by strider in two existing and different environments. In the web app environment plugins can be manipulated
+In general plugins are used by strider in two existing and different environments. In the web application environment plugins can be manipulated
 in the described strider UI. The worker environment uses jobs that strider runs, every time a new commit gets pulled from the git
 repository. There are different workers available. The neolexon web application uses the default worker \textit{strider-simple-runner}
 (\url{https://github.com/Strider-CD/strider-simple-runner}). A strider job can be code testing or loading some specific scripts or
-configuration for plugins. A use case scenario is the deployment to different environments. Workers can load configuration needed for
+configuration for plugins. A use case scenario is the deployment to different environments. Workers can load configurations needed for
 a specific environment, which is useful in case the application gets deployed to several machines with different setups.
 
 \newpage
 
 \subsection{Connection To Github}
 \label{subsection:Connection To Github}
-The goal of our pipeline is to test and deploy the project after a successful commit. Therefore striderCD needs to be connected to the version
-control system in use. The example scenery uses Github as VCS. For this purpose the web application needs to be pushed to a github. In the striderCD
-UI the needed github plugin can be installed.
+The goal of the pipeline is to test and deploy the project after a successful commit. StriderCD needs to be connected to the version
+control system in use to to this. The example project uses Github as VCS. For this purpose the web application needs to be pushed to a github repository.
+Strider UIs plugin page can be used to install the github plugin for this.
 
 \begin{figure}[h!]
   \centering
@@ -693,14 +689,14 @@ will guide you through the authorization process.
   \caption{Authorize Application - Image From Futurestud.io}
 \end{figure}
 
-After authorise your github account you will get the \textit{Github App Id} and the \textit{Github Secret}. Both of them are needed and put
+After authorize the github account the \textit{Github App Id} and the \textit{Github Secret} is needed. Both of them are put
 into
 
 \begin{lstlisting}
   /etc/init/strider.conf
 \end{lstlisting}
 
-to link the account. The linked account should be showing inside the  after the successful process.
+to link the account. The linked account should be showing inside the Strider UI, after the linking was successful.
 
 \begin{figure}[h!]
   \centering
@@ -708,7 +704,7 @@ to link the account. The linked account should be showing inside the  after the 
   \caption{Linked Github Account}
 \end{figure}
 
-After the accounts are linked the projects tab shows all github repositories for the added github account. From there the needed projects can
+After the accounts are linked, the projects tab shows all github repositories for the added github account. From there the needed projects can
 be added to strider.
 
 \begin{figure}[h!]
@@ -717,12 +713,10 @@ be added to strider.
   \caption{Neolexon Repository Overview}
 \end{figure}
 
-% later
 Note that if there are errors during the installation of plugins, the reason can be that you are not logged in as an administrator,
-or that the project you are trying to link is not your own project. StriderCD highlights this in the project tab with a lock.
-If another admin or user try to install plugins for a project they do not own there will be a permission error from git (128)
-like the following. This is good to know because in the project at hand there where confusion why some persons can add plugins
-and other are not.
+or that the project trying to link is not a project from the logged in account. StriderCD highlights this in the project tab with a lock.
+If another admin or user try to install plugins for a project they do not own, there will be a permission error from git (128)
+In the project at hand there where some confusions about why some persons can add plugins and other are not able to.
 
 \begin{figure}[h!]
   \centering
@@ -733,9 +727,9 @@ and other are not.
 \subsection{Manual And Automatic Testing With Strider}
 \label{Manual And Automatic Testing With Strider}
 The next step is to test if strider is connected properly and that tests can be run. The strider UI let you run a manually test from
-the dashboard. Strider also indicates that it is running the testing and the time the testing is running or was running. After completion
-it strider shows if the test was running successful (figure 14). As seen on the picture all operations strider do are logged and can be
-analysed. If the test is not running successful it is be advised to evaluate the log files and errors and reconfigure according to theses
+the dashboard. Strider also indicates that it is running the testing and an approximated time for the test run. After completion
+strider shows if the test successful (figure 14). As seen on the picture all operations strider do are logged and can be
+analyses. If the test is not running successful it is advised to evaluate the log files and errors and reconfigure according to theses
 findings in the project settings.
 
 \begin{figure}[h!]
@@ -760,41 +754,41 @@ the example project is
   /home/strider/builds/data/nvpsswaroop-neolexon-core-570f544255aebd0a04199f2d/.git/hooks/update
 \end{lstlisting}
 
-In that case nvpsswaroop-neolexon-core-570f544255aebd0a04199f2d is the project repository from github which is hooked to strider.
-This depends on your project name and location on the server.
+In the example project case nvpsswaroop-neolexon-core-570f544255aebd0a04199f2d is the project repository from github which is hooked to strider.
+It holds the data and build which is created by strider. The name depends on your project name and location on the server.
 
 Since this thesis treats the subject of CI and not testing in general it will not describe testing in detail. Note that for the
 most basic functionalities and modules in the MEAN application we use in the example, karma and mocha tests are already in place.
-In our opinion this is a good starting point if you do not know about how to write and use testing. also there are many resources
-either on the main pages of mocha (\url{http://mochajs.org}) and karma (\url{https://karma-runner.github.io/0.8/index.html}). There
-is also a variety of questions and solutions on stack overflow treating unit testing in general and mocha/karma in specific.
+This is a good starting point for learning about testing and how to write and use tests. There are also many resources
+on the main pages of mocha (\url{http://mochajs.org}) and karma (\url{https://karma-runner.github.io/0.8/index.html}).Stackoverflow
+shows variety of questions and solutions treating unit tests in general and mocha/karma in specific.
 
+% CORRECTOR
 \newpage
 \section{SSH Deployment}
 \label{section:SSH Deployment}
-% according to tutorial
 
 \newpage
 \section{Build Notifications}
 \label{section:Build Notifications}
-Now that the build process after pushing to the repository is running (right now there are no tests that are implemented), it is a
+Now that the build process is running (right now there are no tests that are implemented), it is a
 good idea to use the full potential of a CI service. Automatization is a useful tool, but the development team needs to be aware of
 what is going on. Is the build passing, or are there errors that are interesting for the development team? Should other people
-now about the status of the deployment and the build? One of the good things about the different CI services is that there is the
-possibility of notification about what is going on. In the following test scenario we would like to push some changes to the repository.
-We would like to know if everything works as intended, which means if strider got the change, pulling the repository and building the
-project and store it on the server in the strider build directory. For this we will implement a notification system that either use
-slack or email notification. The outcome should be an email or slack message of the status of our build and if there is anything that
-needs to be done after this.
+know about the status of the deployment and the build? One of the good things about the different CI services is that there is the
+possibility of notification about what is going on. In the following test scenario a developer would like to push some changes to the repository.
+He or she would like to know if everything works as intended. If strider gets the changes, it should pull the repository and build the
+project. Than strider should store it on the server in the strider build directory for later use. For implement a notification system is useful.
+The outcome should be an email or slack message with the build status and if there is anything that needs to be done afterwards. For example
+the invitation to deploy the build to the staging or production server.
 
 \subsection{Slack Notifications}
-Slack is a team communication tool. With slack you can write messages, share files, integrate calendar or github repositories
-or use software bots for time management an other useful things. Slack uses multiple channels for communication. For our example we would
-like to get a notification in our build channel we designed for strider. For more about slack please visit the website at \url{https://slack.com}.
+The first notification examples uses slack. Slack is a team communication tool. Slack can used to write messages, share files, integrate calendar or
+github repositories or use software bots for time management an other useful things. Slack uses multiple channels for communication. For this example there
+will be a notification in the build channel that was designed for strider notifications. For more about slack visit the website \url{https://slack.com}.
 
 To start the integration strider needs to interact with the slack application. Like with the github hook strider needs the slack
-plugin installed in the Admin/Plugins tab. In our case the slack plugin was already pre installed with strider. After the installation
-of the plugin is complete the slack plugin needs to be activated and configured to create a web hook that regulates the notifications.
+plugin installed in the Admin/Plugins tab. In this case the slack plugin is already pre installed with strider. After the plugin installation
+is complete, the slack plugin needs to be activated and configured to create a web hook that regulates the notifications.
 Make sure that the slack plugin is enabled. The plugin can be found under available plugins.
 
 \begin{figure}[h!]
@@ -803,7 +797,7 @@ Make sure that the slack plugin is enabled. The plugin can be found under availa
   \caption{Slack Plugin}
 \end{figure}
 
-From there you can configure slack by using the link (figure 11)
+From there slack can be configure by using the link (figure 11)
 
 \begin{figure}[h!]
   \centering
@@ -817,12 +811,13 @@ From there you can configure slack by using the link (figure 11)
   \caption{Slack Configuration}
 \end{figure}
 
-In the configuration window we used the standard input generated with the button \textbf{Fill Empty Fields}. The only part that is not
-filled automatically is the web hook URL in the first line. Setting up the web hook is a straight forward process. By clicking on
-\textbf{Create an incoming web hook} you get linked to the slack integration side of your project (note: you need to have a team setup
-with slack for which you can add integrations). Create the web hook there and copy the web hook URL for the strider slack configuration.
-After using the web hook URL you are able save and test the slack notification with the \textbf{Test} button. The outcome in your slack
-application should look similar to the following figure
+In the configuration window the button \textbf{Fill Empty Fields} can be used to fill in standard messaging and notification options. They can be
+configured to the teams liking. For now they stay like this. The only part that is not filled automatically is the web hook URL in the first line.
+Setting up the web hook is a straight forward process. By clicking on \textbf{Create an incoming web hook} there is a link to the slack integration
+side of the used project (note: A slack team is needed, for which integrations can be added. Visit \url{https://slack.com} for more informations about
+this). Creating the web hook produces a web hook URL for the strider slack configuration. The web hook needs to be copy and past into the first line
+of the slack configuration. After using and saving the web hook URL the notification system can be tested by using the \textbf{Test} button.
+The outcome in your slack application should look similar to the following figure
 
 \begin{figure}[h!]
   \centering
@@ -830,8 +825,8 @@ application should look similar to the following figure
   \caption{Slack Notification Test}
 \end{figure}
 
-With the next push to your github repository, strider will send a message about the build status directly to the chosen slack channel.
-In our case the build channel shows the message after the next successful push and build.
+With the next push to your github repository, strider should send a message about the build status directly to the chosen slack channel.
+In this case, the build channel shows the message after the next successful push and build.
 
 \begin{figure}[h!]
   \centering
@@ -840,8 +835,8 @@ In our case the build channel shows the message after the next successful push a
 \end{figure}
 
 \subsection{Email Notifications}
-If there are team members outside the slack team or if you do not using slack notifications for the build process can also be configured
-for email. The email notification system can be setup in the same way as we did it with slack. First there the \textbf{Email Notifier}
+If there are team members outside the slack team or if you do not using slack notifications, the build process can also be configured
+for email. The email notification system can be setup in the same way as done it with slack. First the \textbf{Email Notifier}
 plugin needs to be installed.
 
 \begin{figure}[h!]
@@ -859,21 +854,20 @@ Part two is to activate the installed plugin on the \textbf{Plugin Settings Page
 \end{figure}
 
 The email notification only sends an email if the build status is changing. This means if the build is passing several times and the next
-build is failing, an email is send. If you would like to use it like the slack notification you can change the default behavior by using the
-\textbf{Email Notifier} link in the project settings on the left side.
-
-As you can see there are no fields for using a specific mail address for the notifications. To set up a mail address strider needs an environmental
+build is failing, an email is send. If this needs to be changed, it can be using the \textbf{Email Notifier} link in the project settings on the left side.
+There are no fields for using a specific mail address for the notifications like in the slack settings. To set up a mail address, strider needs an environmental
 variable found in our
 
 \begin{lstlisting}
   /etc/int/strider.conf
 \end{lstlisting}
 
-In the strider documentation \url{https://github.com/Strider-CD/strider#configuring} mentioned we use mailgun for sending the mail notifications.
-Mailgun offers 300 free emails per day which is sufficient for our project. If needed there is a subscription later one. After creating an account
-at \url{https://mailgun.com/signup} and after activating the account with mail and sms authorization the following informations are needed for the
-strider.conf file. \textbf{HOST}, \textbf{USER} and \textbf{PASS} are the main information. In this case the host is mailgun. The user and pass are your user data
-from the mailgun account. \textbf{PORT} and \textbf{FROM} are set to a default value which can be kept. Use the following start command
+In the strider documentation \url{https://github.com/Strider-CD/strider#configuring} it is mentioned that there needs to be a SMTP service in use. This
+example makes use of mailgun for sending out the mail notifications. Mailgun offers 300 free emails per day which is sufficient for our project. If needed
+there is a subscription later one. After creating an account at \url{https://mailgun.com/signup} and activating the account with mail and/or sms authorization,
+the following informations are needed for the strider.conf file. \textbf{HOST}, \textbf{USER} and \textbf{PASS}. In this case the host is mailgun. The user
+and pass are your user data from the mailgun account. \textbf{PORT} and \textbf{FROM} are set to a default value which can be kept.
+Use the following start command
 
 \begin{lstlisting}
   SMTP_HOST="smtp.mailgun.org SMTP_PORT=587 SMTP_USER="your-username" \
@@ -892,11 +886,11 @@ source: \url{https://futurestud.io/blog/strider-configure-and-activate-email-not
 \newpage
 \section{Single Point Of Failure}
 \label{section:Single Point Of Failure}
-Building an automated service like the continuous integration for the neolexon project is often bind to the use of third party software and services.
-In the above case we use digital ocean for deployment, slack and email notification for information about the build status, github for code sharing
+Building an automated service like the continuous integration for the neolexon project, is often bind to the use of third party software and services.
+The example makes use of digital ocean for deployment, slack and email notification for information about the build status, github for code sharing
 via repositories and strider itself as the CI tool. Every application depending on third party services is in danger of the single point of failure
-issue. \textbf{SPOF} means that the application or, in our case, the build and deployment process depends on other software that is integrated in the
-project and that is having the ability to fail. If digital ocean is experiencing downtime during the push of new developed code, the deployment
+issue. \textbf{SPOF} means that the application or, in this case, the build and deployment process, depends on other software that is integrated in the
+project and that there is the ability to fail. If digital ocean is experiencing a downtime during the push of new developed code, the deployment
 process will stop in that case and the development team do not have the ability to fix the problem. In this case digital ocean is the only party
 who can work on the problem and eventually fix it. Because of this creating dependencies throughout your project should be as minimal as possible.
 Concentrate on the necessary software and third parties and try to avoid dependencies that can cause problems without a certain value for the project
@@ -924,11 +918,13 @@ CI system. Considered the project size and the construction of the neolexon proj
 \newpage
 \section{Server Stability And Problems}
 \label{section:Server Stability And Problems}
-During the process of setting up the continuous integration system the development team experienced regular server crashes. If this is happening the
-project at hand the solution can be investigation the mongodb swap space. The swap space provides extra memory situations in which the database needs
-is in need of handling to many queries. In the neolexon project the issue could be solved by using the official mongodb documentation. The diagnosis
-section is holding the commands that are needed to find out about the problem with the swap space. In case of the neolexon project the solution was
-to reset the database. In this early state this was not a problem because the only data inside the database was testing and dummy data. \url{https://docs.mongodb.org/manual/faq/diagnostics/}
+Besides SPOF there can be other problems during the process of setting up the continuous integration system. In the example case the development team
+experienced regular server crashes. If this is happening to the project at hand, the solution can be investigation the mongodb swap space.
+The swap space provides extra memory for situations in which the database needs it. In the neolexon project the issue could be solved by using the official
+mongodb documentation \url{https://docs.mongodb.org/manual/faq/diagnostics/}. The diagnosis section is holding the commands that are needed to find out about the problem with the swap space. In our case
+the solution was to reset the database. Because the project was in its early state, this was not a problem. The only data inside the database was testing and
+dummy data.
+
 \newpage
 \section{Conclusion}
 \label{section:Conclusion}
