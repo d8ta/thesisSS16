@@ -426,7 +426,7 @@ continuous delivery pipeline. However this is not a complete list. The following
   \item Istanbul
 \end{itemize}
 
-\section{Describing CD Pipeline (WIP)}
+\section{Describing the CD pipeline}
 \label{section:Describing CD Pipeline (WIP)}
 To begin the setup process the beginning of this chapter shows the versions and requirements the neolexon project uses for the CD pipeline and MEAN stack.
 The configuration is split into server and client side functionalities and will be followed a step by step guide on how to setup the web application
@@ -919,5 +919,21 @@ the solution was to reset the database. Because the project was in its early sta
 dummy data.
 
 \newpage
-\section{Conclusion}
+\section{Conclusion WIP}
 \label{section:Conclusion}
+The development process of the continuous integration service of the neolexon web application starts as a straightforward process. The software stack
+used for this project is well known and described. during the initial research phase the literature and work of Martin Fowler where extraordinary
+helpful. In terms of agile software development and continuous integration, there are several frameworks and services available to choose from to build
+state of the art web projects. One of the main challenges where the choice of services and software. The goal of the most frameworks out there is
+the same. Let developer teams build and maintain a continuous integration service, that is easy to setup. But what is the right service for the given project?
+To solve this challenge the research phase of this thesis included the issue sections of github (if a service was available there). StriderCD is well
+documented and uses github for distribution. Knowing the issues of a software service can help in the decision process. The Nodejs focus of strider
+was another reason to choose this service. In terms of usability and maintainability, striderCD is easy to use and implement. The configuration is having
+some difficulty parts that needs to be understood to configure strider in the right way. Strider CD runs was running in a stable way on the example setup
+of Ubuntu 14.04 with deployment on Digital Ocean. The experienced shutdowns where Ubuntu specific and the documentation did well in naming the most
+successful versions for the use of strider. During the writing of this thesis and the implementation of the striderCD service the development team did
+not experience any downtime of the service itself. According to the build process every push was build after the configuration was complete. The answer
+to the research question is that the Issue reports and the experienced downtime together with the concluded build processes are supporting claim that
+a striderCD system can be used as a stable CI service for NodeJS/MEAN applications.    
+
+% and the detailed work behind the well written and maintained documentations of MEANJS and striderCD.
