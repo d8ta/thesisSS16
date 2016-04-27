@@ -5,7 +5,7 @@ between failure and success. Web applications and services needs to change and s
 growing fast. Runtastic, a small company from Linz/Austria which developed a fitness application where having a tremendous growth of
 their user base, in a short period of time. Most of the time users demands a 24/7 availability of the service they use a good example
 is the sales platform Amazon or social networks like Facebook. When Facebook experienced an outage on September 28 2015, this incident
-got a huge amount of interest from local, national and international media (\url{http://www.bbc.com/news/world-us-canada-34383655} and
+got a huge amount of interest from local, national and international media (\url{http://www.bbc.com/news/world-us-canada-34383655} visited on 2. March 2016) and
 from their user base.
 
 Downtime is costly. In the best case it only costs money, in the worst case
@@ -19,9 +19,8 @@ Continuous Integration and development is based on the method of agile software 
 (\cite{schaefer2013continuous}), (\cite{fowler2006continuous}) (\cite{fowler2012continuous}).
 
 Some of the newer methods, for example MEAN stack or NodeJS applications are insufficient investigated and described.
-The Question this thesis will research is: What is a best practice approach for modern web application,
-to provide automatization and continuously integration features. It is the goal of this thesis to show how to establish a modern development operation
-cycle for web applications using Node.JS and the MEAN Stack.
+This thesis will research \textit{how to build a CI and CD service for modern web applications with MEANJS}.
+It is the goal of this thesis to show how to establish a modern development operation cycle for web applications using Node.JS and the MEAN Stack.
 This thesis will citing the standard literature and methods for continuous integration and deployment. After this this thesis will
 show how to build a MEAN Stack application in a safe and stable way.
 For this the thesis will research the literature available for continuous integration and automatization, to build a similar system with the MEAN Stack.
@@ -169,7 +168,7 @@ application is working, the application can be build and deployed. Figure 4 show
 \begin{figure}[h!]
   \centering
   \includegraphics[width=0.8\textwidth]{images/cd.png}
-  \caption{continuous delivery cycle from https://blog.risingstack.com/continuous-deployment-of-node-js-applications/}
+  \caption{continuous delivery cycle from \url{https://blog.risingstack.com/continuous-deployment-of-node-js-applications/} (visited on 17. April 2016)
 \end{figure}
 
 \newpage
@@ -427,7 +426,7 @@ continuous delivery pipeline. However this is not a complete list. The following
 \end{itemize}
 
 \section{Describing the CD pipeline}
-\label{section:Describing CD Pipeline (WIP)}
+\label{section:Describing CD Pipeline}
 To begin the setup process the beginning of this chapter shows the versions and requirements the neolexon project uses for the CD pipeline and MEAN stack.
 The configuration is split into server and client side functionalities and will be followed a step by step guide on how to setup the web application
 and what problems and difficulties can be occur.
@@ -457,7 +456,7 @@ feature to choose. As most services today do, you can use your DigitalOcean VPS 
 In order to use the DigitalOcean service with your Ubuntu server an account setup is needed. This can be found under \url{http://digitalocean.com/registrations/new}. After
 registration and confirmation via email, the next step is to create a droplet for the Ubuntu 14.04 server. A droplet is the DigitalOcean name for a their VPS.
 In the example the project makes use of the Ubuntu 14.04 x64 droplet. The setup in general is a straight forward process. In case of difficulties or problems DigitalOcean has
-created a tutorial for this. It can be found under \url{https://www.digitalocean.com/community/tutorials/how-to-create-your-first-digitalocean-droplet-virtual-server}.
+created a tutorial for this. It can be found under \url{https://www.digitalocean.com/community/tutorials/how-to-create-your-first-digitalocean-droplet-virtual-server} (visited on 2. April 2016).
 The project in use will be using the 64-bit structure for the new VPS. The choosen VPS size uses 512MB of RAM. With RAM of 1 Gigabyte or less the performance benefits of a 64-bit
 architecture will be diluted because of the less memory. However, this will be the system of choice because of a future upscale of the application itself. If the plan
 to scale the application this can be an option to reconsider.
@@ -530,6 +529,8 @@ The installation is done by the npm package manager with
 \begin{lstlisting}
   npm install
 \end{lstlisting}
+
+\footnote{https://futurestud.io/blog/strider-configure-and-use-webhooks visited on 13. April 2016}
 
 During the setup of the neolexon project there where no problems or version conflicts during the setup process. In case of problems and errors
 the package manager (npm) will show the error messages. Errors should be fixed immediately before going on with the CI pipline process. After a
@@ -634,7 +635,7 @@ With the following command the start will changed to the production environment 
   NODE_ENV=production npm start
 \end{lstlisting}
 
-To get an overview about strider and how it works, there are several essential parts, that needs to be understand, to work and configure
+To get an overview about strider and how it works, there are several essential parts, that needs to be understood, to work and configure
 strider in the right way. Strider supports different needs and options for testing and deploying web applications. An essential part of
 the configuration process is the strider plugin system. Strider uses plugins to integrate services like Github, Slack, Email
 notification, Docker containerization and others. To see the complete plugin ecosystem visit \url{https://github.com/Strider-CD/ecosystem-index/blob/master/plugins.yml}.
@@ -720,7 +721,7 @@ In the project at hand there where some confusions about why some persons can ad
   \caption{Git 128 Permission Error}
 \end{figure}
 
-\subsection{Manual And Automatic Testing With Strider}
+\subsection{Manual and automatic testing with strider}
 \label{Manual And Automatic Testing With Strider}
 The next step is to test if strider is connected properly and that tests can be run. The strider UI let you run a manually test from
 the dashboard. Strider also indicates that it is running the testing and an approximated time for the test run. After completion
@@ -759,8 +760,12 @@ shows variety of questions and solutions treating unit tests in general and moch
 
 \subsection{SSH Deployment}
 \label{section:SSH Deployment}
+StriderCD also allows deployment with SSH. For this the plugin section holds the \testbf{SSH Deploy} plugin, which is enabled in the same
+as other plugins. If enabled, the SSH Deploy plugin is visible in the right side list and can be clicked to modify and configure it. In this
+section it is possible to implement the deployment script with the needed commands. It also holds the Private and Public keys that can be used
+for authentication with the deployment server.
 
-\subsection{Build Notifications}
+\subsection{Build notifications}
 \label{section:Build Notifications}
 Now that the build process is running (right now there are no tests that are implemented), it is a
 good idea to use the full potential of a CI service. Automatization is a useful tool, but the development team needs to be aware of
@@ -772,7 +777,7 @@ project. Than strider should store it on the server in the strider build directo
 The outcome should be an email or slack message with the build status and if there is anything that needs to be done afterwards. For example
 the invitation to deploy the build to the staging or production server.
 
-\subsubsection{Slack Notifications}
+\subsubsection{Slack notifications}
 The first notification examples uses slack. Slack is a team communication tool. Slack can used to write messages, share files, integrate calendar or
 github repositories or use software bots for time management an other useful things. Slack uses multiple channels for communication. For this example there
 will be a notification in the build channel that was designed for strider notifications. For more about slack visit the website \url{https://slack.com}.
@@ -825,7 +830,7 @@ In this case, the build channel shows the message after the next successful push
   \caption{Slack Build Notification Test}
 \end{figure}
 
-\subsubsection{Email Notifications}
+\subsubsection{Email notifications}
 If there are team members outside the slack team or if you do not using slack notifications, the build process can also be configured
 for email. The email notification system can be setup in the same way as done it with slack. First the \textbf{Email Notifier}
 plugin needs to be installed.
@@ -872,7 +877,7 @@ To export the variables into the strider.conf file use
   export SMTP_HOST="your-smtp-server"
 \end{lstlisting}
 
-source: \url{https://futurestud.io/blog/strider-configure-and-activate-email-notifications}
+source: \url{https://futurestud.io/blog/strider-configure-and-activate-email-notifications} visited on 5. April 2016
 
 \newpage
 \section{Problems and errors}
@@ -919,21 +924,41 @@ the solution was to reset the database. Because the project was in its early sta
 dummy data.
 
 \newpage
-\section{Conclusion WIP}
+\section{Conclusion}
 \label{section:Conclusion}
 The development process of the continuous integration service of the neolexon web application starts as a straightforward process. The software stack
-used for this project is well known and described. during the initial research phase the literature and work of Martin Fowler where extraordinary
+used for this project is well known and described. During the initial research phase, the literature and work of Martin Fowler was extraordinary
 helpful. In terms of agile software development and continuous integration, there are several frameworks and services available to choose from to build
 state of the art web projects. One of the main challenges where the choice of services and software. The goal of the most frameworks out there is
 the same. Let developer teams build and maintain a continuous integration service, that is easy to setup. But what is the right service for the given project?
 To solve this challenge the research phase of this thesis included the issue sections of github (if a service was available there). StriderCD is well
 documented and uses github for distribution. Knowing the issues of a software service can help in the decision process. The Nodejs focus of strider
 was another reason to choose this service. In terms of usability and maintainability, striderCD is easy to use and implement. The configuration is having
-some difficulty parts that needs to be understood to configure strider in the right way. Strider CD runs was running in a stable way on the example setup
+some difficulty parts that needs to be understood to configure strider in the right way. StriderCD was running in a stable way on the example setup
 of Ubuntu 14.04 with deployment on Digital Ocean. The experienced shutdowns where Ubuntu specific and the documentation did well in naming the most
 successful versions for the use of strider. During the writing of this thesis and the implementation of the striderCD service the development team did
 not experience any downtime of the service itself. According to the build process every push was build after the configuration was complete. The answer
-to the research question is that the Issue reports and the experienced downtime together with the concluded build processes are supporting claim that
-a striderCD system can be used as a stable CI service for NodeJS/MEAN applications.    
+to the research question is that the Issue reports (\url{https://github.com/Strider-CD/strider/issues} visited on 27. April 2016) and the experienced downtime,
+together with the concluded build processes are supporting the claim that a striderCD system can be used as a stable CI service for NodeJS/MEAN applications and
+that this setup can be a best practice approach in modern web applications.
 
-% and the detailed work behind the well written and maintained documentations of MEANJS and striderCD.
+
+\newpage
+\section{List of abbreviations}
+\label{section:List of abbreviations}
+
+\begin{itemize}
+  \item CD = Continuous Delivery
+  \item CI = Continuous Integration
+  \item SPOF = Single Point Of Failure
+  \item VPS = Virtual Private Server
+  \item VCS = Version Control System
+  \item MEAN = Framework with MongoDB ExpressJS AngularJS NodeJS
+  \item JSON = JavaScript Object Notation
+  \item MVC = Model View Controller
+  \item SSH = Secure Shell
+  \item NPM = Node Package Manager
+  \item VPN = Virtual Private Network
+  \item URL = Uniform Resource Locator
+  \item SMTP = Simple Mail Transfer Protocol
+\end{itemize}
