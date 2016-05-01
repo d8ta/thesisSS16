@@ -459,7 +459,7 @@ feature to choose. As most services today do, you can use your DigitalOcean VPS 
 In order to use the DigitalOcean service with your Ubuntu server an account setup is needed. This can be found under \url{http://digitalocean.com/registrations/new}. After
 registration and confirmation via email, the next step is to create a droplet for the Ubuntu 14.04 server (\cite{droplet}). A droplet is the DigitalOcean name for a their VPS.
 In the example the project makes use of the Ubuntu 14.04 x64 droplet. The setup in general is a straight forward process. In case of difficulties or problems DigitalOcean has
-created a tutorial for this. It can be found under \url{https://www.digitalocean.com/community/tutorials/how-to-create-your-first-digitalocean-droplet-virtual-server}.
+created a tutorial for this. It can be found on the digitalocean website \footnote{https://www.digitalocean.com/community/tutorials/how-to-create-your-first-digitalocean-droplet-virtual-server}.
 The project in use will be using the 64-bit structure for the new VPS. The choosen VPS size uses 512MB of RAM. With RAM of 1 Gigabyte or less the performance benefits of a 64-bit
 architecture will be diluted because of the less memory. However, this will be the system of choice because of a future upscale of the application itself. If the plan
 to scale the application this can be an option to reconsider.
@@ -553,7 +553,9 @@ rights to the database that will be create and used for striderCD. The following
   use admin
   db.auth( <username>, <password> )
 
-  db.createUser({user: "strider", pwd: "striderPassword", roles: [{role: "dbOwner", db: "mean-dev"}]})
+  db.createUser({user: "strider",
+  pwd: "striderPassword",
+  roles: [{role: "dbOwner", db: "mean-dev"}]})
 \end{lstlisting}
 The output should show the created user like this
 \begin{figure}[h!]
@@ -566,12 +568,13 @@ In case you dont use the standard local mongoDB database you need to specify the
   mongo --port <your-port-number>
 \end{lstlisting}
 For more setup information the mongoDB documentation holds is helpful. The above snippets are
-used from the documentation manual 2.6 which can be found under \url{https://docs.mongodb.org/manual/reference/method/db.auth/#db.auth}
+used from the documentation manual 2.6 which can be found on the mongodb website \footnote{https://docs.mongodb.org/manual/reference/method/db.auth/#db.auth}.
 
 To use the proper connecting via mongoose, to the used database, an connection string for mongoose is needed. According to the mongoDB
 documentation, this can be done with the following command
 \begin{lstlisting}
-  mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]
+  mongodb://[username:password@]host1[:port1][,host2[:port2],
+  ...[,hostN[:portN]]][/[database][?options]]
 \end{lstlisting}
 In the case of the created strider user above the connection string reads
 \begin{lstlisting}
@@ -584,7 +587,8 @@ startup. To use process variables for the example project with a port of 4000 an
 command start the process
 
 \begin{lstlisting}
-  SERVER_NAME="https://neolexon.com" PORT=4000 npm start
+  SERVER_NAME="https://neolexon.com" PORT=4000
+  npm start
 \end{lstlisting}
 
 If strider needs a restart the process variables are lost and needs to be used again in the startup process. By using a configuration file
