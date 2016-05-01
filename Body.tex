@@ -578,7 +578,8 @@ documentation, this can be done with the following command
 \end{lstlisting}
 In the case of the created strider user above the connection string reads
 \begin{lstlisting}
-  DB_URI="mongodb://strider:striderPassword@localhost:27017/strider" npm start
+  DB_URI="mongodb://strider:striderPassword@localhost:27017/strider"
+  npm start
 \end{lstlisting}
 
 To run and use strider as intended there are several configuration steps that are needed to be done. Strider can either be configured
@@ -620,12 +621,12 @@ for starting is the following inital command in the configuration file:
 \begin{lstlisting}
   start on startup
 \end{lstlisting}
- This command, however did not work in the project. After changing the command to
- \begin{lstlisting}
-   start on filesystem
- \end{lstlisting}
-  the startup was functioning.
-  Start on filesystem does the same for the upstart job but it starts if the whole server starts.
+This command, however did not work in the project. After changing the command to
+\begin{lstlisting}
+  start on filesystem
+\end{lstlisting}
+the startup was functioning.
+Start on filesystem does the same for the upstart job but it starts if the whole server starts.
 
 \lstinputlisting{files/strider_config.js}
 
@@ -637,7 +638,8 @@ After these steps the installation and standard configuration of strider will be
 With the following command the start will changed to the production environment as the new default
 
 \begin{lstlisting}
-  NODE_ENV=production npm start
+  NODE_ENV=production
+  npm start
 \end{lstlisting}
 
 To get an overview about strider and how it works, there are several essential parts, that needs to be understand, to work and configure
@@ -746,7 +748,8 @@ linked repository. For this an update file for the hooked git repository is need
 the example project is
 
 \begin{lstlisting}
-  /home/strider/builds/data/nvpsswaroop-neolexon-core-570f544255aebd0a04199f2d/.git/hooks/update
+  /home/strider/builds/data/nvpsswaroop-
+  neolexon-core-570f544255aebd0a04199f2d/.git/hooks/update
 \end{lstlisting}
 
 In the example project case nvpsswaroop-neolexon-core-570f544255aebd0a04199f2d is the project repository from github which is hooked to strider.
@@ -866,7 +869,8 @@ and pass are your user data from the mailgun account. \textbf{PORT} and \textbf{
 Use the following start command
 
 \begin{lstlisting}
-  SMTP_HOST="smtp.mailgun.org SMTP_PORT=587 SMTP_USER="your-username" \
+  SMTP_HOST="smtp.mailgun.org
+  SMTP_PORT=587 SMTP_USER="your-username" \
   SMTP_PASS="your-password" SMTP_FROM="your-email" \
   ./bin/strider
 \end{lstlisting}
