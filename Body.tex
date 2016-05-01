@@ -1,4 +1,4 @@
-cd \section{Introduction}
+\section{Introduction}
 Today the need for stable web applications is vital for companies and startups. Established businesses need to be
 available for their customers and users all the time. For Startups the availability of their services can be the difference
 between failure and success. Web applications and services needs to change and scale over time. Sometimes a service gets customers or is
@@ -29,8 +29,8 @@ To do so the thesis will describe how to automatize builds and tests. The descri
 
 \newpage
 
-\section{Introduction to Agile Development and the Role of Development Operations in Modern Web Applications}
-\label{section:Introduction to Agile Development and the Role of Development Operations in Modern Web Applications}
+\section{Introduction to Agile Development and Development Operations}
+\label{section:Introduction to Agile Development and Development Operations}
 
 \subsection{Engineering Software}
 Web development has its roots in general software engineering and uses most of the models, tools and methodologies that are
@@ -59,7 +59,7 @@ code should be seen as the main construction phase. For \cite{fowler2001new} the
   \item In software all the effort is design, and thus requires creative and talented people
   \item Creative processes are not easily planned, and so predictability may well be an impossible target.
   \item We should be very wary of the traditional engineering metaphor for building software. It's a different kind of activity and requires a different process
-\end{itemize} \cite{fowler2001new}
+\end{itemize}
 
 \newpage
 
@@ -169,8 +169,9 @@ application is working, the application can be build and deployed. Figure 4 show
 \begin{figure}[h!]
   \centering
   \includegraphics[width=0.8\textwidth]{images/cd.png}
-  \caption{continuous delivery cycle from https://blog.risingstack.com/continuous-deployment-of-node-js-applications/}
+  \caption{continuous delivery cycle from}
 \end{figure}
+\footnote{https://blog.risingstack.com/continuous-deployment-of-node-js-applications/ visited on 9. April 2016}
 
 \newpage
 
@@ -192,8 +193,9 @@ push version controls system. In figure 5 a basic pipeline can be seen.
 \begin{figure}[h!]
   \centering
   \includegraphics[width=0.8\textwidth]{images/pipeline.png}
-  \caption{basic CD pipeline from https://blog.risingstack.com/nodejs-production-environment-for-startups/}
+  \caption{basic CD pipeline}
 \end{figure}
+\footnote{https://blog.risingstack.com/nodejs-production-environment-for-startups/ visited on 13. April 2016}
 
 To describe the CI pipeline with more detail, the following stages are described. Theses Stages are the same for every software project using
 continuous delivery. They vary in different parts,  that will be explained. The basics however, are the same. The pipeline follows one stage after another.
@@ -268,7 +270,7 @@ code once and reuse this build without re-compiling it in later stages. The code
 code that was going thought the pipeline. Re-create a build again (binaries are in this context a collection of executable code) after the first
 build is considered a bad practice. The best way to do this is to store the build in a filesystem and reuse it for every other stage that gets triggered in the
 pipeline process. This matters most if the continuous delivery server is custom build. Most of the modern CD services are taking care of that processes
-themselves.
+themselves. (\cite{humble2010continuous})
 
 \subsubsection{Deploy in the same way to every environment you use}
 The employment should use the same process, whether it is for production or to a developer machine. By doing so all builds and scripts are able to
@@ -277,15 +279,15 @@ It is a good thing to be sure that the deployed web application will be up and r
 the confidence to have a working web applications grows. For this a basic script that does the same is necessary for all the environments. If there are
 unique settings for some of the environments it is a best practice advice to store the specific settings inside the environment itself. This prevents
 writing different scripts for all the environments. Jez writes about storing these unique settings in the VCS to trigger the usage by hostname.
-If the deployment takes place in one of these special environment, the specific hostname of that environment triggers the unique script together (or parallel)
-with the basic script.
+If the deployment takes place in one of these special environment, the specific hostname of that environment triggers the unique script together (or parallel) with the basic script.
+(\cite{humble2010continuous})
 
 \subsubsection{Deploy into a copy of your production environment}
 It is a good idea to keep the environments for deployment, testing and staging as similar to the later production environment as possible. If the deployed build
 is working on these environments, the development team can be confident that the build will run on the live environment later on. This Method is similar to
 a betting system. With every stage that is finalize the confidence for a working web application is growing. In the end the possibility that everything runs like
 intended is significantly higher. There is still be the general possibility of failure involved because there is no 100 percent assurance, but the
-failure can be minimized to a minimal part.
+failure can be minimized to a minimal part. (\cite{humble2010continuous})
 
 \subsubsection{Each change should propagate through the pipeline instantly}
 As shown in the description of the different stages, every push to the version control system triggers the commit stage and is following the pipeline, as long as
@@ -301,6 +303,7 @@ took longer because of restarting several times in a row. But compared to having
 There is only so much code that can be shipped simultaneously, so eventually the pipeline will reach the end of all testing stages. If the development team is bigger
 different commit times can be scheduled. By theory this will stand against the principles of CD. But there will be longer commit times, because if every commit goes through
 the whole pipeline, but is not the last commit, the process is ending up with more time until the next deployed build, than with scheduled commit times .
+(\cite{humble2010continuous})
 
 \subsection{Starting a continuous delivery pipeline}
 Starting a CD pipeline can be done in several ways. Before describing the actual tools, that can be used to build a suitable workflow, this thesis will describe
@@ -317,10 +320,9 @@ This minimalistic code can test the CD system, by committing to the repository. 
 will be deployed to run an acceptance test (an acceptance test can only be running if a website is deployed to a staging server!). The acceptance test stage should
 verify that the console.log or html is visible on the website. This first steps will provide a practical understanding of how the pipeline works and
 if it runs according to what is needed to do, with more complicated things later. In the next section the thesis will show and describe different tools
-and CD services that can be used to build an effective and stable continuous delivery chain.
+and CD services that can be used to build an effective and stable continuous delivery chain. (\cite{humble2010continuous})
 
 
-\newpage
 \section{Development and Deployment with MEAN}
 \label{section:Development and Deployment with MEAN}
 
@@ -455,9 +457,9 @@ the data of patients should stay in the european union for privacy and data secu
 feature to choose. As most services today do, you can use your DigitalOcean VPS together with an SSH key to log in.
 
 In order to use the DigitalOcean service with your Ubuntu server an account setup is needed. This can be found under \url{http://digitalocean.com/registrations/new}. After
-registration and confirmation via email, the next step is to create a droplet for the Ubuntu 14.04 server. A droplet is the DigitalOcean name for a their VPS.
+registration and confirmation via email, the next step is to create a droplet for the Ubuntu 14.04 server (\cite{droplet}). A droplet is the DigitalOcean name for a their VPS.
 In the example the project makes use of the Ubuntu 14.04 x64 droplet. The setup in general is a straight forward process. In case of difficulties or problems DigitalOcean has
-created a tutorial for this. It can be found under \url{https://www.digitalocean.com/community/tutorials/how-to-create-your-first-digitalocean-droplet-virtual-server} (Visited on 22. April 2016).
+created a tutorial for this. It can be found under \url{https://www.digitalocean.com/community/tutorials/how-to-create-your-first-digitalocean-droplet-virtual-server}.
 The project in use will be using the 64-bit structure for the new VPS. The choosen VPS size uses 512MB of RAM. With RAM of 1 Gigabyte or less the performance benefits of a 64-bit
 architecture will be diluted because of the less memory. However, this will be the system of choice because of a future upscale of the application itself. If the plan
 to scale the application this can be an option to reconsider.
@@ -679,11 +681,6 @@ In the plugin view the needed plugin can be installed, updated or removed. We ne
 The linking between the account takes place in the account settings. From there linking to services is possible. If you choose add account, strider
 will guide you through the authorization process.
 
-\begin{figure}[h!]
-  \centering
-  \includegraphics[width=0.8\textwidth]{images/auth_app.png}
-  \caption{Authorize Application - Image From Futurestud.io}
-\end{figure}
 
 After authorize the github account the \textit{Github App Id} and the \textit{Github Secret} is needed. Both of them are put
 into
@@ -876,7 +873,8 @@ To export the variables into the strider.conf file use
   export SMTP_HOST="your-smtp-server"
 \end{lstlisting}
 
-()\url{https://futurestud.io/blog/strider-configure-and-activate-email-notifications} visited on 15. April 2016)
+\cite{strider} und 
+\cite{stridergithub}
 
 \newpage
 \section{Problems and errors}
@@ -905,13 +903,14 @@ for every project. Some of the questions regarding the choice of your software a
   \item What are the alternatives to that software?
   \item Do i need this service or software?
   \item Is the cost value of the service of third party software sufficient?
-\end{itemize} \cite{ulbrich2012eliminating}
+\end{itemize}
 
 SPOF cannot be fully avoided in todays web development and application management. In \cite{ulbrich2012eliminating} another solution to avoid SPOF is
 the use of redundant systems or similar systems and software. Redundancy means that in case of failure another system took over. A useful example
 can be another CI service besides strider that took over if strider suffers from downtime. An automatization like this can be useful for bigger
 projects that will suffer heavy consequences in case of a failure. For reasons of simplicity and complexity the neolexon project uses no redundant
 CI system. Considered the project size and the construction of the neolexon project, managing and creating redundancies would be exaggerated.
+\cite{ulbrich2012eliminating}
 
 \subsection{Server Stability And Problems}
 \label{section:Server Stability And Problems}
